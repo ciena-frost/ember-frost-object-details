@@ -1,2 +1,19 @@
-ember-frost-object-details component
-{{yield}}
+{{component headerComponent}}
+
+<div class="body">
+    <div class="top-tabs">
+      {{#each subRoutes as |subRoute|}}
+        {{#link-to subRoute.route}}{{subRoute.name}}{{/link-to}}
+      {{/each}}
+    </div>
+    <div class="body">
+        <div class="content">
+          {{liquid-outlet class='main-container'}}
+        </div>
+        <div class="side-tabs">
+          {{#each actionLinks as |actionLink|}}
+            {{frost-action-link actionLink=actionLink actionLinkSelected=actionLinkSelected subRouteSelected=subRouteSelected}}
+          {{/each}}
+        </div>
+    </div>
+</div>

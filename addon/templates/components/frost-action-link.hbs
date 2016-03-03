@@ -1,0 +1,15 @@
+{{#if isSelected}}
+  {{#frost-link subRouteSelected.route}}
+      <div class='circle'>
+        {{frost-icon class='service' icon='frost/add'}}
+      </div>
+      {{actionLink.alias}}
+  {{/frost-link}}
+{{else}}
+  {{#frost-link actionLink.route}}
+      <div class='circle'>
+        {{frost-icon class='service' icon=actionLink.path}}
+      </div>
+      {{actionLink.alias}}
+  {{/frost-link}}
+{{/if}}
