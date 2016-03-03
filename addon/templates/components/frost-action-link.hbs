@@ -1,10 +1,19 @@
 {{#if isSelected}}
-  {{#frost-link subRouteSelected.route}}
-      <div class='circle'>
-        {{frost-icon class='service' icon='frost/add'}}
-      </div>
-      {{actionLink.alias}}
-  {{/frost-link}}
+  {{#if persistRouteName}}
+    {{#frost-link persistRouteName}}
+        <div class='circle'>
+          {{frost-icon class='service' icon='frost/add'}}
+        </div>
+        {{actionLink.alias}}
+    {{/frost-link}}
+  {{else}}
+    {{#frost-link baseRoute}}
+        <div class='circle'>
+          {{frost-icon class='service' icon='frost/add'}}
+        </div>
+        {{actionLink.alias}}
+    {{/frost-link}}
+  {{/if}}
 {{else}}
   {{#frost-link actionLink.route}}
       <div class='circle'>

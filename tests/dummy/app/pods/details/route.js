@@ -7,5 +7,16 @@ export default Ember.Route.extend({
     this.store.unloadAll('user')
     var userId = params.user_id
     return  this.store.findRecord('user', userId)
+  },
+
+  actions: {
+    routeHandler(attrs) {
+      console.log('This is route handler function')
+      console.log(attrs)
+
+      this.controller.set('persistRouteName', attrs)
+      //this.controllerFor(this.get('controllerName')).set('persistRouteName', attrs);
+
+    }
   }
 })

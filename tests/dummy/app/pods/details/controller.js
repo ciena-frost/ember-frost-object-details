@@ -4,6 +4,7 @@ export default Ember.Controller.extend({
 
   headerComponent: 'fre-details',
   actionLinkSelected: '',
+  baseRoute: 'details',
 
   subRoutes: [
     {
@@ -39,7 +40,9 @@ export default Ember.Controller.extend({
   actions: {
     selected(attrs) {
       console.log(attrs.actionLink.name)
+      console.log('persistRouteName: ' + this.get('persistRouteName'))
       this.set('actionLinkSelected', !(this.get('actionLinkSelected') === attrs.actionLink.name) ? attrs.actionLink.name : '')
-    }
+    },
+
   }
 })
