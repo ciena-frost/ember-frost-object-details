@@ -1,9 +1,11 @@
-{{component headerComponent}}
+{{#if headerComponent}}
+  {{component headerComponent}}
+{{/if}}
 
 <div class="body">
     <div class="top-tabs">
       {{#each subRoutes as |subRoute|}}
-        {{#link-to subRoute.route}}{{subRoute.name}}{{/link-to}}
+        {{#link-to subRoute.route}}{{subRoute.alias}}{{/link-to}}
       {{/each}}
     </div>
     <div class="body">
@@ -12,7 +14,7 @@
         </div>
         <div class="side-tabs">
           {{#each actionLinks as |actionLink|}}
-            {{frost-action-link actionLink=actionLink actionLinkSelected=actionLinkSelected persistRouteName=persistRouteName baseRoute=baseRoute}}
+            {{frost-action-link actionLink=actionLink persistRouteName=persistRouteName baseRoute=baseRoute}}
           {{/each}}
         </div>
     </div>

@@ -1,5 +1,4 @@
-import Ember from 'ember';
-import DS from 'ember-data';
+import DS from 'ember-data'
 
 export default DS.Model.extend({
   'first-name': DS.attr('string'),

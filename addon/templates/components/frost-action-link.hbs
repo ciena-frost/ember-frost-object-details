@@ -7,7 +7,7 @@
         {{actionLink.alias}}
     {{/frost-link}}
   {{else}}
-    {{#frost-link 'details.sub1'}}
+    {{#frost-link baseRoute}}
         <div class='circle'>
           {{frost-icon class='service' icon='frost/add'}}
         </div>
@@ -17,7 +17,7 @@
 {{else}}
   {{#frost-link actionLink.route}}
       <div class='circle'>
-        {{frost-icon class='service' icon=actionLink.path}}
+        {{frost-icon class='service' icon=actionLink.svgPath}}
       </div>
       {{actionLink.alias}}
   {{/frost-link}}

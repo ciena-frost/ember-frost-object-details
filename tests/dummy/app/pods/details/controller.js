@@ -3,45 +3,44 @@ import Ember from 'ember'
 export default Ember.Controller.extend({
 
   headerComponent: 'fre-details',
-  baseRoute: 'details',
+  baseRoute: 'details.maps',
 
   subRoutes: [
     {
-      name: 'sub-route-1',
-      route: 'details.sub1'
+      alias: 'Maps',
+      route: 'details.maps'
     },
     {
-      name: 'sub-route-2',
-      route: 'details.sub2'
+      alias: 'Details',
+      route: 'details.details'
     }
   ],
 
   actionLinks: [
     {
-      name: 'service',
       alias: 'Service',
-      path: 'frost/service',
+      svgPath: 'frost/service',
       route: 'details.service'
     },
     {
-      name: 'network',
       alias: 'Network',
-      path: 'app/nav-network',
+      svgPath: 'app/nav-network',
       route: 'details.network'
-    },{
-      name: 'tenant',
+    }, {
       alias: 'Tenant',
-      path: 'frost/tenant',
+      svgPath: 'frost/tenant',
       route: 'details.tenant'
     }
   ],
 
   actions: {
-    selected(attrs) {
-      debugger;
-      //console.log(attrs.actionLink.name)
-      //console.log('persistRouteName: ' + this.get('persistRouteName'))
-      this.set('actionLinkSelected', !(this.get('actionLinkSelected') === attrs.actionLink.name) ? attrs.actionLink.name : '')
+    selected (attrs) {
+      this.notifications.addNotification({
+        type: 'success',
+        message: 'action triggered by ' + attrs.actionLink.alias,
+        autoClear: true,
+        clearDuration: 1500
+      })
     }
 
   }

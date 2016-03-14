@@ -1,10 +1,7 @@
-import Ember from 'ember'
-
 export default function () {
-
   this.passthrough()
 
-  this.get('/users', function(db) {
+  this.get('/users', function (db) {
     return {
       data: db['users'].map((attrs) => {
         return {

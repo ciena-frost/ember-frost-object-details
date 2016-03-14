@@ -8,8 +8,8 @@ var Router = Ember.Router.extend({
 Router.map(function () {
   this.route('demo', { path: '/' })
   this.route('details', {path: '/details/:user_id'}, function () {
-    this.route('sub1')
-    this.route('sub2')
+    this.route('maps')
+    this.route('details')
     this.route('service')
     this.route('network')
     this.route('tenant')
