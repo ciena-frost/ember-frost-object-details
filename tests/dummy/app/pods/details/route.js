@@ -15,7 +15,6 @@ export default Ember.Route.extend({
       console.log(attrs)
 
       this.controller.set('persistRouteName', attrs)
-      //this.controllerFor(this.get('controllerName')).set('persistRouteName', attrs);
 
     }
   }
