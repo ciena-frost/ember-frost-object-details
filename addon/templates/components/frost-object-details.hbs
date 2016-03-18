@@ -2,20 +2,18 @@
   {{component headerComponent}}
 {{/if}}
 
+<div class="top-tabs">
+  {{#each subRoutes as |subRoute|}}
+    {{#link-to subRoute.route}}{{subRoute.alias}}{{/link-to}}
+  {{/each}}
+</div>
 <div class="body">
-    <div class="top-tabs">
-      {{#each subRoutes as |subRoute|}}
-        {{#link-to subRoute.route}}{{subRoute.alias}}{{/link-to}}
-      {{/each}}
+    <div class="content">
+      {{liquid-outlet class='main-container'}}
     </div>
-    <div class="body">
-        <div class="content">
-          {{liquid-outlet class='main-container'}}
-        </div>
-        <div class="side-tabs">
-          {{#each actionLinks as |actionLink|}}
-            {{frost-action-link actionLink=actionLink persistRouteName=persistRouteName baseRoute=baseRoute}}
-          {{/each}}
-        </div>
+    <div class="side-tabs">
+      {{#each actionLinks as |actionLink|}}
+        {{frost-action-link model=model actionLink=actionLink persistedRouteName=persistedRouteName baseRoute=baseRoute on-click=on-action-select}}
+      {{/each}}
     </div>
 </div>

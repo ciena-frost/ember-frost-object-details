@@ -5,16 +5,10 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-.frost-object-details > .body{
-  flex: 1;
   background-color: $frost-color-lgrey-3;
-  display: flex;
-  flex-direction: column;
 }
 
-.frost-object-details > .body > .top-tabs {
+.frost-object-details > .top-tabs {
   display: flex;
   flex-direction: row;
   height: 20px;
@@ -33,18 +27,18 @@
 
 }
 
-.frost-object-details > .body > .body {
+.frost-object-details > .body {
   display: flex;
   flex-direction: row;
   flex: 1;
 }
 
-.frost-object-details > .body > .body > .content {
+.frost-object-details > .body > .content {
   flex: 1;
   margin: 20px 0 0 20px;
 }
 
-.frost-object-details > .body > .body >.side-tabs {
+.frost-object-details > .body >.side-tabs {
   display: flex;
   flex-direction: column;
   margin-left: auto;
@@ -53,7 +47,7 @@
 }
 
 
-
+//TODO move style into ember-frost-link when available
 //import from ui project
 .frost-action-link {
   padding: 10px;

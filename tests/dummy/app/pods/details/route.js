@@ -1,17 +1,10 @@
 import Ember from 'ember'
+import subrouteNameHandlerMixin from 'ember-frost-object-details/mixins/subroute-name-handler-mixin'
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(subrouteNameHandlerMixin, {
 
   model: function (params) {
-    Ember.Logger.debug('model hook: ', params)
-    this.store.unloadAll('user')
     var userId = params.user_id
     return this.store.findRecord('user', userId)
-  },
-
-  actions: {
-    routeHandler (attrs) {
-      this.get('controller').set('persistRouteName', attrs)
-    }
   }
 })
