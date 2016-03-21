@@ -5,29 +5,31 @@ export default Ember.Component.extend({
 
   _routing: Ember.inject.service('-routing'),
 
-
   layout: layout,
   classNames: ['frost-object-details'],
 
-//  persistedRouteName: Ember.computed('_routing.currentRouteName', function () {
-//    debugger;
-//
-//
-//  return this.get('actionLink.route') === this.get('_routing.currentRouteName')
-//})
+  init() {
+    this._super(...arguments)
+    this.get('_routing.currentRouteName')
+  },
 
-  persistedRouteName: null,
+  //persistedRouteName: Ember.computed('routeChangeObserver', function () {
+  //  debugger;
+  //    return this.get('routeChangeObserver')
+  //  }
+  //}),
 
   routeChangeObserver: Ember.observer('_routing.currentRouteName', function() {
     let currentRouteName = this.get('_routing.currentRouteName')
 
-    debugger;
-    if(currentRouteName.startsWith(this.get('parentRoute') + '.primary')) {
-      console.log('succussse ')
+    if(currentRouteName.startsWith(this.get('parentRoute') + '.views')) {
+      console.log('success ')
+      this.set('persistedRouteName', currentRouteName)
     }else {
       console.log('failed')
     }
   })
+
 
 
 
