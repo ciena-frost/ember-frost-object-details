@@ -7,6 +7,7 @@ export default Ember.Mixin.create({
    */
   actions: {
     didTransition: function () {
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
       this.send('routeNameHandler', this.get('routeName'))
     }
   }

@@ -3,16 +3,16 @@ import Ember from 'ember'
 export default Ember.Controller.extend({
 
   headerComponent: 'fre-details',
-  baseRoute: 'details.maps',
+  baseRoute: 'details.views.maps',
 
   subRoutes: [
     {
       alias: 'Maps',
-      route: 'details.maps'
+      route: 'details.views.maps'
     },
     {
       alias: 'Details',
-      route: 'details.details'
+      route: 'details.views.lines'
     }
   ],
 
@@ -20,16 +20,16 @@ export default Ember.Controller.extend({
     {
       alias: 'Service',
       svgPath: 'frost/service',
-      route: 'details.service'
+      route: 'details.related.service'
     },
     {
       alias: 'Network',
       svgPath: 'app/nav-network',
-      route: 'details.network'
+      route: 'details.related.network'
     }, {
       alias: 'Tenant',
       svgPath: 'frost/tenant',
-      route: 'details.tenant'
+      route: 'details.related.tenant'
     }
   ],
 
