@@ -1,6 +1,5 @@
 import Ember from 'ember'
-import layout from '../templates/components/frost-action-link'
-import _ from 'lodash/lodash'
+import layout from '../templates/components/frost-related-detail'
 
 export default Ember.Component.extend({
   _routing: Ember.inject.service('-routing'),
@@ -28,12 +27,12 @@ export default Ember.Component.extend({
   /**
    The default route entry for object detail view.
    The targetRouteName of a `frost-link` wrapped by `frost-action-link` would
-   be set to `baseRoute` if `isSelected` is true and `baseRoute` is NOT presented.
+   be set to `defaultRoute` if `isSelected` is true and `defaultRoute` is NOT presented.
    is presented.
-   @property baseRoute
+   @property defaultRoute
    @type {String}
    */
-  baseRoute: '',
+  defaultRoute: '',
 
   /**
    A `frost-action-link` is considered active/isSelected when the application's
@@ -41,20 +40,7 @@ export default Ember.Component.extend({
    would trigger transitions into.
    @property isSelected
    */
-  isSelected: Ember.computed('actionLink', '_routing.currentRouteName', function () {
-    return this.get('actionLink.route') === this.get('_routing.currentRouteName')
-  }),
-
-  /**
-   The event triggered when `frost-action-link` is clicked
-   @property onclick
-   */
-  onclick: Ember.on('click', function (event) {
-    if (!Ember.ViewUtils.isSimpleClick(event)) {
-      return true
-    }
-    if (_.isFunction(this.get('on-click'))) {
-      this.get('on-click')({actionLink: this.get('actionLink')})
-    }
+  isSelected: Ember.computed('relatedRoute', '_routing.currentRouteName', function () {
+    return this.get('relatedRoute.route') === this.get('_routing.currentRouteName')
   })
 })

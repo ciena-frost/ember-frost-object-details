@@ -1,10 +1,6 @@
-{{#if headerComponent}}
-  {{component headerComponent}}
-{{/if}}
-
 <div class="top-tabs">
-  {{#each subRoutes as |subRoute|}}
-    {{#link-to subRoute.route}}{{subRoute.alias}}{{/link-to}}
+  {{#each viewRoutes as |viewRoute|}}
+    {{#link-to viewRoute.route}}{{viewRoute.alias}}{{/link-to}}
   {{/each}}
 </div>
 <div class="body">
@@ -12,8 +8,8 @@
       {{liquid-outlet class='main-container'}}
     </div>
     <div class="side-tabs">
-      {{#each actionLinks as |actionLink|}}
-        {{frost-action-link model=model actionLink=actionLink persistedRouteName=persistedRouteName baseRoute=baseRoute on-click=on-action-select}}
+      {{#each relatedRoutes as |relatedRoute|}}
+        {{frost-related-detail relatedRoute=relatedRoute persistedRouteName=persistedRouteName defaultRoute=defaultRoute}}
       {{/each}}
     </div>
 </div>
