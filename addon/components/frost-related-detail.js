@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   _routing: Ember.inject.service('-routing'),
 
   layout: layout,
-  classNames: ['frost-action-link'],
+  classNames: ['frost-related-detail'],
 
   /**
    @property classNameBindings
@@ -28,7 +28,6 @@ export default Ember.Component.extend({
    The default route entry for object detail view.
    The targetRouteName of a `frost-link` wrapped by `frost-action-link` would
    be set to `defaultRoute` if `isSelected` is true and `defaultRoute` is NOT presented.
-   is presented.
    @property defaultRoute
    @type {String}
    */
