@@ -1,4 +1,4 @@
-<div class="top-tabs">
+<div class="view-tabs">
   {{#each viewRoutes as |viewRoute|}}
     {{#link-to viewRoute.route}}{{viewRoute.alias}}{{/link-to}}
   {{/each}}
@@ -7,7 +7,7 @@
     <div class="content">
       {{liquid-outlet class='main-container'}}
     </div>
-    <div class="side-tabs">
+    <div class="related-tabs">
       {{#each relatedRoutes as |relatedRoute|}}
         {{frost-related-detail relatedRoute=relatedRoute persistedRouteName=persistedRouteName defaultRoute=defaultRoute}}
       {{/each}}

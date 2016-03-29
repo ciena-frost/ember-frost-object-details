@@ -2,6 +2,41 @@ import Ember from 'ember'
 import layout from '../templates/components/frost-object-details'
 import _ from 'lodash'
 
+function extraRoutes(availableRoutes, key, context) {
+  return _.chain(availableRoutes)
+    .filter((route) => {
+      return _.includes(route, `${context.get('parentRouteName')}${key}`) && !(_.includes(route, 'loading') ||
+        _.includes(route, 'error') ||
+        _.includes(route, 'index'))
+    })
+    .map((subRoute) => {
+      const { getOwner } = Ember
+      let label = ''
+      let lookupRoute = getOwner(context).lookup(`route:${subRoute}`)
+      if (lookupRoute) {
+        label = lookupRoute.get('detailsLabel')
+      }
+
+      if(key === '.related.') {
+        let labelSvgPath = ''
+        if (lookupRoute) {
+          label = lookupRoute.get('detailsLabel')
+          labelSvgPath = lookupRoute.get('detailsSvg')
+        }
+        return {
+          alias: label || subRoute.substring(`${context.get('parentRouteName')}${key}`.length),
+          route: subRoute,
+          svgPath: labelSvgPath || 'frost/tenant'
+        }
+      }
+      return {
+        alias: label || subRoute.substring(`${context.get('parentRouteName')}${key}`.length),
+        route: subRoute
+      }
+    })
+    .value()
+}
+
 export default Ember.Component.extend({
 
   _routing: Ember.inject.service('-routing'),
@@ -21,49 +56,12 @@ export default Ember.Component.extend({
 
   viewRoutes: Ember.computed('_routing', 'parentRouteName', function () {
     let availableRoutes = Object.keys(this.get('_routing.router').router.recognizer.names)
-    return _.chain(availableRoutes)
-      .filter((route) => {
-        return _.includes(route, `${this.get('parentRouteName')}.views.`) && !(_.includes(route, 'loading') ||
-          _.includes(route, 'error') ||
-          _.includes(route, 'index'))
-      })
-      .map((viewRoute) => {
-        const { getOwner } = Ember
-        let label = ''
-        if (getOwner(this).lookup(`route:${viewRoute}`)) {
-          label = getOwner(this).lookup(`route:${viewRoute}`).get('detailsLabel')
-        }
-        return {
-          alias: label || viewRoute.substring(`${this.get('parentRouteName')}.views.`.length),
-          route: viewRoute
-        }
-      })
-      .value()
+    return extraRoutes(availableRoutes, '.views.', this)
   }),
 
   relatedRoutes: Ember.computed('_routing', 'parentRouteName', function () {
     let availableRoutes = Object.keys(this.get('_routing.router').router.recognizer.names)
-    return _.chain(availableRoutes)
-      .filter((route) => {
-        return _.includes(route, `${this.get('parentRouteName')}.related.`) && !(_.includes(route, 'loading') ||
-          _.includes(route, 'error') ||
-          _.includes(route, 'index'))
-      })
-      .map((relatedRoute) => {
-        const { getOwner } = Ember
-        let label = ''
-        let labelSvgPath = ''
-        if (getOwner(this).lookup(`route:${relatedRoute}`)) {
-          label = getOwner(this).lookup(`route:${relatedRoute}`).get('detailsLabel')
-          labelSvgPath = getOwner(this).lookup(`route:${relatedRoute}`).get('detailsSvg')
-        }
-        return {
-          alias: label || relatedRoute.substring(`${this.get('parentRouteName')}.related.`.length),
-          route: relatedRoute,
-          svgPath: labelSvgPath || 'frost/tenant'
-        }
-      })
-      .value()
+    return extraRoutes(availableRoutes, '.related.', this)
   }),
 
   routeChangeObserver: Ember.on('init', Ember.observer('_routing.currentRouteName', function () {
@@ -71,7 +69,6 @@ export default Ember.Component.extend({
 
     if (currentRouteName.startsWith(this.get('parentRouteName') + '.views')) {
       this.set('persistedRouteName', currentRouteName)
-    } else {
     }
   }))
 })

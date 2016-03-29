@@ -8,7 +8,7 @@
   background-color: $frost-color-lgrey-3;
 }
 
-.frost-object-details > .top-tabs {
+.frost-object-details > .view-tabs {
   display: flex;
   flex-direction: row;
   height: 20px;
@@ -38,7 +38,7 @@
   margin: 20px 0 0 20px;
 }
 
-.frost-object-details > .body >.side-tabs {
+.frost-object-details > .body >.related-tabs {
   display: flex;
   flex-direction: column;
   margin-left: auto;
@@ -49,7 +49,7 @@
 
 //TODO move style into ember-frost-link when available
 //import from ui project
-.frost-action-link {
+.frost-related-detail {
   padding: 10px;
   font-size: $frost-font-s;
   text-align: center;
