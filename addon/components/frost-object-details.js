@@ -2,7 +2,7 @@ import Ember from 'ember'
 import layout from '../templates/components/frost-object-details'
 import _ from 'lodash'
 
-function extraRoutes(availableRoutes, key, context) {
+function extraRoutes (availableRoutes, key, context) {
   return _.chain(availableRoutes)
     .filter((route) => {
       return _.includes(route, `${context.get('parentRouteName')}${key}`) && !(_.includes(route, 'loading') ||
@@ -17,7 +17,7 @@ function extraRoutes(availableRoutes, key, context) {
         label = lookupRoute.get('detailsLabel')
       }
 
-      if(key === '.related.') {
+      if (key === '.related.') {
         let labelSvgPath = ''
         if (lookupRoute) {
           label = lookupRoute.get('detailsLabel')
