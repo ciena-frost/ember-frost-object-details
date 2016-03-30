@@ -26,7 +26,7 @@ function extraRoutes (availableRoutes, key, context) {
         return {
           alias: label || subRoute.substring(`${context.get('parentRouteName')}${key}`.length),
           route: subRoute,
-          svgPath: labelSvgPath || 'frost/tenant'
+          svgPath: labelSvgPath || 'frost/dialog-error'
         }
       }
       return {

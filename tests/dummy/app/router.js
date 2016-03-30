@@ -8,13 +8,13 @@ Router.map(function () {
   this.route('demo', { path: '/' })
   this.route('details', {path: '/details/:user_id'}, function () {
     this.route('views', function () {
-      this.route('maps')
-      this.route('lines')
+      this.route('profile')
+      this.route('preferences')
     })
     this.route('related', function () {
-      this.route('service')
-      this.route('network')
-      this.route('tenant')
+      this.route('devices')
+      this.route('friends')
+      this.route('subscriptions')
     })
   })
 })

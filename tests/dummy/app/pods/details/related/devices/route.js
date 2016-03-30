@@ -2,7 +2,7 @@ import Ember from 'ember'
 
 export default Ember.Route.extend({
 
-  detailsLabel: 'Service',
+  detailsLabel: 'Devices',
 
-  detailsSvg: 'frost/service'
+  detailsSvg: 'frost/network-element'
 })

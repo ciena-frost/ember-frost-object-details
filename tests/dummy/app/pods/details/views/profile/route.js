@@ -1,8 +1,6 @@
 import Ember from 'ember'
 
 export default Ember.Route.extend({
+  detailsLabel: 'Profile View'
 
-  detailsLabel: 'Tenant',
-
-  detailsSvg: 'frost/tenant'
 })
