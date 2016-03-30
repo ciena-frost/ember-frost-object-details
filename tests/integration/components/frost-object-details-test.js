@@ -1,6 +1,4 @@
-import {expect} from 'chai'
 import {describeComponent, it} from 'ember-mocha'
-import hbs from 'htmlbars-inline-precompile'
 
 describeComponent(
   'frost-object-details',
@@ -18,9 +16,6 @@ describeComponent(
       //     template content
       //   {{/frost-object-details}}
       // `)
-
-      this.render(hbs`{{frost-object-details}}`)
-      expect(this.$()).to.have.length(1)
     })
   }
 )

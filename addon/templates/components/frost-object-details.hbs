@@ -1,2 +1,16 @@
-ember-frost-object-details component
-{{yield}}
+<div class="view-tabs">
+  {{#each viewRoutes as |viewRoute|}}
+    {{#link-to viewRoute.route}}{{viewRoute.alias}}{{/link-to}}
+  {{/each}}
+</div>
+<div class="body">
+    <div class="content">
+      {{liquid-outlet class='main-container'}}
+    </div>
+    <div class="related-tabs">
+      {{#each relatedRoutes as |relatedRoute|}}
+        {{frost-related-detail relatedRoute=relatedRoute persistedRouteName=persistedRouteName defaultRoute=defaultRoute}}
+      {{/each}}
+    </div>
+</div>
+

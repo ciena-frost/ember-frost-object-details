@@ -1,7 +1,8 @@
 import Ember from 'ember'
 
 export default Ember.Route.extend({
-  model () {
-    return this.store.findAll('user')
-  }
+
+  detailsLabel: 'Service',
+
+  detailsSvg: 'frost/service'
 })

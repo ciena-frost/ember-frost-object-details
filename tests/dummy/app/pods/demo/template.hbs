@@ -1,2 +1,10 @@
-frost-object-details testbed
-{{frost-object-details}}
+<h3>User list</h3>
+{{#each model as |user|}}
+  <div>
+    {{#frost-link 'details.views.maps' user}}
+      {{user.first-name}}
+      {{user.last-name}}
+      {{user.email}}
+    {{/frost-link}}
+  </div>
+{{/each}}

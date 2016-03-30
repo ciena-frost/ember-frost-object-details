@@ -37,13 +37,14 @@
     "ember-resolver": "^2.0.3",
     "ember-try": "^0.2.0",
     "loader.js": "^4.0.0",
-    "ember-cli-mirage": "~0.1.11",
+    "ember-cli-mirage": "0.1.11",
     "ember-cli-mocha": "^0.10.0",
     "ember-cli-notifications": "^3.2.0",
     "ember-lodash": "~0.0.6",
     "ember-truth-helpers": "^1.2.0",
     "eslint": "2.2.0",
-    "eslint-config-frost-standard": "^1.0.0"
+    "eslint-config-frost-standard": "^1.0.0",
+    "ember-frost-info-bar": "^1.0.0"
   },
   "keywords": [
     "ember-addon",
@@ -54,8 +55,10 @@
     "ember-computed-decorators": "^0.2.2",
     "ember-cli-htmlbars": "^1.0.1",
     "ember-cli-sass": "^5.2.0",
-    "ember-frost-theme": "^1.0.1",
+    "ember-frost-core": "^0.0.13",
+    "ember-frost-theme": "^1.4.4",
     "ember-frost-css-core": "^0.2.1",
+    "ember-frost-icons": "^1.0.0",
     "liquid-fire": "^0.22.0"
   },
   "ember-addon": {
