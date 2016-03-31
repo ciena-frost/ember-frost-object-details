@@ -66,26 +66,6 @@
     }
   }
 
-  @mixin triangle-up($color, $size) {
-    border-bottom: $size solid $color;
-    border-left: $size solid transparent;
-    border-right: $size solid transparent;
-    height: 0;
-    width: 25px;
-  }
-
-  .up-arrow {
-    @include triangle-up(black, 12px);
-    display: inline-block;
-    left: calc(50% - 15px);
-    overflow: visible;
-    pointer-events: none;
-    position: absolute;
-    right: 8px;
-    top: -10px;
-    z-index: 3;
-  }
-
   .circle {
     border-radius: 50%;
     background-color: white;
