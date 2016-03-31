@@ -1,6 +1,6 @@
 import Ember from 'ember'
 
 export default Ember.Route.extend({
-  detailsLabel: 'Preference View'
-
+  detailsLabel: 'Preference View',
+  detailsRouteIndex: 2
 })

@@ -10,6 +10,7 @@ Router.map(function () {
     this.route('views', function () {
       this.route('profile')
       this.route('preferences')
+      this.route('details')
     })
     this.route('related', function () {
       this.route('devices')
