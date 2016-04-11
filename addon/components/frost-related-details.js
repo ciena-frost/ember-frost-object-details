@@ -52,35 +52,35 @@ const FrostRelatedDetails =  frostLink.extend({
     return this.get('route') === this.get('_routing.currentRouteName')
   }),
 
+  myTargetRouteName: Ember.computed('isSelected', 'persistedRouteName', 'defaultRoute', function () {
+    if(this.get('isSelected')) {
+      if(this.get('persistedRouteName')) {
+        return this.get('persistedRouteName')
+      } else {
+        return this.get('defaultRoute')
+      }
+    } else {
+      return this.get('route')
+    }
+  }),
+
+  qualifiedRouteName: Ember.computed('myTargetRouteName', '_routing.currentState', function computeLinkToComponentQualifiedRouteName() {
+    let params = this.get('params').slice();
+    let lastParam = params[params.length - 1];
+    if (lastParam && lastParam.isQueryParams) {
+      params.pop();
+    }
+    //debugger;
+    //let onlyQueryParamsSupplied = (this[HAS_BLOCK] ? params.length === 0 : params.length === 1);
+    //if (onlyQueryParamsSupplied) {
+    //  return this.get('_routing.currentRouteName');
+    //}
+    return this.get('myTargetRouteName');
+  }),
+
   willRender() {
     this._super(...arguments);
-
-    this.set('targetRouteName', Ember.computed('isSelected', 'persistedRouteName', 'defaultRoute', function () {
-      debugger;
-      if(this.get('isSelected')) {
-        if(this.get('persistedRouteName')) {
-          return this.get('persistedRouteName')
-        } else {
-          return this.get('defaultRoute')
-        }
-      } else {
-        return this.get('route')
-      }
-    }))
   },
-
-  //targetRouteName: Ember.computed('isSelected', 'persistedRouteName', 'defaultRoute', function () {
-  //  debugger;
-  //  if(this.get('isSelected')) {
-  //    if(this.get('persistedRouteName')) {
-  //      return this.get('persistedRouteName')
-  //    } else {
-  //      return this.get('defaultRoute')
-  //    }
-  //  } else {
-  //    return this.get('route')
-  //  }
-  //}),
 
   didReceiveAttrs() {
     if(!this.get('alias')) {
