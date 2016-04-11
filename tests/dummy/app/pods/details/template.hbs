@@ -9,8 +9,8 @@
   {{/if}}
 
   {{#if (eq comp.section 'related-route')}}
-    {{comp.relatedRoute route='details.related.devices' alias='Devices' svgPath='frost/network-element'}}
-    {{comp.relatedRoute route='details.related.friends' alias='Friends' svgPath='frost/tenant'}}
-    {{comp.relatedRoute route='details.related.subscriptions' alias='Subs' svgPath='frost/service'}}
+    {{#comp.relatedRoute 'details.related.devices' alias='Devices' svgPath='frost/network-element'}}Devices{{/comp.relatedRoute}}
+    {{#comp.relatedRoute 'details.related.friends' alias='Friends' svgPath='frost/tenant'}}Friends{{/comp.relatedRoute}}
+    {{#comp.relatedRoute 'details.related.subscriptions' alias='Subs' svgPath='frost/service'}}Subs{{/comp.relatedRoute}}
   {{/if}}
 {{/frost-object-details}}
