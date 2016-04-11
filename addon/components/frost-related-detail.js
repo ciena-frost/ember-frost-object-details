@@ -1,7 +1,7 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-related-detail'
 
-export default Ember.Component.extend({
+const FrostRelatedDetail =  Ember.Component.extend({
   _routing: Ember.inject.service('-routing'),
 
   layout: layout,
@@ -39,7 +39,23 @@ export default Ember.Component.extend({
    would trigger transitions into.
    @property isSelected
    */
-  isSelected: Ember.computed('relatedRoute', '_routing.currentRouteName', function () {
-    return this.get('relatedRoute.route') === this.get('_routing.currentRouteName')
-  })
+  isSelected: Ember.computed('route', '_routing.currentRouteName', function () {
+    return this.get('route') === this.get('_routing.currentRouteName')
+  }),
+
+  didReceiveAttrs() {
+    if(!this.get('alias')) {
+      let relatedRouteDirName = this.get('relatedRouteDirName') ? this.get('relatedRouteDirName') : 'related'
+      this.set('alias', this.get('route').substring(`${this.get('parentRouteName')}.${relatedRouteDirName}.`.length))
+    }
+    if(!this.get('svgPath')) {
+      this.set('svgPath', 'frost/dialog-error')
+    }
+  }
 })
+
+//FrostRelatedDetail.reopenClass({
+//  positionalParams: ['p0','p1','p2','p3']
+//});
+
+export default FrostRelatedDetail

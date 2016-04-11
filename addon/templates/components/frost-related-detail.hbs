@@ -4,21 +4,21 @@
         <div class='circle'>
           {{frost-icon icon='frost/close'}}
         </div>
-        {{relatedRoute.alias}}
+        {{alias}}
     {{/frost-link}}
   {{else}}
-    {{#frost-link defaultRoute}}
+    {{#frost-link defaultRoute }}
         <div class='circle'>
           {{frost-icon icon='frost/close'}}
         </div>
-        {{relatedRoute.alias}}
+        {{alias}}
     {{/frost-link}}
   {{/if}}
 {{else}}
-  {{#frost-link relatedRoute.route}}
+  {{#frost-link route }}
       <div class='circle'>
-        {{frost-icon icon=relatedRoute.svgPath}}
+        {{frost-icon icon=svgPath}}
       </div>
-      {{relatedRoute.alias}}
+      {{alias}}
   {{/frost-link}}
 {{/if}}
