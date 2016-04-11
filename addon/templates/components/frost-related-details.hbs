@@ -1,2 +1,13 @@
-{{yield}}
-{{hello}}
+{{#if (eq myTargetRouteName route)}}
+    <div class='circle'>
+      {{frost-icon icon=svgPath}}
+    </div>
+    {{yield}}
+{{else}}
+    <div class='circle'>
+      {{frost-icon icon='frost/close'}}
+    </div>
+    {{yield}}
+{{/if}}
+
+

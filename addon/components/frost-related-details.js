@@ -48,7 +48,6 @@ const FrostRelatedDetails =  frostLink.extend({
 
 
   isSelected: Ember.computed('route', '_routing.currentRouteName', function () {
-    debugger;
     return this.get('route') === this.get('_routing.currentRouteName')
   }),
 
@@ -70,7 +69,6 @@ const FrostRelatedDetails =  frostLink.extend({
     if (lastParam && lastParam.isQueryParams) {
       params.pop();
     }
-    //debugger;
     //let onlyQueryParamsSupplied = (this[HAS_BLOCK] ? params.length === 0 : params.length === 1);
     //if (onlyQueryParamsSupplied) {
     //  return this.get('_routing.currentRouteName');
