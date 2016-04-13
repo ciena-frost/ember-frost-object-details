@@ -1,24 +1,15 @@
-{{#if isSelected}}
-  {{#if persistedRouteName}}
-    {{#frost-link persistedRouteName}}
-        <div class='circle'>
-          {{frost-icon icon='frost/close'}}
-        </div>
-        {{alias}}
-    {{/frost-link}}
-  {{else}}
-    {{#frost-link defaultRoute }}
-        <div class='circle'>
-          {{frost-icon icon='frost/close'}}
-        </div>
-        {{alias}}
-    {{/frost-link}}
-  {{/if}}
-{{else}}
-  {{#frost-link route }}
-      <div class='circle'>
+{{#if (eq myTargetRouteName route)}}
+    <div class='circle'>
+      {{#if svgPath}}
         {{frost-icon icon=svgPath}}
-      </div>
-      {{alias}}
-  {{/frost-link}}
+      {{/if}}
+    </div>
+    {{yield}}
+{{else}}
+    <div class='circle'>
+      {{frost-icon icon='frost/close'}}
+    </div>
+    {{yield}}
 {{/if}}
+
+

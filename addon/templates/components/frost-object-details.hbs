@@ -1,16 +1,9 @@
 <div class="view-tabs">
     {{yield}}
-
-  {{!yield (hash
-    section='view-route'
-    viewRoute=(component 'frost-view-detail'))
-  }}
-
   {{#yield-slot 'view-route'}}
     {{yield (block-params (hash
       viewRoute=(component 'frost-view-detail')))}}
   {{/yield-slot}}
-
 </div>
 <div class="body">
     <div class="content">
@@ -20,17 +13,10 @@
 
       {{#yield-slot 'related-route'}}
         {{yield (block-params (hash
-        relatedRoute=(component 'frost-related-details'
+        relatedRoute=(component 'frost-related-detail'
         persistedRouteName=persistedRouteName defaultRoute=defaultRoute
         parentRouteName=parentRouteName)))}}
       {{/yield-slot}}
-
-      {{!yield (hash
-        section='related-route'
-        relatedRoute=(component 'frost-related-details'
-                       persistedRouteName=persistedRouteName defaultRoute=defaultRoute
-                       parentRouteName=parentRouteName relatedRouteDirName=relatedRouteDirName))
-      }}
     </div>
 </div>
 
