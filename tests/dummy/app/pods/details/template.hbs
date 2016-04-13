@@ -1,16 +1,16 @@
 {{fre-details}}
 <!--viewRouteDirName='vviews' relatedRouteDirName='rrelated'-->
 
-{{#frost-object-details defaultRoute=defaultRoute as |comp|}}
-  {{#if (eq comp.section 'view-route')}}
+{{#frost-object-details defaultRoute=defaultRoute as |slot|}}
+  {{#block-slot slot 'view-route' as |comp|}}
     {{#comp.viewRoute 'details.views.profile' detailsRouteIndex=1}}Profile View{{/comp.viewRoute}}
     {{#comp.viewRoute 'details.views.preferences' detailsRouteIndex=2}}Preferences View{{/comp.viewRoute}}
     {{#comp.viewRoute 'details.views.details' detailsRouteIndex=3}}Details View{{/comp.viewRoute}}
-  {{/if}}
+  {{/block-slot}}
 
-  {{#if (eq comp.section 'related-route')}}
-    {{#comp.relatedRoute 'details.related.devices' alias='Devices' svgPath='frost/network-element'}}Devices{{/comp.relatedRoute}}
-    {{#comp.relatedRoute 'details.related.friends' alias='Friends' svgPath='frost/tenant'}}Friends{{/comp.relatedRoute}}
-    {{#comp.relatedRoute 'details.related.subscriptions' alias='Subs' svgPath='frost/service'}}Subs{{/comp.relatedRoute}}
-  {{/if}}
+  {{#block-slot slot 'related-route' as |comp|}}
+    {{#comp.relatedRoute 'details.related.devices' svgPath='frost/network-element'}}Devices{{/comp.relatedRoute}}
+    {{#comp.relatedRoute 'details.related.friends' svgPath='frost/tenant'}}Friends{{/comp.relatedRoute}}
+    {{#comp.relatedRoute 'details.related.subscriptions' svgPath='frost/service'}}Subs{{/comp.relatedRoute}}
+  {{/block-slot}}
 {{/frost-object-details}}

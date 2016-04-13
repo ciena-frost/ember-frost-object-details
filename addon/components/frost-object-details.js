@@ -16,7 +16,6 @@ export default Ember.Component.extend({
     }
     if(!this.get('relatedRouteDirName')) {
       this.set('relatedRouteDirName', 'related')
-
     }
   },
 
@@ -31,7 +30,6 @@ export default Ember.Component.extend({
 
   routeChangeObserver: Ember.on('init', Ember.observer('_routing.currentRouteName', function () {
     let currentRouteName = this.get('_routing.currentRouteName')
-
     if (currentRouteName.startsWith(this.get('parentRouteName') + `.${this.get('viewRouteDirName')}`)) {
       this.set('persistedRouteName', currentRouteName)
     }

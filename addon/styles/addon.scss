@@ -53,12 +53,10 @@
   text-align: center;
   position: relative;
 
-  .frost-link {
+  &.frost-link {
     color: $frost-color-grey-4;
-  }
 
-  &.is-selected {
-    .frost-link {
+    &.is-selected {
       color: $frost-color-blue-1;
       .frost-icon {
         fill: $frost-color-blue-1;

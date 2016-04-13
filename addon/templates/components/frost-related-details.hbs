@@ -1,6 +1,8 @@
 {{#if (eq myTargetRouteName route)}}
     <div class='circle'>
-      {{frost-icon icon=svgPath}}
+      {{#if svgPath}}
+        {{frost-icon icon=svgPath}}
+      {{/if}}
     </div>
     {{yield}}
 {{else}}
