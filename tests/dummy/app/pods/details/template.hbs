@@ -9,8 +9,8 @@
   {{/block-slot}}
 
   {{#block-slot slot 'related-route' as |comp|}}
-    {{#comp.relatedRoute 'details.related.devices' svgPath='frost/network-element'}}Devices{{/comp.relatedRoute}}
-    {{#comp.relatedRoute 'details.related.friends' svgPath='frost/tenant'}}Friends{{/comp.relatedRoute}}
-    {{#comp.relatedRoute 'details.related.subscriptions' svgPath='frost/service'}}Subs{{/comp.relatedRoute}}
+    {{#comp.relatedRoute 'details.related.devices' icon='frost/network-element'}}Devices{{/comp.relatedRoute}}
+    {{#comp.relatedRoute 'details.related.friends' icon='frost/tenant'}}Friends{{/comp.relatedRoute}}
+    {{#comp.relatedRoute 'details.related.subscriptions' icon='frost/service'}}Subs{{/comp.relatedRoute}}
   {{/block-slot}}
 {{/frost-object-details}}
