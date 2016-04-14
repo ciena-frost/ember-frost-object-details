@@ -2,24 +2,28 @@ import Ember from 'ember'
 import layout from '../templates/components/frost-object-details'
 import _ from 'lodash'
 
-export default Ember.Component.extend({
+const {
+  Component,
+  computed,
+  inject,
+  observer,
+  on
+  } = Ember
 
-  _routing: Ember.inject.service('-routing'),
+export default Component.extend({
+
+  _routing: inject.service('-routing'),
 
   layout: layout,
 
   classNames: ['frost-object-details'],
 
-  didReceiveAttrs() {
-    if(!this.get('viewRouteDirName')) {
-      this.set('viewRouteDirName', 'views')
-    }
-    if(!this.get('relatedRouteDirName')) {
-      this.set('relatedRouteDirName', 'related')
-    }
+  didReceiveAttrs () {
+    this.set('viewRouteDirName', 'views')
+    this.set('relatedRouteDirName', 'related')
   },
 
-  parentRouteName: Ember.computed('_routing.currentRouteName', function () {
+  parentRouteName: computed('_routing.currentRouteName', function () {
     let currentRouteName = this.get('_routing.currentRouteName')
     if (_.includes(currentRouteName, `.${this.get('viewRouteDirName')}.`)) {
       return currentRouteName.substring(0, currentRouteName.indexOf(`.${this.get('viewRouteDirName')}.`))
@@ -28,7 +32,7 @@ export default Ember.Component.extend({
     }
   }),
 
-  routeChangeObserver: Ember.on('init', Ember.observer('_routing.currentRouteName', function () {
+  routeChangeObserver: on('init', observer('_routing.currentRouteName', function () {
     let currentRouteName = this.get('_routing.currentRouteName')
     if (currentRouteName.startsWith(this.get('parentRouteName') + `.${this.get('viewRouteDirName')}`)) {
       this.set('persistedRouteName', currentRouteName)

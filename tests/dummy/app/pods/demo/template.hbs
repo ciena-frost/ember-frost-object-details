@@ -1,10 +1,12 @@
-<h3>User list</h3>
-{{#each model as |user|}}
-  <div>
-    {{#frost-link 'details.views.profile' user}}
-      {{user.first-name}}
-      {{user.last-name}}
-      {{user.email}}
-    {{/frost-link}}
-  </div>
-{{/each}}
+<div class="demo-user-lists">
+    <h3>User list</h3>
+  {{#each model as |user|}}
+      <div>
+        {{#frost-link 'details.views.profile' user}}
+          {{user.first-name}}
+          {{user.last-name}}
+          {{user.email}}
+        {{/frost-link}}
+      </div>
+  {{/each}}
+</div>

@@ -2,8 +2,14 @@ import Ember from 'ember'
 import frostLink from 'ember-frost-core/components/frost-link'
 import layout from '../templates/components/frost-related-detail'
 
-const FrostRelatedDetails =  frostLink.extend({
-  _routing: Ember.inject.service('-routing'),
+const {
+  assert,
+  computed,
+  inject
+  } = Ember
+
+const FrostRelatedDetails = frostLink.extend({
+  _routing: inject.service('-routing'),
 
   layout: layout,
   classNames: ['frost-related-detail'],
@@ -41,21 +47,20 @@ const FrostRelatedDetails =  frostLink.extend({
    @property isSelected
    */
 
-  isSelected: Ember.computed('route', '_routing.currentRouteName', function () {
+  isSelected: computed('route', '_routing.currentRouteName', function () {
     return this.get('route') === this.get('_routing.currentRouteName')
   }),
 
-  init() {
+  init () {
     this._super(...arguments)
     let params = this.params.slice()
     this.set('route', params[0])
-    Ember.assert('You must include a icon for your related view', this.icon)
-
+    assert('You must include a icon for your related view', this.icon)
   },
 
-  myTargetRouteName: Ember.computed('isSelected', 'persistedRouteName', 'defaultRoute', function () {
-    if(this.get('isSelected')) {
-      if(this.get('persistedRouteName')) {
+  myTargetRouteName: computed('isSelected', 'persistedRouteName', 'defaultRoute', function () {
+    if (this.get('isSelected')) {
+      if (this.get('persistedRouteName')) {
         return this.get('persistedRouteName')
       } else {
         return this.get('defaultRoute')
@@ -65,16 +70,12 @@ const FrostRelatedDetails =  frostLink.extend({
     }
   }),
 
-  qualifiedRouteName: Ember.computed('myTargetRouteName', '_routing.currentState', function computeLinkToComponentQualifiedRouteName() {
+  qualifiedRouteName: computed('myTargetRouteName', '_routing.currentState', function computeLinkToComponentQualifiedRouteName () {
     let params = this.get('params').slice()
     let lastParam = params[params.length - 1]
     if (lastParam && lastParam.isQueryParams) {
       params.pop()
     }
-    //let onlyQueryParamsSupplied = (this[HAS_BLOCK] ? params.length === 0 : params.length === 1);
-    //if (onlyQueryParamsSupplied) {
-    //  return this.get('_routing.currentRouteName')
-    //}
     return this.get('myTargetRouteName')
   })
 })

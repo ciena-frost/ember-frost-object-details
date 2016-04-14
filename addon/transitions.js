@@ -1,6 +1,5 @@
 // import { animate, Promise } from "liquid-fire";
 export default function () {
-
   let fromRouteIndex = 0
   let _container = window.App.__container__
 

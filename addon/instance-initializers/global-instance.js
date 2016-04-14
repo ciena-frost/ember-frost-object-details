@@ -3,6 +3,6 @@ export function initialize (application) {
 }
 
 export default {
-  name: 'global',
+  name: 'global-instance',
   initialize: initialize
 }

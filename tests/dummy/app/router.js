@@ -14,7 +14,7 @@ Router.map(function () {
     })
     this.route('related', function () {
       this.route('devices')
-      this.route('friends')
+      this.route('friends', {path: '/details/:friend_id'})
       this.route('subscriptions')
     })
   })
