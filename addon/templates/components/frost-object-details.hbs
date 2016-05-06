@@ -1,16 +1,22 @@
 <div class="view-tabs">
-  {{#each viewRoutes as |viewRoute|}}
-    {{#link-to viewRoute.route}}{{viewRoute.alias}}{{/link-to}}
-  {{/each}}
+    {{yield}}
+  {{#yield-slot 'view-route'}}
+    {{yield (block-params (hash
+      view=(component 'frost-view-detail')))}}
+  {{/yield-slot}}
 </div>
 <div class="body">
     <div class="content">
       {{liquid-outlet class='main-container'}}
     </div>
     <div class="related-tabs">
-      {{#each relatedRoutes as |relatedRoute|}}
-        {{frost-related-detail relatedRoute=relatedRoute persistedRouteName=persistedRouteName defaultRoute=defaultRoute}}
-      {{/each}}
+      {{#yield-slot 'related-route'}}
+        {{yield (block-params (hash
+          related=(component 'frost-related-detail'
+            persistedRouteName=persistedRouteName
+            defaultRoute=defaultRoute)))
+        }}
+      {{/yield-slot}}
     </div>
 </div>
 

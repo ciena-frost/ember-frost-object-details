@@ -1,3 +1,15 @@
-{{fre-details}}
+{{info-details}}
 
-{{frost-object-details defaultRoute=defaultRoute}}
+{{#frost-object-details defaultRoute='details.views.profile' as |slot|}}
+  {{#block-slot slot 'view-route' as |routes|}}
+    {{#routes.view 'details.views.profile' detailsRouteIndex=1}}Profile View{{/routes.view}}
+    {{#routes.view 'details.views.preferences' detailsRouteIndex=2}}Preferences View{{/routes.view}}
+    {{#routes.view 'details.views.details' detailsRouteIndex=3}}Details View{{/routes.view}}
+  {{/block-slot}}
+
+  {{#block-slot slot 'related-route' as |routes|}}
+    {{#routes.related 'details.related.devices' icon='frost/network-element'}}Devices{{/routes.related}}
+    {{#routes.related 'details.related.friends' 3 icon='frost/tenant'}}Friends{{/routes.related}}
+    {{#routes.related 'details.related.subscriptions' icon='frost/service'}}Subs{{/routes.related}}
+  {{/block-slot}}
+{{/frost-object-details}}

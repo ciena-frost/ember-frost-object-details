@@ -23,4 +23,15 @@ export default function () {
       }
     }
   })
+
+  this.get('/friends/:id', function (db, request) {
+    let match = db['friends'].find(request.params.id)
+    return {
+      data: {
+        type: 'friend',
+        id: match.id,
+        attributes: match
+      }
+    }
+  })
 }

@@ -59,6 +59,7 @@
     "ember-frost-theme": "^1.4.4",
     "ember-frost-css-core": "^0.2.1",
     "ember-frost-icons": "^1.0.0",
+    "ember-block-slots": "^0.4.3",
     "liquid-fire": "^0.22.0"
   },
   "ember-addon": {
