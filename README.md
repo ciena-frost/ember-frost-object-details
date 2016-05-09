@@ -12,7 +12,7 @@
 # ember-frost-object-details
 An object details page packages together all details about an object in a full page of real estate. The ember-frost-object-details component will provide you free animations, styles and the frame of the page with simple setup. 
 
-With current design, you need a have two directories named views and related at the same level as the template you decided to use frost-object-details. All your view routes and related routes should go into the corresponding dirs.
+With current design, you need have two directories named views and related at the same level as the template you decided to use frost-object-details. All your view routes and related routes should go into the corresponding dirs.
  
  * [Installation](#Installation)
  * [API](#API)
@@ -29,7 +29,7 @@ ember install ember-frost-object-details
 |---------| --------- | ---- | ----- | ----------- |
 | `{{frost-object-details}}` | `defaultRoute` | `string` | | Default entry route for object details view (Mandatory) |
 | `{{routes.view}}` | `detailsRouteIndex` | `number` | |  Provide left/right slide animation when transition between two view routes based on comparing their detailsRouteIndex value (Optional) |
-| `{{routes.related}}` | `icon` | `string` | | the name of the icon to display |
+| `{{routes.related}}` | `icon` | `string` | | The name of the icon to display(optional) |
 
 ## Examples
 ### frost-object-details
