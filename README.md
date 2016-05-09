@@ -25,15 +25,16 @@ ember install ember-frost-object-details
 ```
 
 ## API
-|Component| Attribute | Type | Value | Description |
+| Component | Attribute | Type | Value | Description |
 |---------| --------- | ---- | ----- | ----------- |
 | `{{frost-object-details}}` | `defaultRoute` | `string` | | Default entry route for object details view (Mandatory) |
-| `{{routes.view}}` | `detailsRouteIndex` | `number` | |  Provide left/right slide animation when transition between two view routes based on comparing their detailsRouteIndex value (Optional) |
-| `{{routes.related}}` | `icon` | `string` | | The name of the icon to display(optional) |
+| `{{routes.view}}` | `detailsRouteIndex` | `number` | |  Provide left-to-right or right-to-left slide animation when transition between two view routes based on comparing their detailsRouteIndex value (Optional) |
+| `{{routes.related}}` | `icon` | `string` | | The name of the icon to display (Optional) |
 
 ## Examples
 ### frost-object-details
-In this scenario, frost-object-details is rendered in details/template.hbs . Two dirs were created as details/views and details/related with corresponding sub-routes inside it.
+In this scenario, frost-object-details is rendered in details/template.hbs . Two dirs were created as details/views and details/related with corresponding sub-routes inside it. 
+The frost-object-details is usually used with two contextual components, view and related. The 'view' route component is usually used to display and select alternate available object views, and the 'related' route component will render a quick link to important related data in context of the object.
 ```handlebars
 {{#frost-object-details defaultRoute='details.views.profile' as |slot|}}
   

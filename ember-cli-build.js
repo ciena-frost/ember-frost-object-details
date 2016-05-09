@@ -8,12 +8,6 @@ module.exports = function (defaults) {
     },
     'ember-cli-mocha': {
       useLintTree: false
-    },
-    sassOptions: {
-      includePaths: [
-        'node_modules/ember-frost-core/addon/styles/'
-
-      ]
     }
   })
 

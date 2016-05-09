@@ -11,7 +11,8 @@ module.exports = {
   afterInstall: function () {
     return this.addAddonsToProject({
       packages: [
-        {name: 'ember-frost-core', target: '>=0.8.0 <2.0.0'}
+        {name: 'ember-frost-core', target: '>=0.8.0 <2.0.0'},
+        {name: 'ember-block-slots', target: '>=0.12.1", <1.0.0'}
       ]
     })
   }

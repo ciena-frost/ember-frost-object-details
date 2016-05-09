@@ -42,7 +42,7 @@
     "ember-try": "^0.2.2",
     "loader.js": "^4.0.0",
     "ember-frost-core": ">=0.8.0 <2.0.0",
-    "ember-block-slots": "^0.4.3",
+    "ember-block-slots": "^0.12.1",
     "eslint": "2.9.0",
     "eslint-config-frost-standard": "^2.0.0"
   },
@@ -55,9 +55,7 @@
     "ember-computed-decorators": "^0.2.2",
     "ember-cli-htmlbars": "^1.0.1",
     "ember-cli-sass": "^5.2.0",
-    "ember-frost-theme": "^1.4.4",
-    "ember-frost-css-core": "^0.2.1",
-    "ember-frost-info-bar": "^1.0.0",
+    "ember-frost-info-bar": "^2.0.3",
     "liquid-fire": "^0.22.0"
   },
   "ember-addon": {
