@@ -1,84 +1,82 @@
-@import 'node_modules/ember-frost-theme/scss/frost-theme';
-
+@import 'node_modules/ember-frost-core/addon/styles/frost-theme';
 
 .frost-object-details {
   display: flex;
   flex-direction: column;
-  height: 100%;
   background-color: $frost-color-lgrey-3;
-}
 
-.frost-object-details > .view-tabs {
-  display: flex;
-  flex-direction: row;
-  height: 20px;
-  margin: 10px 0 0 10px;
 
-  a {
-    margin-right: 10px;
-    color: $frost-color-grey-4
-  }
-  a:nth-child(n + 2) {
-    border-left: 1px solid $frost-color-grey-4;
-    padding-left: 10px;
-  }
-  a.active {
-    color: $frost-color-blue-1;
-  }
+  > .view-tabs {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    margin: 10px 0 0 10px;
 
-}
+    .frost-link.frost-view-detail {
+      margin-right: 10px;
+      color: $frost-color-grey-4;
 
-.frost-object-details > .body {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-}
-
-.frost-object-details > .body > .content {
-  flex: 1;
-  margin: 20px 0 0 20px;
-}
-
-.frost-object-details > .body >.related-tabs {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: 5px;
-  width: 90px;
-}
-
-.frost-related-detail {
-  margin: 10px;
-  font-size: $frost-font-s;
-  text-align: center;
-  position: relative;
-
-  &.frost-link {
-    color: $frost-color-grey-4;
-
-    &.is-selected {
-      color: $frost-color-blue-1;
-      .frost-icon {
-        fill: $frost-color-blue-1;
+      &:nth-child(n + 2) {
+        border-left: 1px solid $frost-color-grey-4;
+        padding-left: 10px;
       }
+
+      &.active {
+        color: $frost-color-blue-1;
+      }
+
     }
   }
 
-  .circle {
-    border-radius: 50%;
-    background-color: white;
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-    margin: auto;
-    box-shadow: 0px 0px 5px 1px $frost-color-grey-6;
-    -webkit-box-shadow: 0px 0px 5px 1px $frost-color-grey-6;
-    -moz-box-shadow: 0px 0px 5px 1px $frost-color-grey-6;
+  > .body {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
 
-    .frost-icon {
-      width: 45px;
-      height: 45px;
-      padding: 10px 5px 5px 5px;
+    > .content {
+      flex: 1;
+      margin: 20px 0 0 20px;
+    }
+
+    > .related-tabs {
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+      margin-right: 5px;
+      width: 90px;
+
+      .frost-related-detail {
+        margin: 10px;
+        font-size: $frost-font-s;
+        text-align: center;
+        position: relative;
+
+        &.frost-link {
+          color: $frost-color-grey-4;
+
+          &.is-selected {
+            color: $frost-color-blue-1;
+            .frost-icon {
+              fill: $frost-color-blue-1;
+            }
+          }
+        }
+
+        .circle {
+          border-radius: 50%;
+          background-color: white;
+          width: 50px;
+          height: 50px;
+          margin: auto;
+          box-shadow: 0px 0px 5px 1px $frost-color-grey-6;
+
+          .frost-icon {
+            width: 45px;
+            height: 45px;
+            padding: 10px 5px 5px 5px;
+          }
+        }
+      }
     }
   }
 }

@@ -6,6 +6,8 @@ const {
   } = Ember
 
 const FrostViewDetail = frostLink.extend({
+  classNames: ['frost-view-detail'],
+
   didReceiveAttrs () {
     if (this.get('detailsRouteIndex')) {
       const { getOwner } = Ember

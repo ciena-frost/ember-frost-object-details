@@ -10,8 +10,10 @@
 [![Travis][ci-img]][ci-url] [![Coveralls][cov-img]][cov-url] [![NPM][npm-img]][npm-url]
 
 # ember-frost-object-details
-the drop-down select widget to rule them all
+An object details page packages together all details about an object in a full page of real estate. The ember-frost-object-details component will provide you free animations, styles and the frame of the page with simple setup. 
 
+With current design, you need have two directories named views and related at the same level as the template you decided to use frost-object-details. All your view routes and related routes should go into the corresponding dirs.
+ 
  * [Installation](#Installation)
  * [API](#API)
  * [Examples](#Examples)
@@ -23,10 +25,62 @@ ember install ember-frost-object-details
 ```
 
 ## API
-Coming soon
+| Component | Attribute | Type | Value | Description |
+|---------| --------- | ---- | ----- | ----------- |
+| `{{frost-object-details}}` | `defaultRoute` | `string` | | Default entry route for object details view (Mandatory) |
+| `{{routes.view}}` | `detailsRouteIndex` | `number` | |  Provide left-to-right or right-to-left slide animation when transition between two view routes based on comparing their detailsRouteIndex value (Optional) |
+| `{{routes.related}}` | `icon` | `string` | | The name of the icon to display (Optional) |
 
 ## Examples
-Coming soon
+### frost-object-details
+In this scenario, frost-object-details is rendered in details/template.hbs . Two dirs were created as details/views and details/related with corresponding sub-routes inside it. 
+The frost-object-details is usually used with two contextual components, view and related. The 'view' route component is usually used to display and select alternate available object views, and the 'related' route component will render a quick link to important related data in context of the object.
+```handlebars
+{{#frost-object-details defaultRoute='details.views.profile' as |slot|}}
+  
+  {{#block-slot slot 'view-route' as |routes|}}
+    {{#routes.view 'details.views.profile' detailsRouteIndex=1}}Profile View{{/routes.view}}
+    {{#routes.view 'details.views.preferences' detailsRouteIndex=2}}Preferences View{{/routes.view}}
+    {{#routes.view 'details.views.details' detailsRouteIndex=3}}Details View{{/routes.view}}
+  {{/block-slot}}
+  
+  {{#block-slot slot 'related-route' as |routes|}}
+    {{#routes.related 'details.related.devices' icon='network-element'}}Devices{{/routes.related}}
+    {{#routes.related 'details.related.friends' icon='tenant'}}Friends{{/routes.related}}
+    {{#routes.related 'details.related.subscriptions' icon='service'}}Subs{{/routes.related}}
+  {{/block-slot}}
+  
+{{/frost-object-details}}
+```
+
+### ember-block-slot  
+Ember-block-slots is used in frost-object-details for conditional yield. Both 'view-route' and 'related-route' are predefined key for corresponding section yield and you should use it as so for your different routes section without change
+##### For view routes
+```handlebars
+{{#block-slot slot 'view-route' as |routes|}}
+{{/block-slot}}
+```
+##### For related routes
+```handlebars
+{{#block-slot slot 'related-route' as |routes|}}
+{{/block-slot}}
+```
+
+### Sub-routes: view routes and related routes
+Block-slot will yield back a hash containing contextual components which you can use to render your sub-routes. You can get access to these contextual components in hash via a predefined key. There are two different types of contextual components, '.view' for view routes and '.related' for related routes. Both of them are built on top of ember {{link-to}} helper and you can treat them just like {{link-to}} when handling route name and dynamic segments. 
+##### For view routes
+```handlebars
+{{#routes.view 'details.views.profile' detailsRouteIndex=1}}Profile View{{/routes.view}}
+{{#routes.view 'details.views.preferences' detailsRouteIndex=2}}Preferences View{{/routes.view}}
+{{#routes.view 'details.views.details' detailsRouteIndex=3}}Details View{{/routes.view}}
+```
+
+##### For related routes
+```handlebars
+{{#routes.related 'details.related.devices' icon='network-element'}}Devices{{/routes.related}}
+{{#routes.related 'details.related.friends' icon='tenant'}}Friends{{/routes.related}}
+{{#routes.related 'details.related.subscriptions' icon='service'}}Subs{{/routes.related}}
+```
 
 ## Development
 ### Setup
