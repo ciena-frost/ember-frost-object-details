@@ -3,7 +3,6 @@ import frostLink from 'ember-frost-core/components/frost-link'
 import layout from '../templates/components/frost-related-detail'
 
 const {
-  assert,
   computed,
   inject
   } = Ember
