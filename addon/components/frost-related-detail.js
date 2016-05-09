@@ -55,7 +55,7 @@ const FrostRelatedDetails = frostLink.extend({
     this._super(...arguments)
     let params = this.params.slice()
     this.set('route', params[0])
-    assert('You must include a icon for your related view', this.icon)
+   // assert('You must include a icon for your related view', this.icon)
   },
 
   myTargetRouteName: computed('isSelected', 'persistedRouteName', 'defaultRoute', function () {
