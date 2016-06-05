@@ -81,6 +81,16 @@ Block-slot will yield back a hash containing contextual components which you can
 {{#routes.related 'details.related.friends' icon='tenant'}}Friends{{/routes.related}}
 {{#routes.related 'details.related.subscriptions' icon='service'}}Subs{{/routes.related}}
 ```
+### Styles
+Default styles can be applied to your sub-routes.
+
+##### Default Margin
+To get a default margin for your content area, add the 'frost-object-browser__content' class to your template.
+```handlebars
+<div class="frost-object-details__content" style="background-color: skyblue; height: 600px">
+    This is profile template
+</div>
+```
 
 ## Development
 ### Setup

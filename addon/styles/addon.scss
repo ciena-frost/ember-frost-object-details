@@ -33,9 +33,11 @@
     flex-direction: row;
     flex: 1;
 
-    > .content {
+    > .main-container {
       flex: 1;
-      margin: 20px 0 0 20px;
+      .frost-object-details__content {
+        margin: 20px 0 0 20px;
+      }
     }
 
     > .related-tabs {
