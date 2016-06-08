@@ -8,8 +8,8 @@
   {{/block-slot}}
 
   {{#block-slot slot 'related-route' as |routes|}}
-    {{#routes.related 'details.related.devices' icon='network-element'}}Devices{{/routes.related}}
-    {{#routes.related 'details.related.friends' 3 icon='tenant'}}Friends{{/routes.related}}
-    {{#routes.related 'details.related.subscriptions' icon='service'}}Subs{{/routes.related}}
+    {{#routes.related 'details.related.devices' pack='dummy' icon='network-element'}}Devices{{/routes.related}}
+    {{#routes.related 'details.related.friends' 3 pack='dummy' icon='tenant'}}Friends{{/routes.related}}
+    {{#routes.related 'details.related.subscriptions' pack='dummy' icon='service'}}Subs{{/routes.related}}
   {{/block-slot}}
 {{/frost-object-details}}
