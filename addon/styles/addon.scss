@@ -44,7 +44,7 @@
         }
 
         &:hover {
-          background-color: $frost-color-lgrey-2;
+          background-color: rgba($frost-color-blue-1, 0.05);
           .tab-text {
             color: $frost-color-grey-3;
             border-bottom: 1px solid $frost-color-grey-3;
