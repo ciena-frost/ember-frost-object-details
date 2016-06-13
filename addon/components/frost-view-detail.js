@@ -1,5 +1,6 @@
 import Ember from 'ember'
 import frostLink from 'ember-frost-core/components/frost-link'
+import layout from '../templates/components/frost-view-detail'
 
 const {
   assert
@@ -7,6 +8,7 @@ const {
 
 const FrostViewDetail = frostLink.extend({
   classNames: ['frost-view-detail'],
+  layout,
 
   didReceiveAttrs () {
     if (this.get('detailsRouteIndex')) {

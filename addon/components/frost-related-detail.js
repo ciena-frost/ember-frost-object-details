@@ -10,6 +10,7 @@ const {
 const FrostRelatedDetails = frostLink.extend({
   _routing: inject.service('-routing'),
 
+  pack: 'app',
   layout: layout,
   classNames: ['frost-related-detail'],
 

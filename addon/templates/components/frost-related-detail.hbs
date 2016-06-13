@@ -1,14 +1,14 @@
 {{#if (eq myTargetRouteName route)}}
   {{#if icon}}
       <div class='circle'>
-        {{frost-icon icon=icon}}
+        {{frost-icon pack=pack icon=icon}}
       </div>
   {{/if}}
   {{yield}}
 {{else}}
   {{#if icon}}
       <div class='circle'>
-        {{frost-icon icon='frost/close'}}
+        {{frost-icon icon='close'}}
       </div>
   {{/if}}
   {{yield}}
