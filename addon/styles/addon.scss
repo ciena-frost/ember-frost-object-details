@@ -14,46 +14,45 @@ $view-detail-bg-color: rgba($frost-color-blue-1, .05);
       display: flex;
       flex-direction: row;
       font-size: 0;
+    }
 
-      > .frost-link.frost-view-detail {
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        justify-content: center;
-        height: 37px;
-        margin-left: -1px;
-        padding: 0 20px;
-        color: $frost-color-grey-5;
-        font-size: $frost-font-m;
-        text-align: center;
+    .frost-view-detail {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
+      height: 37px;
+      margin-left: -1px;
+      padding: 0 20px;
+      color: $frost-color-grey-5;
+      font-size: $frost-font-m;
+      text-align: center;
 
-        &:nth-child(n + 2) {
-          .tab-text {
-            &::after {
-              position: absolute;
-              top: 12px;
-              left: 0;
-              width: 1px;
-              height: 15px;
-              background-color: $frost-color-lgrey-2;
-              content: '';
-            }
+      &:nth-child(n + 2) {
+        .tab-text {
+          &::after {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            width: 1px;
+            height: 15px;
+            background-color: $frost-color-lgrey-2;
+            content: '';
           }
         }
+      }
 
-        &.active {
-          color: $frost-color-grey-2;
+      &.active {
+        color: $frost-color-grey-2;
+      }
+
+      &:hover {
+        background-color: $view-detail-bg-color;
+
+        .tab-text {
+          border-bottom: 1px solid $frost-color-grey-3;
+          color: $frost-color-grey-3;
         }
-
-        &:hover {
-          background-color: $view-detail-bg-color;
-
-          .tab-text {
-            border-bottom: 1px solid $frost-color-grey-3;
-            color: $frost-color-grey-3;
-          }
-        }
-
       }
     }
 
