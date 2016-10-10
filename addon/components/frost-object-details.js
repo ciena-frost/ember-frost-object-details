@@ -10,10 +10,10 @@ const {
   observer,
   assert,
   on
-  } = Ember
+} = Ember
 
 export default Component.extend(TabFollower, {
-
+  hook: 'frost-object-details',
   _routing: inject.service('-routing'),
 
   layout: layout,

@@ -1,23 +1,23 @@
 {{yield}}
 <div class="view-tabs">
-    <div class="tabs">
-      {{#yield-slot 'view-route'}}
-        {{yield (block-params (hash
-        view=(component 'frost-view-detail')))}}
-      {{/yield-slot}}
-    </div>
-    <div class="frost-view-follower"></div>
+  <div class="tabs">
+    {{#yield-slot 'view-route'}}
+      {{yield (block-params (hash
+      view=(component 'frost-view-detail')))}}
+    {{/yield-slot}}
+  </div>
+  <div class="frost-view-follower"></div>
 </div>
 <div class="body">
-    {{liquid-outlet class='main-container'}}
-    <div class="related-tabs">
-      {{#yield-slot 'related-route'}}
-        {{yield (block-params (hash
-          related=(component 'frost-related-detail'
-            persistedRouteName=persistedRouteName
-            defaultRoute=defaultRoute)))
-        }}
-      {{/yield-slot}}
-    </div>
+  {{liquid-outlet class='main-container'}}
+  <div class="related-tabs">
+    {{#yield-slot 'related-route'}}
+      {{yield (block-params (hash
+        related=(component 'frost-related-detail'
+          persistedRouteName=persistedRouteName
+          defaultRoute=defaultRoute)))
+      }}
+    {{/yield-slot}}
+  </div>
 </div>
 

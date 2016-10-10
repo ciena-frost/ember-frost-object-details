@@ -3,9 +3,12 @@
 
  Create more files in this directory to define additional factories.
  */
-import Mirage, {faker} from 'ember-cli-mirage'
+import {
+  faker,
+  Factory
+} from 'ember-cli-mirage'
 
-export default Mirage.Factory.extend({
+export default Factory.extend({
   'first-name': faker.name.firstName,
   lastName: faker.name.firstName,
   zipCode: faker.address.zipCode,

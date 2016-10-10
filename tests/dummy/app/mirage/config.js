@@ -1,9 +1,9 @@
 export default function () {
   this.passthrough()
 
-  this.get('/users', function (db) {
+  this.get('/users', function (schema) {
     return {
-      data: db['users'].map((attrs) => {
+      data: schema.db['users'].map((attrs) => {
         return {
           type: 'user',
           id: attrs.id,
@@ -13,8 +13,8 @@ export default function () {
     }
   })
 
-  this.get('/users/:id', function (db, request) {
-    let match = db['users'].find(request.params.id)
+  this.get('/users/:id', function (schema, request) {
+    let match = schema.db['users'].find(request.params.id)
     return {
       data: {
         type: 'user',
@@ -24,8 +24,8 @@ export default function () {
     }
   })
 
-  this.get('/friends/:id', function (db, request) {
-    let match = db['friends'].find(request.params.id)
+  this.get('/friends/:id', function (schema, request) {
+    let match = schema.db['friends'].find(request.params.id)
     return {
       data: {
         type: 'friend',

@@ -5,7 +5,7 @@ import layout from '../templates/components/frost-related-detail'
 const {
   computed,
   inject
-  } = Ember
+} = Ember
 
 const FrostRelatedDetails = frostLink.extend({
   _routing: inject.service('-routing'),
@@ -70,7 +70,7 @@ const FrostRelatedDetails = frostLink.extend({
     }
   }),
 
-  qualifiedRouteName: computed('myTargetRouteName', '_routing.currentState', function computeLinkToComponentQualifiedRouteName () {
+  qualifiedRouteName: computed('myTargetRouteName', '_routing.currentState', function () {
     let params = this.get('params').slice()
     let lastParam = params[params.length - 1]
     if (lastParam && lastParam.isQueryParams) {

@@ -1,21 +1,28 @@
-import {describeComponent, it} from 'ember-mocha'
+import {
+  describeComponent,
+  it
+} from 'ember-mocha'
 
 describeComponent(
   'frost-object-details',
-  'Integration: EmberFrostObjectDetailsComponent',
+  'Integration: FrostObjectDetailsComponent',
   {
     integration: true
   },
   function () {
     it('renders', function () {
-      // Set any properties with this.set('myProperty', 'value')
-      // Handle any actions with this.on('myAction', function (val) { ... })
-      // Template block usage:
+      // TODO add test
       // this.render(hbs`
-      //   {{#frost-object-details}}
-      //     template content
+      //   {{#frost-object-details defaultRoute='details.views.profile' as |slot|}}
       //   {{/frost-object-details}}
       // `)
+
+      // expect($hook('frost-object-details')).to.have.length(1)
+
+      // return capture('object-details', done, {
+      //   targetElement: $hook('-sidebar')[0],
+      //   experimentalSvgs: true
+      // })
     })
   }
 )
