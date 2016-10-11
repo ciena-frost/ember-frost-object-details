@@ -11,6 +11,7 @@ const FrostRelatedObjectTabLink = frostLink.extend({
   // == State properties ======================================================
 
   propTypes: {
+    hook: PropTypes.string,
     icon: PropTypes.string,
     pack: PropTypes.string,
     isSelected: PropTypes.bool
