@@ -15,6 +15,11 @@ const {
  * @returns {object} true if the tab is selected and false otherwise
  */
 export function isTabSelected (params) {
+  if (params.length < 2) {
+    console.log('The first 2 arguments are required')
+    return false
+  }
+
   const tabName = params[0]
   const selectedTabName = params[1]
   const defaultTabName = params[2]
