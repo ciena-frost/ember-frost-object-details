@@ -1,15 +1,47 @@
 {{info-details}}
 
-{{#frost-object-details defaultRoute='details.views.profile' as |slot|}}
-  {{#block-slot slot 'view-route' as |routes|}}
-    {{#routes.view 'details.views.profile' detailsRouteIndex=1}}Profile View{{/routes.view}}
-    {{#routes.view 'details.views.preferences' detailsRouteIndex=2}}Preferences View{{/routes.view}}
-    {{#routes.view 'details.views.details' detailsRouteIndex=3}}Details View{{/routes.view}}
-  {{/block-slot}}
-
-  {{#block-slot slot 'related-route' as |routes|}}
-    {{#routes.related 'details.related.devices' pack='dummy' icon='network-element'}}Devices{{/routes.related}}
-    {{#routes.related 'details.related.friends' 3 pack='dummy' icon='tenant'}}Friends{{/routes.related}}
-    {{#routes.related 'details.related.subscriptions' pack='dummy' icon='service'}}Subs{{/routes.related}}
-  {{/block-slot}}
-{{/frost-object-details}}
+{{frost-object-details
+  selectedTabName=selectedTabName
+  detailTabs=(array
+    (hash
+      name='profile'
+      text='Profile View'
+      content=(component 'my-component' color='skyblue' name='profile')
+    )
+    (hash
+      name='preferences'
+      text='Preferences View'
+      content=(component 'my-component' color='red' name='preferences')
+    )
+    (hash
+      name='details'
+      text='Details View'
+      content=(component 'my-component' color='#0b97c4' name='details')
+    )
+  )
+  relatedObjectTabs=(array
+    (hash
+      name='devices'
+      text='Devices'
+      content=(component 'my-component' color='coral' name='related devices')
+    )
+    (hash
+      name='friends'
+      text='Friends'
+      icon=(hash
+        name='tenant'
+        pack='dummy'
+      )
+      content=(component 'my-component' color='rebeccapurple' name='related friends')
+    )
+    (hash
+      name='subs'
+      text='Subs'
+      icon=(hash
+        name='service'
+        pack='dummy'
+      )
+      content=(component 'my-component' color='rosybrown' name='related subscriptions')
+    )
+  )
+}}

@@ -1,0 +1,8 @@
+{{#if icon}}
+  <div class='circle'>
+    {{frost-icon pack=pack icon=(if (not isSelected) icon 'close')}}
+  </div>
+{{/if}}
+{{yield}}
+
+

@@ -6,8 +6,8 @@ import {
 import hbs from 'htmlbars-inline-precompile'
 
 describeComponent(
-  'frost-view-detail',
-  'Integration: FrostViewDetailComponent',
+  'frost-related-object-tab-link',
+  'Integration: FrostRelatedDetailComponent',
   {
     integration: true
   },
@@ -17,12 +17,12 @@ describeComponent(
       // Handle any actions with this.on('myAction', function(val) { ... });
       // Template block usage:
       // this.render(hbs`
-      //   {{#frost-view-detail}}
+      //   {{#frost-related-detail}}
       //     template content
-      //   {{/frost-view-detail}}
+      //   {{/frost-related-detail}}
       // `);
 
-      this.render(hbs`{{frost-view-detail}}`)
+      this.render(hbs`{{frost-related-object-tab-link}}`)
       expect(this.$()).to.have.length(1)
     })
   }

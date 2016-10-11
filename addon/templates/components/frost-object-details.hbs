@@ -1,23 +1,42 @@
 {{yield}}
-<div class="view-tabs">
-  <div class="tabs">
-    {{#yield-slot 'view-route'}}
-      {{yield (block-params (hash
-      view=(component 'frost-view-detail')))}}
-    {{/yield-slot}}
-  </div>
-  <div class="frost-view-follower"></div>
+<div class="tabs">
+  {{#each detailTabs as |tab|}}
+    <div class='tab'>
+      {{#frost-link
+          (query-params selectedTabName=tab.name)
+          classNames=(concat
+            'frost-view-detail'
+            (if (is-tab-selected tab.name selectedTabName defaultTab.name) ' active')
+          )
+      }}
+        <div class="text">
+          {{tab.text}}
+        </div>
+      {{/frost-link}}
+      {{#if (eq tab.name currentTab.name)}}
+        <div class="tab-selection {{if (is-tab-selected tab.name selectedTabName defaultTab.name) ' active'}}"></div>
+      {{/if}}
+    </div>
+  {{/each}}
 </div>
 <div class="body">
-  {{liquid-outlet class='main-container'}}
-  <div class="related-tabs">
-    {{#yield-slot 'related-route'}}
-      {{yield (block-params (hash
-        related=(component 'frost-related-detail'
-          persistedRouteName=persistedRouteName
-          defaultRoute=defaultRoute)))
-      }}
-    {{/yield-slot}}
+  <div class='content'>
+    {{#if currentRelatedObjectTab}}
+      {{component currentRelatedObjectTab.content}}
+    {{else}}
+      {{component currentTab.content}}
+    {{/if}}
+  </div>
+  <div class="related-object-tabs">
+    {{#each relatedObjectTabs as |tab|}}
+      {{#frost-related-object-tab-link
+          (query-params selectedTabName=(if (is-tab-selected tab.name currentRelatedObjectTab.name) defaultTab.name tab.name))
+          classNames=(if (is-tab-selected tab.name currentRelatedObjectTab.name) 'is-selected' '')
+          icon=tab.icon.name
+          pack=tab.icon.pack
+          isSelected=(is-tab-selected tab.name currentRelatedObjectTab.name)}}
+        {{tab.text}}
+      {{/frost-related-object-tab-link}}
+    {{/each}}
   </div>
 </div>
-

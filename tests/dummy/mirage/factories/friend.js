@@ -1,8 +1,3 @@
-/*
- This is an example factory definition.
-
- Create more files in this directory to define additional factories.
- */
 import {
   faker,
   Factory
@@ -13,6 +8,6 @@ export default Factory.extend({
   lastName: faker.name.firstName,
   zipCode: faker.address.zipCode,
   email: function (i) {
-    return 'person' + i + '@test.com'
+    return 'friend_' + i + '@test.com'
   }
 })
