@@ -98,8 +98,9 @@ export default Component.extend({
 // X add hooks
 // X clean object-detail template
 
-// add tests
+// add tests (frost-object-details)
 // improve demo
 // add transition
 // make sure all tools are working
+// add visual acceptance tests
 

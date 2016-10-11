@@ -1,4 +1,5 @@
 import Ember from 'ember'
+import _ from 'lodash'
 
 const {
   Helper: {
@@ -24,7 +25,7 @@ export function isTabSelected (params) {
   const selectedTabName = params[1]
   const defaultTabName = params[2]
 
-  if (tabName === selectedTabName || (selectedTabName === null && tabName === defaultTabName)) {
+  if (tabName === selectedTabName || (_.isEmpty(selectedTabName) && tabName === defaultTabName)) {
     return true
   }
 
