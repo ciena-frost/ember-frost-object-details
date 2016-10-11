@@ -26,6 +26,10 @@ export default Component.extend({
 
   // == Computed properties ===================================================
 
+  /**
+   * Get the default tab. The default tab is the first tab defined in 'detailTabs' attribute.
+   * @returns {object} the default tab
+   */
   defaultTab: computed('detailTabs', function () {
     const detailTabs = this.get('detailTabs')
     if (_.isEmpty(detailTabs)) {
@@ -35,7 +39,12 @@ export default Component.extend({
     return detailTabs[0]
   }),
 
+  /**
+   * Get the current tab.
+   * @returns {object} the current tab
+   */
   currentTab: computed('selectedTabName', 'detailTabs', function () {
+    // TODO
     // validate empty currentTabName
     // validate empty detailTabs
     // validate empty detailTabs + currentTabName empty
@@ -54,7 +63,12 @@ export default Component.extend({
     return currentTab
   }),
 
+  /**
+   * Get the current related object tab.
+   * @returns {object} the current related object tab
+   */
   currentRelatedObjectTab: computed('selectedTabName', 'relatedObjectTabs', function () {
+    // TODO
     // validate empty currentTabName
     // validate empty relatedObjectTabs
     // validate empty relatedObjectTabs + currentTabName empty
@@ -81,22 +95,11 @@ export default Component.extend({
 
 // X Remove blue underline if selecting right tabs
 
-// add hooks
+// X add hooks
 // X clean object-detail template
 
+// add tests
+// improve demo
+// add transition
+// make sure all tools are working
 
-// {{frost-object-details
-//   detailTabs=(hash
-//     tab1=(hash
-//       text=...
-//       icon=(hash
-//         name=...
-//         pack=...
-//       )
-//       content=(component ...)
-//     )
-//   )
-//   relatedObjectTabs=(hash
-//     ...
-//   )
-// }}
