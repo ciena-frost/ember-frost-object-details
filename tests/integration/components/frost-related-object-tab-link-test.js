@@ -12,6 +12,9 @@ const defaultSelectedIcon = 'close'
 const iconSelector = 'use'
 const iconAttributeName = 'xlink:href'
 
+const relatedObjectTabLinkTextHookName = '-related-object-tab-link-text'
+const relatedObjectTabLinkTextHookIcon = '-related-object-tab-link-icon'
+
 describeComponent(
   'frost-related-object-tab-link',
   'Integration: FrostRelatedDetailComponent',
@@ -25,8 +28,8 @@ describeComponent(
           some text
         {{/frost-related-object-tab-link}}
       `)
-      expect($hook('-related-object-tab-link-text').text().trim()).to.be.equal('some text')
-      expect($hook('-related-object-tab-link-icon')).to.have.length(0)
+      expect($hook(relatedObjectTabLinkTextHookName).text().trim()).to.be.equal('some text')
+      expect($hook(relatedObjectTabLinkTextHookIcon)).to.have.length(0)
     })
 
     it('Set a hook', function () {
@@ -39,8 +42,8 @@ describeComponent(
           some text
         {{/frost-related-object-tab-link}}
       `)
-      expect($hook(`${hookName}-related-object-tab-link-text`).text().trim()).to.be.equal('some text')
-      expect($hook(`${hookName}-related-object-tab-link-icon`)).to.have.length(0)
+      expect($hook(`${hookName}${relatedObjectTabLinkTextHookName}`).text().trim()).to.be.equal('some text')
+      expect($hook(`${hookName}${relatedObjectTabLinkTextHookIcon}`)).to.have.length(0)
     })
 
     it('Set an icon', function () {
@@ -53,7 +56,8 @@ describeComponent(
           some text
         {{/frost-related-object-tab-link}}
       `)
-      expect(this.$(iconSelector).attr(iconAttributeName).indexOf(`/${defaultPack}.svg#${iconName}`)).to.exist
+      expect($hook(relatedObjectTabLinkTextHookIcon).find(iconSelector).attr(iconAttributeName)
+            .indexOf(`/${defaultPack}.svg#${iconName}`)).to.exist
     })
 
     it('Set pack and icon', function () {
@@ -68,7 +72,8 @@ describeComponent(
           some text
         {{/frost-related-object-tab-link}}
       `)
-      expect(this.$(iconSelector).attr(iconAttributeName).indexOf(`/${packName}.svg#${iconName}`)).to.exist
+      expect($hook(relatedObjectTabLinkTextHookIcon).find(iconSelector).attr(iconAttributeName)
+            .indexOf(`/${packName}.svg#${iconName}`)).to.exist
     })
 
     it('Set isSelected to true', function () {
@@ -83,7 +88,8 @@ describeComponent(
           some text
         {{/frost-related-object-tab-link}}
       `)
-      expect(this.$(iconSelector).attr(iconAttributeName).indexOf(`/${defaultPack}.svg#${defaultSelectedIcon}`)).to.exist
+      expect($hook(relatedObjectTabLinkTextHookIcon).find(iconSelector).attr(iconAttributeName)
+            .indexOf(`/${defaultPack}.svg#${defaultSelectedIcon}`)).to.exist
     })
   }
 )

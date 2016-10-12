@@ -5,10 +5,10 @@ $view-detail-bg-color: rgba($frost-color-blue-1, .05);
   flex-direction: column;
   background-color: $frost-color-lgrey-3;
 
-  > .tabs {
+  .tabs {
     display: flex;
     flex-direction: row;
-    margin: 10px 0 20px 30px;
+    margin: 10px 0 18px 30px;
     font-size: 0;
 
     .tab {
@@ -38,32 +38,9 @@ $view-detail-bg-color: rgba($frost-color-blue-1, .05);
         }
       }
     }
-
-    .frost-link {
-      justify-content: center;
-      height: 37px;
-      margin-left: -1px;
-      padding: 8px 20px;
-      color: $frost-color-grey-5;
-      font-size: $frost-font-m;
-      text-align: center;
-
-      &.active {
-        color: $frost-color-grey-2;
-      }
-
-      &:hover {
-        background-color: $view-detail-bg-color;
-
-        .text {
-          border-bottom: 1px solid $frost-color-grey-3;
-          color: $frost-color-grey-3;
-        }
-      }
-    }
   }
 
-  > .body {
+  .body {
     display: flex;
     flex: 1;
     flex-direction: row;
@@ -78,6 +55,12 @@ $view-detail-bg-color: rgba($frost-color-blue-1, .05);
       width: 90px;
       margin-right: 5px;
       margin-left: auto;
+
+      .related-object-tab {
+        position: relative;
+        margin: 10px;
+        text-align: center;
+      }
     }
   }
 }

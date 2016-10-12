@@ -6,24 +6,28 @@
     (hash
       name='profile'
       text='Profile View'
-      content=(component 'my-component' color='skyblue' name='profile')
+      content=(component 'object-details-content' color='skyblue' name='profile')
     )
     (hash
       name='preferences'
       text='Preferences View'
-      content=(component 'my-component' color='red' name='preferences')
+      content=(component 'object-details-content' color='red' name='preferences')
     )
     (hash
       name='details'
       text='Details View'
-      content=(component 'my-component' color='#0b97c4' name='details')
+      content=(component 'object-details-content' color='#0b97c4' name='details')
     )
   )
   relatedObjectTabs=(array
     (hash
       name='devices'
       text='Devices'
-      content=(component 'my-component' color='coral' name='related devices')
+      icon=(hash
+        name='network-element'
+        pack='dummy'
+      )
+      content=(component 'object-details-content' color='coral' name='related devices')
     )
     (hash
       name='friends'
@@ -32,7 +36,7 @@
         name='tenant'
         pack='dummy'
       )
-      content=(component 'my-component' color='rebeccapurple' name='related friends')
+      content=(component 'object-details-content' color='rebeccapurple' name='related friends')
     )
     (hash
       name='subs'
@@ -41,7 +45,7 @@
         name='service'
         pack='dummy'
       )
-      content=(component 'my-component' color='rosybrown' name='related subscriptions')
+      content=(component 'object-details-content' color='rosybrown' name='related subscriptions')
     )
   )
 }}

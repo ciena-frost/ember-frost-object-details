@@ -44,11 +44,6 @@ export default Component.extend({
    * @returns {object} the current tab
    */
   currentTab: computed('selectedTabName', 'detailTabs', function () {
-    // TODO
-    // validate empty currentTabName
-    // validate empty detailTabs
-    // validate empty detailTabs + currentTabName empty
-
     const selectedTabName = this.get('selectedTabName')
     const detailTabs = this.get('detailTabs')
 
@@ -68,11 +63,6 @@ export default Component.extend({
    * @returns {object} the current related object tab
    */
   currentRelatedObjectTab: computed('selectedTabName', 'relatedObjectTabs', function () {
-    // TODO
-    // validate empty currentTabName
-    // validate empty relatedObjectTabs
-    // validate empty relatedObjectTabs + currentTabName empty
-
     const selectedTabName = this.get('selectedTabName')
     const relatedObjectTabs = this.get('relatedObjectTabs')
 
@@ -102,5 +92,9 @@ export default Component.extend({
 // improve demo
 // add transition
 // make sure all tools are working
+//  - move liquid fire +++
+//  - blanket => code coverage
+//  - visual acceptance
+//  - test on chrome
 // add visual acceptance tests
 

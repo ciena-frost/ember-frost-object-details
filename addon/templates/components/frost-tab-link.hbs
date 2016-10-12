@@ -1,0 +1,6 @@
+<div class="text" data-test={{hook (concat hook '-object-tab-link-text')}}>
+  {{yield}}
+</div>
+{{#if isCurrent }}
+  <div class="tab-selection {{if isSelected ' active'}}"></div>
+{{/if}}
