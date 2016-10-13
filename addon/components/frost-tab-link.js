@@ -4,16 +4,17 @@ import { PropTypes } from 'ember-prop-types'
 
 const FrostTabLink = frostLink.extend({
   // == Component properties ==================================================
+
+  layout: layout,
   classNames: ['frost-tab-link'],
   classNameBindings: ['isSelected:active'],
-  layout: layout,
 
   // == State properties ======================================================
 
   propTypes: {
     hook: PropTypes.string,
     isSelected: PropTypes.bool,
-    isCurrent: PropTypes.bool
+    isDefault: PropTypes.bool
   }
 })
 

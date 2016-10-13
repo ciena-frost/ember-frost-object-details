@@ -1,0 +1,19 @@
+<div
+  class="related-object-tab"
+  data-test={{hook (concat hook '-object-details-related-object-tab' (if isSelected '-selected' '')) }}>
+  {{#frost-related-object-tab-link
+      (query-params selectedTabName=(if (not isSelected) name) selectedTabType=(if (not isSelected) 'relatedObjectTab'))
+      icon=icon.name
+      pack=icon.pack
+      isSelected=isSelected}}
+    {{text}}
+  {{/frost-related-object-tab-link}}
+  {{log icon.name 'test'}}
+</div>
+
+{{#if isSelected}}
+  {{to-elsewhere
+    named=targetOutlet
+    send=(component content)
+  }}
+{{/if}}

@@ -4,48 +4,16 @@
   </div>
   <div class="tabs" data-test={{hook (concat hook '-object-details-tabs')}}>
     {{#each detailTabs as |tab|}}
-      <div class='tab'
-          data-test={{hook (concat
-                              hook
-                              '-object-details-tab'
-                              (if (is-tab-selected tab.name selectedTabName defaultTab.name) '-selected' '')
-                            )
-                    }}>
-        {{#frost-tab-link
-            (query-params selectedTabName=tab.name)
-            isSelected=(is-tab-selected tab.name selectedTabName defaultTab.name)
-            isCurrent=(eq tab.name currentTab.name)}}
-          {{tab.text}}
-        {{/frost-tab-link}}
-      </div>
+      {{component tab hook=hook targetOutlet=targetOutlet selectedTabName=selectedTabName selectedTabType=selectedTabType defaultTabName=defaultTabName}}
     {{/each}}
   </div>
   <div class="body" data-test={{hook (concat hook '-object-details-body')}}>
     <div class='content' data-test={{hook (concat hook '-object-details-body-content')}}>
-      {{#if currentRelatedObjectTab}}
-        {{component currentRelatedObjectTab.content}}
-      {{else}}
-        {{component currentTab.content}}
-      {{/if}}
+      {{from-elsewhere name=targetOutlet}}
     </div>
     <div class="related-object-tabs" data-test={{hook (concat hook '-object-details-related-object-tabs')}}>
       {{#each relatedObjectTabs as |tab|}}
-        <div
-          class="related-object-tab"
-          data-test={{hook (concat
-                              hook
-                              '-object-details-related-object-tab'
-                              (if (is-tab-selected tab.name currentRelatedObjectTab.name) '-selected' '')
-                          )
-                    }}>
-          {{#frost-related-object-tab-link
-              (query-params selectedTabName=(if (is-tab-selected tab.name currentRelatedObjectTab.name) defaultTab.name tab.name))
-              icon=tab.icon.name
-              pack=tab.icon.pack
-              isSelected=(is-tab-selected tab.name currentRelatedObjectTab.name)}}
-            {{tab.text}}
-          {{/frost-related-object-tab-link}}
-        </div>
+        {{component tab hook=hook targetOutlet=targetOutlet selectedTabName=selectedTabName}}
       {{/each}}
     </div>
   </div>

@@ -7,6 +7,7 @@ import { $hook } from 'ember-hook'
 import hbs from 'htmlbars-inline-precompile'
 
 const defaultPack = 'app'
+const defaultSelectedPack = 'frost'
 const defaultSelectedIcon = 'close'
 
 const iconSelector = 'use'
@@ -17,7 +18,7 @@ const relatedObjectTabLinkTextHookIcon = '-related-object-tab-link-icon'
 
 describeComponent(
   'frost-related-object-tab-link',
-  'Integration: FrostRelatedDetailComponent',
+  'Integration: FrostRelatedObjectTabLinkComponent',
   {
     integration: true
   },
@@ -57,7 +58,7 @@ describeComponent(
         {{/frost-related-object-tab-link}}
       `)
       expect($hook(relatedObjectTabLinkTextHookIcon).find(iconSelector).attr(iconAttributeName)
-            .indexOf(`/${defaultPack}.svg#${iconName}`)).to.exist
+            .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
     })
 
     it('Set pack and icon', function () {
@@ -73,7 +74,7 @@ describeComponent(
         {{/frost-related-object-tab-link}}
       `)
       expect($hook(relatedObjectTabLinkTextHookIcon).find(iconSelector).attr(iconAttributeName)
-            .indexOf(`/${packName}.svg#${iconName}`)).to.exist
+            .indexOf(`/${packName}.svg#${iconName}`)).to.be.gt(-1)
     })
 
     it('Set isSelected to true', function () {
@@ -89,7 +90,7 @@ describeComponent(
         {{/frost-related-object-tab-link}}
       `)
       expect($hook(relatedObjectTabLinkTextHookIcon).find(iconSelector).attr(iconAttributeName)
-            .indexOf(`/${defaultPack}.svg#${defaultSelectedIcon}`)).to.exist
+            .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
     })
   }
 )

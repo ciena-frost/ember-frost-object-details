@@ -3,7 +3,7 @@
     {{#if isSelected}}
       {{frost-icon pack='frost' icon='close'}}
     {{else}}
-      {{frost-icon pack=pack icon=icon}}
+      {{frost-icon pack=(if pack pack 'app') icon=icon}}
     {{/if}}
   </div>
 {{/if}}

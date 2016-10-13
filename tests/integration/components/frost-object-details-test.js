@@ -7,6 +7,7 @@ import hbs from 'htmlbars-inline-precompile'
 import { $hook } from 'ember-hook'
 
 const defaultPack = 'app'
+const defaultSelectedPack = 'frost'
 const defaultSelectedIcon = 'close'
 
 const iconSelector = 'use'
@@ -35,7 +36,7 @@ describeComponent(
         {{frost-object-details
           hook=hook
           detailTabs=(array
-              (hash
+              (component 'frost-object-tab'
                 name='profile'
                 text='Profile View'
                 content=(component 'object-details-content' color='skyblue' name='profile')
@@ -48,24 +49,24 @@ describeComponent(
     })
 
     it('Select tab by default', function () {
-      const selectedTabName = 'profile2'
       const selectedTabText = 'Profile View 2'
       const contentText = 'profile 2'
+      const defaultTabName = 'profile2'
       this.setProperties({
-        selectedTabName: selectedTabName,
         selectedTabText: selectedTabText,
+        defaultTabName: defaultTabName,
         contentText: contentText
       })
       this.render(hbs`
         {{frost-object-details
-          selectedTabName=selectedTabName
+          defaultTabName=defaultTabName
           detailTabs=(array
-              (hash
+              (component 'frost-object-tab'
                 name='profile'
                 text='Profile View'
                 content=(component 'object-details-content' color='skyblue' name='profile')
               )
-              (hash
+              (component 'frost-object-tab'
                 name=selectedTabName
                 text=selectedTabText
                 content=(component 'object-details-content' color='skyblue' name=contentText)
@@ -81,27 +82,33 @@ describeComponent(
       expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
     })
 
-    it('Select related object tab by default', function () {
+    it('Select related object tab', function () {
       const selectedTabName = 'device'
+      const selectedTabType = 'relatedObjectTab'
       const selectedTabText = 'Device'
+      const defaultTabName = 'profile'
       const contentText = 'related devices'
       this.setProperties({
         selectedTabName: selectedTabName,
+        selectedTabType: selectedTabType,
         selectedTabText: selectedTabText,
+        defaultTabName: defaultTabName,
         contentText: contentText
       })
       this.render(hbs`
         {{frost-object-details
           selectedTabName=selectedTabName
+          selectedTabType=selectedTabType
+          defaultTabName=defaultTabName
           detailTabs=(array
-              (hash
+              (component 'frost-object-tab'
                 name='profile'
                 text='Profile View'
                 content=(component 'object-details-content' color='skyblue' name='profile')
               )
             )
           relatedObjectTabs=(array
-            (hash
+            (component 'frost-related-object-tab'
               name=selectedTabName
               icon=(hash
                 name='network-element'
@@ -119,7 +126,7 @@ describeComponent(
       expect($hook(selectedRelatedObjectTabHookName).text().trim()).to.be.equal(selectedTabText)
       expect($hook(selectedRelatedObjectTabHookName).find('a.is-selected')).to.have.length(1)
       expect($hook(selectedRelatedObjectTabHookName).find(iconSelector).attr(iconAttributeName)
-            .indexOf(`/${defaultPack}.svg#${defaultSelectedIcon}`)).to.exist
+            .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
 
       expect($hook(relatedObjectTabHookName)).to.have.length(0)
 
@@ -130,11 +137,19 @@ describeComponent(
     })
 
     it('Only a detail tab', function () {
+      const selectedTabName = 'profile'
+      const defaultTabName = 'profile'
+      this.setProperties({
+        selectedTabName: selectedTabName,
+        defaultTabName: defaultTabName
+      })
       this.render(hbs`
         {{frost-object-details
+          selectedTabName=selectedTabName
+          defaultTabName=defaultTabName
           detailTabs=(array
-            (hash
-              name='profile'
+            (component 'frost-object-tab'
+              name=selectedTabName
               text='Profile View'
               content=(component 'object-details-content' color='skyblue' name='profile')
             )
@@ -148,25 +163,31 @@ describeComponent(
     })
 
     it('Detail tab and related object tab', function () {
+      const selectedTabName = 'profile'
+      const defaultTabName = 'profile'
       const tabText = 'Profile View'
       const relatedObjectTabText = 'Devices'
       const iconName = 'network-element'
       this.setProperties({
+        selectedTabName: selectedTabName,
+        defaultTabName: defaultTabName,
         tabText: tabText,
         relatedObjectTabText: relatedObjectTabText,
         iconName: iconName
       })
       this.render(hbs`
         {{frost-object-details
+          selectedTabName=selectedTabName
+          defaultTabName=defaultTabName
           detailTabs=(array
-            (hash
-              name='profile'
+            (component 'frost-object-tab'
+              name=selectedTabName
               text=tabText
               content=(component 'object-details-content' color='skyblue' name='profile')
             )
           )
           relatedObjectTabs=(array
-            (hash
+            (component 'frost-related-object-tab'
               name='devices'
               icon=(hash
                 name=iconName
@@ -183,20 +204,25 @@ describeComponent(
 
       expect($hook(relatedObjectTabHookName)).to.have.length(1)
       expect($hook(relatedObjectTabHookName).find(iconSelector).attr(iconAttributeName)
-            .indexOf(`/${defaultPack}.svg#${iconName}`)).to.exist
+            .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
       expect($hook(relatedObjectTabHookName).text().trim()).to.be.equal(relatedObjectTabText)
 
       expect($hook(detailTabHookName)).to.have.length(0)
     })
 
     it('Set content', function () {
+      const defaultTabName = 'profile'
+      this.setProperties({
+        defaultTabName: defaultTabName
+      })
       this.render(hbs`
         {{#frost-object-details
+            defaultTabName=defaultTabName
             detailTabs=(array
-              (hash
-                name='profile'
+              (component 'frost-object-tab'
+                name=selectedTabName
                 text='Profile View'
-                content=(component 'object-details-content' color='skyblue' name='profile')
+                content=(component 'object-details-content' color='skyblue' name=selectedTabName)
               )
             )
         }}

@@ -2,25 +2,27 @@
 
 {{frost-object-details
   selectedTabName=selectedTabName
+  selectedTabType=selectedTabType
+  defaultTabName='profile'
   detailTabs=(array
-    (hash
+    (component 'frost-object-tab'
       name='profile'
       text='Profile View'
       content=(component 'object-details-content' color='skyblue' name='profile')
     )
-    (hash
+    (component 'frost-object-tab'
       name='preferences'
       text='Preferences View'
       content=(component 'object-details-content' color='red' name='preferences')
     )
-    (hash
+    (component 'frost-object-tab'
       name='details'
       text='Details View'
       content=(component 'object-details-content' color='#0b97c4' name='details')
     )
   )
   relatedObjectTabs=(array
-    (hash
+    (component 'frost-related-object-tab'
       name='devices'
       text='Devices'
       icon=(hash
@@ -29,7 +31,7 @@
       )
       content=(component 'object-details-content' color='coral' name='related devices')
     )
-    (hash
+    (component 'frost-related-object-tab'
       name='friends'
       text='Friends'
       icon=(hash
@@ -38,7 +40,7 @@
       )
       content=(component 'object-details-content' color='rebeccapurple' name='related friends')
     )
-    (hash
+    (component 'frost-related-object-tab'
       name='subs'
       text='Subs'
       icon=(hash

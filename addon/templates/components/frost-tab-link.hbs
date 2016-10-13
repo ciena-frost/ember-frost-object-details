@@ -1,6 +1,8 @@
-<div class="text" data-test={{hook (concat hook '-object-tab-link-text')}}>
-  {{yield}}
+<div data-test={{hook (concat hook '-object-tab-link')}}>
+  <div class="text" data-test={{hook (concat hook '-object-tab-link-text')}}>
+    {{yield}}
+  </div>
+  {{#if (or isDefault isSelected) }}
+    <div class="tab-selection {{if isSelected ' active'}}"></div>
+  {{/if}}
 </div>
-{{#if isCurrent }}
-  <div class="tab-selection {{if isSelected ' active'}}"></div>
-{{/if}}

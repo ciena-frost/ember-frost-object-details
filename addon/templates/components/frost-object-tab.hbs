@@ -1,0 +1,15 @@
+<div class='tab' data-test={{hook (concat hook '-object-details-tab' (if isSelected '-selected' '')) }}>
+  {{#frost-tab-link
+      (query-params selectedTabName=name selectedTabType=tabType)
+      isSelected=isSelected
+      isDefault=(and (not (eq selectedTabType tabType)) (eq name defaultTabName))}}
+    {{text}}
+  {{/frost-tab-link}}
+</div>
+
+{{#if isSelected}}
+  {{to-elsewhere
+    named=targetOutlet
+    send=(component content)
+  }}
+{{/if}}
