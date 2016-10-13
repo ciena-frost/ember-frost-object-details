@@ -13,6 +13,7 @@ const isSelected = false
 const isDefault = false
 
 const template = hbs`{{#frost-tab-link
+  (query-params selectedTabName='test' selectedTabType='my-type')
   hook=hook
   isSelected=isSelected
   isDefault=isDefault

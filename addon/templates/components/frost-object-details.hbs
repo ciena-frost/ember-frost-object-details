@@ -4,16 +4,29 @@
   </div>
   <div class="tabs" data-test={{hook (concat hook '-object-details-tabs')}}>
     {{#each detailTabs as |tab|}}
-      {{component tab hook=hook targetOutlet=targetOutlet selectedTabName=selectedTabName selectedTabType=selectedTabType defaultTabName=defaultTabName}}
+      {{component tab
+        hook=hook
+        targetOutlet=targetOutlet
+        selectedTabName=selectedTabName
+        selectedTabType=selectedTabType
+        defaultTabName=defaultTabName
+        register=registerTab}}
     {{/each}}
   </div>
   <div class="body" data-test={{hook (concat hook '-object-details-body')}}>
     <div class='content' data-test={{hook (concat hook '-object-details-body-content')}}>
-      {{from-elsewhere name=targetOutlet}}
+      {{#from-elsewhere name=targetOutlet as |tab|}}
+        {{#liquid-bind (hash tab=tab orderedTabNames=orderedTabNames) rules=animations as |currentModel|}}
+          {{component currentModel.tab.content}}
+        {{/liquid-bind}}
+      {{/from-elsewhere}}
     </div>
     <div class="related-object-tabs" data-test={{hook (concat hook '-object-details-related-object-tabs')}}>
       {{#each relatedObjectTabs as |tab|}}
-        {{component tab hook=hook targetOutlet=targetOutlet selectedTabName=selectedTabName}}
+        {{component tab
+          hook=hook
+          targetOutlet=targetOutlet
+          selectedTabName=selectedTabName}}
       {{/each}}
     </div>
   </div>

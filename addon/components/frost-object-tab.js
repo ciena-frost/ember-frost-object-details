@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   classNames: ['frost-object-tab'],
 
   // == State properties ======================================================
-  tabType: 'tab',
+  type: 'tab',
 
   propTypes: {
     name: PropTypes.string.isRequired,
@@ -25,6 +25,7 @@ export default Ember.Component.extend({
     ]).isRequired,
     hook: PropTypes.string,
     // Set by the object details component
+    register: PropTypes.function,
     selectedTabName: PropTypes.string,
     selectedTabType: PropTypes.string,
     targetOutlet: PropTypes.string,
@@ -43,5 +44,15 @@ export default Ember.Component.extend({
 
     return tabName === selectedTabName ||
           ((_.isEmpty(selectedTabName) || _.isEmpty(selectedTabType)) && tabName === defaultTabName)
+  }),
+
+  // == Events ================================================================
+  /**
+   * Register the name of the tab during init.
+   */
+  _register: Ember.on('init', function () {
+    if (typeof this.register === 'function') {
+      this.register(this.name)
+    }
   })
 })

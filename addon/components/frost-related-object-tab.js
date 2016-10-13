@@ -13,6 +13,7 @@ export default Ember.Component.extend({
   classNames: ['frost-related-object-tab'],
 
   // == State properties ======================================================
+  type: 'relatedObjectTab',
 
   propTypes: {
     name: PropTypes.string.isRequired,
