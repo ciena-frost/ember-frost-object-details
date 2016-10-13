@@ -88,30 +88,3 @@ export default Component.extend({
     )
   }
 })
-
-// TODO
-// X keep track of the current selected tab in the url
-// X select the current tab (underline the title or X on bubble)
-// X Change link to button to avoid switching pages (might not be necessary)
-// X Click link set query params
-// X Bring to first tab if we select any of the related tab
-// X Click on the related tab when selected will close that related tab and show the first tab
-// X Show frost icons (issue with relative path)
-// X Remove blue underline if selecting right tabs
-// X add hooks
-// X clean object-detail template
-// X add tests (frost-object-details)
-// X add tests for tab-link
-// X fix tests
-// X linting
-
-// add transition
-// improve demo
-// make sure all tools are working
-// X - move liquid fire +++
-//  - blanket => code coverage
-//  - visual acceptance
-//  - test on chrome
-// add visual acceptance tests
-// add array helper to core
-
