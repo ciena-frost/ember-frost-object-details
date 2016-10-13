@@ -48,7 +48,7 @@ describeComponent(
       expect($hook(`${hookName}${detailTabsHookName}`)).to.have.length(1)
     })
 
-    it('Select tab by default', function () {
+    it('Select tab by default', function (done) {
       const selectedTabText = 'Profile View 2'
       const contentText = 'profile 2'
       const defaultTabName = 'profile2'
@@ -80,9 +80,14 @@ describeComponent(
       expect($hook(selectedDetailTabHookName).find('a.active')).to.have.length(1)
       expect($hook(selectedDetailTabHookName).find('.tab-selection.active')).to.have.length(1)
       expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
+
+      return capture('object-details-selected-tab', done, {
+        targetElement: $hook('-object-details')[0],
+        experimentalSvgs: true
+      })
     })
 
-    it('Select related object tab', function () {
+    it('Select related object tab', function (done) {
       const selectedTabName = 'device'
       const selectedTabType = 'relatedObjectTab'
       const selectedTabText = 'Device'
@@ -134,9 +139,14 @@ describeComponent(
       expect($hook(detailTabHookName).find('.tab-selection.active')).to.have.length(0)
 
       expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
+
+      return capture('object-details-selected-related-obj-tab', done, {
+        targetElement: $hook('-object-details')[0],
+        experimentalSvgs: true
+      })
     })
 
-    it('Only a detail tab', function () {
+    it('Only a detail tab', function (done) {
       const selectedTabName = 'profile'
       const defaultTabName = 'profile'
       this.setProperties({
@@ -160,9 +170,14 @@ describeComponent(
       expect($hook(selectedDetailTabHookName)).to.have.length(1)
       expect($hook(detailTabHookName)).to.have.length(0)
       expect($hook(relatedObjectTabHookName)).to.have.length(0)
+
+      return capture('object-details-with-only-tab', done, {
+        targetElement: $hook('-object-details')[0],
+        experimentalSvgs: true
+      })
     })
 
-    it('Detail tab and related object tab', function () {
+    it('Detail tab and related object tab', function (done) {
       const selectedTabName = 'profile'
       const defaultTabName = 'profile'
       const tabText = 'Profile View'
@@ -208,6 +223,11 @@ describeComponent(
       expect($hook(relatedObjectTabHookName).text().trim()).to.be.equal(relatedObjectTabText)
 
       expect($hook(detailTabHookName)).to.have.length(0)
+
+      return capture('object-details-with-tabs-and-related-obj-tab', done, {
+        targetElement: $hook('-object-details')[0],
+        experimentalSvgs: true
+      })
     })
 
     it('Set content', function () {
