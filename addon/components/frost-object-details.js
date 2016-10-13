@@ -43,10 +43,9 @@ export default Component.extend({
 // X add hooks
 // X clean object-detail template
 // X add tests (frost-object-details)
+// X add tests for tab-link
+// X fix tests
 
-
-// add tests for tab-link
-// fix tests
 // linting
 // add transition
 // improve demo
