@@ -7,17 +7,35 @@
 [npm-img]: https://img.shields.io/npm/v/ember-frost-object-details.svg "NPM Version"
 [npm-url]: https://www.npmjs.com/package/ember-frost-object-details
 
+[ember-observer-badge]: http://emberobserver.com/badges/ember-frost-object-details.svg "Ember Observer score"
+[ember-observer-badge-url]: http://emberobserver.com/addons/ember-frost-object-details
+
+[ember-img]: https://img.shields.io/badge/ember-1.12.2+-orange.svg "Ember 1.12.2+"
+
 [![Travis][ci-img]][ci-url] [![Coveralls][cov-img]][cov-url] [![NPM][npm-img]][npm-url]
 
-# ember-frost-object-details
-An object details page packages together all details about an object in a full page of real estate. The ember-frost-object-details component will provide you free animations, styles and the frame of the page with simple setup. 
+[bithound-img]: https://www.bithound.io/github/ciena-frost/ember-frost-object-details/badges/score.svg "bitHound"
+[bithound-url]: https://www.bithound.io/github/ciena-frost/ember-frost-object-details
 
-With current design, you need have two directories named views and related at the same level as the template you decided to use frost-object-details. All your view routes and related routes should go into the corresponding dirs.
- 
- * [Installation](#Installation)
- * [API](#API)
- * [Examples](#Examples)
- * [Contributing](#Contributing)
+# ember-frost-object-details
+###### Dependencies
+
+![Ember][ember-img]
+[![NPM][npm-img]][npm-url]
+
+###### Health
+
+[![Travis][ci-img]][ci-url]
+[![Coveralls][cov-img]][cov-url]
+
+###### Security
+
+[![bitHound][bithound-img]][bithound-url]
+
+###### Ember Observer score
+[![EmberObserver][ember-observer-badge]][ember-observer-badge-url]
+
+An object details page packages together all details about an object in a full page of real estate. The ember-frost-object-details component will provide you free animations, styles and the frame of the page with simple setup. 
 
 ## Installation
 ```
@@ -25,62 +43,15 @@ ember install ember-frost-object-details
 ```
 
 ## API
-| Component | Attribute | Type | Value | Description |
-|---------| --------- | ---- | ----- | ----------- |
-| `{{frost-object-details}}` | `defaultRoute` | `string` | | Default entry route for object details view (Mandatory) |
-| `{{routes.view}}` | `detailsRouteIndex` | `number` | |  Provide left-to-right or right-to-left slide animation when transition between two view routes based on comparing their detailsRouteIndex value (Optional) |
-| `{{routes.related}}` | `icon` | `string` | | The name of the icon to display (Optional) |
+Detailed API and example usage can be found in the sample application in `tests/dummy`, which is also running at http://ciena-frost.github.io/ember-frost-object-details
 
-## Examples
-### frost-object-details
-In this scenario, frost-object-details is rendered in details/template.hbs . Two dirs were created as details/views and details/related with corresponding sub-routes inside it. 
-The frost-object-details is usually used with two contextual components, view and related. The 'view' route component is usually used to display and select alternate available object views, and the 'related' route component will render a quick link to important related data in context of the object.
-```handlebars
-{{#frost-object-details defaultRoute='details.views.profile' as |slot|}}
-  
-  {{#block-slot slot 'view-route' as |routes|}}
-    {{#routes.view 'details.views.profile' detailsRouteIndex=1}}Profile View{{/routes.view}}
-    {{#routes.view 'details.views.preferences' detailsRouteIndex=2}}Preferences View{{/routes.view}}
-    {{#routes.view 'details.views.details' detailsRouteIndex=3}}Details View{{/routes.view}}
-  {{/block-slot}}
-  
-  {{#block-slot slot 'related-route' as |routes|}}
-    {{#routes.related 'details.related.devices' icon='network-element'}}Devices{{/routes.related}}
-    {{#routes.related 'details.related.friends' icon='tenant'}}Friends{{/routes.related}}
-    {{#routes.related 'details.related.subscriptions' icon='service'}}Subs{{/routes.related}}
-  {{/block-slot}}
-  
-{{/frost-object-details}}
-```
+### Ember-elsewhere
 
-### ember-block-slot  
-Ember-block-slots is used in frost-object-details for conditional yield. Both 'view-route' and 'related-route' are predefined key for corresponding section yield and you should use it as so for your different routes section without change
-##### For view routes
-```handlebars
-{{#block-slot slot 'view-route' as |routes|}}
-{{/block-slot}}
-```
-##### For related routes
-```handlebars
-{{#block-slot slot 'related-route' as |routes|}}
-{{/block-slot}}
-```
+This addon uses the [ember-elsewhere](https://github.com/ef4/ember-elsewhere) to manage the tabs, to put the tab in the right location
 
-### Sub-routes: view routes and related routes
-Block-slot will yield back a hash containing contextual components which you can use to render your sub-routes. You can get access to these contextual components in hash via a predefined key. There are two different types of contextual components, '.view' for view routes and '.related' for related routes. Both of them are built on top of ember {{link-to}} helper and you can treat them just like {{link-to}} when handling route name and dynamic segments. 
-##### For view routes
-```handlebars
-{{#routes.view 'details.views.profile' detailsRouteIndex=1}}Profile View{{/routes.view}}
-{{#routes.view 'details.views.preferences' detailsRouteIndex=2}}Preferences View{{/routes.view}}
-{{#routes.view 'details.views.details' detailsRouteIndex=3}}Details View{{/routes.view}}
-```
-
-##### For related routes
-```handlebars
-{{#routes.related 'details.related.devices' icon='network-element'}}Devices{{/routes.related}}
-{{#routes.related 'details.related.friends' icon='tenant'}}Friends{{/routes.related}}
-{{#routes.related 'details.related.subscriptions' icon='service'}}Subs{{/routes.related}}
-```
+### Testing with ember-hook
+This addon has been optimized for use with [ember-hook](https://github.com/Ticketfly/ember-hook). You can set a `hook` name on your sidebar template. 
+This will allow you to access the internal sidebar content for testing.
 
 ## Development
 ### Setup
