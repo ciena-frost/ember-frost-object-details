@@ -3,14 +3,16 @@
     {{yield}}
   </div>
   <div class="object-details-tabs" data-test={{hook (concat hook '-object-details-tabs')}}>
-    {{#each detailTabs as |tab|}}
-      {{component tab
-        hook=hook
-        targetOutlet=targetOutlet
-        selectedTabName=selectedTabName
-        selectedTabType=selectedTabType
-        defaultTabName=defaultTabName
-        register=registerTab}}
+    {{#each detailTabs as |tab index|}}
+      <div data-test={{hook (concat hook '-object-details-tab-' index)}}>
+        {{component tab
+          hook=hook
+          targetOutlet=targetOutlet
+          selectedTabName=selectedTabName
+          selectedTabType=selectedTabType
+          defaultTabName=defaultTabName
+          register=registerTab}}
+      </div>
     {{/each}}
   </div>
   <div class="object-details-body" data-test={{hook (concat hook '-object-details-body')}}>
@@ -22,11 +24,13 @@
       {{/from-elsewhere}}
     </div>
     <div class="related-object-tabs" data-test={{hook (concat hook '-object-details-related-object-tabs')}}>
-      {{#each relatedObjectTabs as |tab|}}
-        {{component tab
-          hook=hook
-          targetOutlet=targetOutlet
-          selectedTabName=selectedTabName}}
+      {{#each relatedObjectTabs as |tab index|}}
+        <div data-test={{hook (concat hook '-object-details-related-object-tab-' index)}}>
+          {{component tab
+            hook=hook
+            targetOutlet=targetOutlet
+            selectedTabName=selectedTabName}}
+        </div>
       {{/each}}
     </div>
   </div>

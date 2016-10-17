@@ -10,7 +10,7 @@
 [ember-observer-badge]: http://emberobserver.com/badges/ember-frost-object-details.svg "Ember Observer score"
 [ember-observer-badge-url]: http://emberobserver.com/addons/ember-frost-object-details
 
-[ember-img]: https://img.shields.io/badge/ember-1.12.2+-orange.svg "Ember 1.12.2+"
+[ember-img]: https://img.shields.io/badge/ember-2.3+-orange.svg "Ember 2.3+"
 
 [![Travis][ci-img]][ci-url] [![Coveralls][cov-img]][cov-url] [![NPM][npm-img]][npm-url]
 

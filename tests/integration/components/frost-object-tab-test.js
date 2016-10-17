@@ -17,8 +17,8 @@ const defaultSelectedTabType = 'tab'
 const defaultTabName = 'my-tab'
 const defaultHook = ''
 
-const detailTabHookName = '-object-details-tab'
-const selectedDetailTabHookName = '-object-details-tab-selected'
+const detailTabHookName = '-object-tab'
+const selectedDetailTabHookName = '-object-tab-selected'
 
 const template = hbs`
   {{frost-object-tab
