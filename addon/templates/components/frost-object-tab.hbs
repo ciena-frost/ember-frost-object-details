@@ -1,4 +1,4 @@
-<div class='tab' data-test={{hook (concat hook '-object-details-tab' (if isSelected '-selected' '')) }}>
+<div class='object-tab' data-test={{hook (concat hook '-object-details-tab' (if isSelected '-selected' '')) }}>
   {{#frost-tab-link
       (query-params selectedTabName=name selectedTabType=type)
       isSelected=isSelected

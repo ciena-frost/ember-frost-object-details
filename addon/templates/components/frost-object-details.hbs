@@ -2,7 +2,7 @@
   <div data-test={{hook (concat hook '-object-details-content')}}>
     {{yield}}
   </div>
-  <div class="tabs" data-test={{hook (concat hook '-object-details-tabs')}}>
+  <div class="object-details-tabs" data-test={{hook (concat hook '-object-details-tabs')}}>
     {{#each detailTabs as |tab|}}
       {{component tab
         hook=hook
@@ -13,7 +13,7 @@
         register=registerTab}}
     {{/each}}
   </div>
-  <div class="body" data-test={{hook (concat hook '-object-details-body')}}>
+  <div class="object-details-body" data-test={{hook (concat hook '-object-details-body')}}>
     <div class='content' data-test={{hook (concat hook '-object-details-body-content')}}>
       {{#from-elsewhere name=targetOutlet as |tab|}}
         {{#liquid-bind (hash tab=tab orderedTabNames=orderedTabNames) rules=animations as |currentModel|}}
