@@ -7,7 +7,9 @@ const {
 
 // TODO Move to ember-frost-core
 export function array (params) {
-  return params
+  let array = Ember.A()
+  array.pushObjects(params)
+  return array
 }
 
 export default helper(array)

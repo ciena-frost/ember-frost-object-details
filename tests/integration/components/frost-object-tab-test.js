@@ -5,7 +5,10 @@ import {
 } from 'ember-mocha'
 import { beforeEach } from 'mocha'
 import hbs from 'htmlbars-inline-precompile'
-import { $hook } from 'ember-hook'
+import {
+  $hook,
+  initialize
+} from 'ember-hook'
 
 const name = 'my-tab'
 const text = 'my tab text'
@@ -38,6 +41,7 @@ describeComponent(
   },
   function () {
     beforeEach(function () {
+      initialize()
       this.setProperties({
         name: name,
         text: text,

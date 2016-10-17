@@ -6,7 +6,10 @@ import {
 } from 'ember-mocha'
 import { beforeEach } from 'mocha'
 import hbs from 'htmlbars-inline-precompile'
-import { $hook } from 'ember-hook'
+import {
+  $hook,
+  initialize
+} from 'ember-hook'
 
 const defaultPack = 'app'
 const defaultSelectedPack = 'frost'
@@ -51,6 +54,7 @@ describeComponent(
   },
   function () {
     beforeEach(function () {
+      initialize()
       this.setProperties({
         name: name,
         text: text,

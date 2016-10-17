@@ -4,7 +4,10 @@ import {
   it
 } from 'ember-mocha'
 import { beforeEach } from 'mocha'
-import { $hook } from 'ember-hook'
+import {
+  $hook,
+  initialize
+} from 'ember-hook'
 import hbs from 'htmlbars-inline-precompile'
 
 const defaultPack = 'app'
@@ -42,6 +45,7 @@ describeComponent(
   },
   function () {
     beforeEach(function () {
+      initialize()
       this.setProperties({
         hook: defaultHook,
         icon: icon,

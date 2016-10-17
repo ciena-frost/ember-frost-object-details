@@ -3,8 +3,13 @@ import {
   describeComponent,
   it
 } from 'ember-mocha'
+import { beforeEach } from 'mocha'
 import hbs from 'htmlbars-inline-precompile'
-import { $hook } from 'ember-hook'
+import {
+  $hook,
+  initialize
+} from 'ember-hook'
+import wait from 'ember-test-helpers/wait'
 
 const defaultPack = 'app'
 const defaultSelectedPack = 'frost'
@@ -27,6 +32,10 @@ describeComponent(
     integration: true
   },
   function () {
+    beforeEach(function () {
+      initialize()
+    })
+
     it('Set hook name', function () {
       const hookName = 'my-hook'
       this.setProperties({
@@ -67,7 +76,7 @@ describeComponent(
                 content=(component 'object-details-content' color='skyblue' name='profile')
               )
               (component 'frost-object-tab'
-                name=selectedTabName
+                name=defaultTabName
                 text=selectedTabText
                 content=(component 'object-details-content' color='skyblue' name=contentText)
               )
@@ -75,16 +84,19 @@ describeComponent(
         }}
       `)
 
-      expect($hook(detailTabHookName)).to.have.length(1)
-      expect($hook(selectedDetailTabHookName).text().trim()).to.be.equal(selectedTabText)
-      expect($hook(selectedDetailTabHookName).find('a.active')).to.have.length(1)
-      expect($hook(selectedDetailTabHookName).find('.tab-selection.active')).to.have.length(1)
-      expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
+      return wait()
+        .then(() => {
+          expect($hook(detailTabHookName)).to.have.length(1)
+          expect($hook(selectedDetailTabHookName).text().trim()).to.be.equal(selectedTabText)
+          expect($hook(selectedDetailTabHookName).find('a.active')).to.have.length(1)
+          expect($hook(selectedDetailTabHookName).find('.tab-selection.active')).to.have.length(1)
+          expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
 
-      return capture('object-details-selected-tab', done, {
-        targetElement: $hook('-object-details')[0],
-        experimentalSvgs: true
-      })
+          return capture('object-details-selected-tab', done, {
+            targetElement: $hook('-object-details')[0],
+            experimentalSvgs: true
+          })
+        })
     })
 
     it('Select related object tab', function (done) {
@@ -125,25 +137,28 @@ describeComponent(
         }}
       `)
 
-      expect($hook(detailTabHookName)).to.have.length(1)
+      return wait()
+        .then(() => {
+          expect($hook(detailTabHookName)).to.have.length(1)
 
-      expect($hook(selectedRelatedObjectTabHookName)).to.have.length(1)
-      expect($hook(selectedRelatedObjectTabHookName).text().trim()).to.be.equal(selectedTabText)
-      expect($hook(selectedRelatedObjectTabHookName).find('a.is-selected')).to.have.length(1)
-      expect($hook(selectedRelatedObjectTabHookName).find(iconSelector).attr(iconAttributeName)
-            .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
+          expect($hook(selectedRelatedObjectTabHookName)).to.have.length(1)
+          expect($hook(selectedRelatedObjectTabHookName).text().trim()).to.be.equal(selectedTabText)
+          expect($hook(selectedRelatedObjectTabHookName).find('a.is-selected')).to.have.length(1)
+          expect($hook(selectedRelatedObjectTabHookName).find(iconSelector).attr(iconAttributeName)
+                .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
 
-      expect($hook(relatedObjectTabHookName)).to.have.length(0)
+          expect($hook(relatedObjectTabHookName)).to.have.length(0)
 
-      expect($hook(detailTabHookName).find('.tab-selection')).to.have.length(1)
-      expect($hook(detailTabHookName).find('.tab-selection.active')).to.have.length(0)
+          expect($hook(detailTabHookName).find('.tab-selection')).to.have.length(1)
+          expect($hook(detailTabHookName).find('.tab-selection.active')).to.have.length(0)
 
-      expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
+          expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
 
-      return capture('object-details-selected-related-obj-tab', done, {
-        targetElement: $hook('-object-details')[0],
-        experimentalSvgs: true
-      })
+          return capture('object-details-selected-related-obj-tab', done, {
+            targetElement: $hook('-object-details')[0],
+            experimentalSvgs: true
+          })
+        })
     })
 
     it('Only a detail tab', function (done) {
@@ -167,14 +182,17 @@ describeComponent(
         }}
       `)
 
-      expect($hook(selectedDetailTabHookName)).to.have.length(1)
-      expect($hook(detailTabHookName)).to.have.length(0)
-      expect($hook(relatedObjectTabHookName)).to.have.length(0)
+      return wait()
+        .then(() => {
+          expect($hook(selectedDetailTabHookName)).to.have.length(1)
+          expect($hook(detailTabHookName)).to.have.length(0)
+          expect($hook(relatedObjectTabHookName)).to.have.length(0)
 
-      return capture('object-details-with-only-tab', done, {
-        targetElement: $hook('-object-details')[0],
-        experimentalSvgs: true
-      })
+          return capture('object-details-with-only-tab', done, {
+            targetElement: $hook('-object-details')[0],
+            experimentalSvgs: true
+          })
+        })
     })
 
     it('Detail tab and related object tab', function (done) {
@@ -214,20 +232,23 @@ describeComponent(
         }}
       `)
 
-      expect($hook(selectedDetailTabHookName)).to.have.length(1)
-      expect($hook(selectedDetailTabHookName).text().trim()).to.be.equal(tabText)
+      return wait()
+        .then(() => {
+          expect($hook(selectedDetailTabHookName)).to.have.length(1)
+          expect($hook(selectedDetailTabHookName).text().trim()).to.be.equal(tabText)
 
-      expect($hook(relatedObjectTabHookName)).to.have.length(1)
-      expect($hook(relatedObjectTabHookName).find(iconSelector).attr(iconAttributeName)
-            .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
-      expect($hook(relatedObjectTabHookName).text().trim()).to.be.equal(relatedObjectTabText)
+          expect($hook(relatedObjectTabHookName)).to.have.length(1)
+          expect($hook(relatedObjectTabHookName).find(iconSelector).attr(iconAttributeName)
+                .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
+          expect($hook(relatedObjectTabHookName).text().trim()).to.be.equal(relatedObjectTabText)
 
-      expect($hook(detailTabHookName)).to.have.length(0)
+          expect($hook(detailTabHookName)).to.have.length(0)
 
-      return capture('object-details-with-tabs-and-related-obj-tab', done, {
-        targetElement: $hook('-object-details')[0],
-        experimentalSvgs: true
-      })
+          return capture('object-details-with-tabs-and-related-obj-tab', done, {
+            targetElement: $hook('-object-details')[0],
+            experimentalSvgs: true
+          })
+        })
     })
 
     it('Set content', function () {

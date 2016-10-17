@@ -12,6 +12,6 @@ const data = [42, 1, 2]
 describe('ArrayHelper', function () {
   it('works', function () {
     let result = array(data)
-    expect(result).to.be.eq(data)
+    expect(result).to.have.length(data.length)
   })
 })
