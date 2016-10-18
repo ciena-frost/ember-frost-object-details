@@ -1,12 +1,31 @@
-<div class="demo-user-lists">
-  <h3>User list</h3>
-  {{#each model as |user|}}
-    <div>
-      {{#frost-link 'details.views' user}}
-        {{user.first-name}}
-        {{user.last-name}}
-        {{user.email}}
-      {{/frost-link}}
+<div class='addon-demo'>
+  <div class='addon-demos'>
+    <div class='addon-demo-title'>
+      Demos
     </div>
-  {{/each}}
+    {{#frost-scroll class='addon-demo-selectors'}}
+      {{#link-to 'demo.overview'}}Overview{{/link-to}}
+      <div class='addon-demo-selector-title'>
+        Building blocks
+        {{#link-to 'demo.content'}}Content{{/link-to}}
+        {{#link-to 'demo.default-tab'}}Default tab{{/link-to}}
+        {{#link-to 'demo.selected-tab'}}Selected tab{{/link-to}}
+      </div>
+      <div class='addon-demo-selector-title'>
+        Object details components
+        <div class='addon-demo-selector-title'>
+          Tab
+          {{#link-to 'demo.object-tab'}}Object tab{{/link-to}}
+          {{#link-to 'demo.related-object-tab'}}Related object tab{{/link-to}}
+        </div>
+      </div>
+      <div class='addon-demo-selector-title'>
+        Tests
+        {{#link-to 'demo.hook'}}Hook{{/link-to}}
+      </div>
+    {{/frost-scroll}}
+  </div>
+  {{#frost-scroll class='addon-demo-example'}}
+    {{outlet}}
+  {{/frost-scroll}}
 </div>

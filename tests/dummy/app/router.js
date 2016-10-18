@@ -6,9 +6,17 @@ var Router = Ember.Router.extend({
   rootURL: config.rootURL
 })
 Router.map(function () {
-  this.route('demo', { path: '/' })
-  this.route('details', {path: '/details/:user_id'}, function () {
-    this.route('views')
+  this.route('demo', { path: '/' }, function () {
+    this.route('overview', { path: '/' })
+    // Building blocks
+    this.route('content')
+    this.route('default-tab')
+    this.route('selected-tab')
+    // Object details component
+    this.route('object-tab')
+    this.route('related-object-tab')
+    // Tests
+    this.route('hook')
   })
 })
 
