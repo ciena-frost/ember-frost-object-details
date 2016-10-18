@@ -1,0 +1,32 @@
+$view-detail-bg-color: rgba($frost-color-blue-1, .05);
+
+.frost-object-details {
+  display: flex;
+  flex-direction: column;
+  background-color: $frost-color-lgrey-3;
+
+  .object-details-tabs {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0 18px 30px;
+    font-size: 0;
+  }
+
+  .object-details-body {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+
+    > .content {
+      flex: 1;
+    }
+
+    > .related-object-tabs {
+      display: flex;
+      flex-direction: column;
+      width: 90px;
+      margin-right: 5px;
+      margin-left: auto;
+    }
+  }
+}

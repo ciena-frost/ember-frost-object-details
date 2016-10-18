@@ -1,15 +1,53 @@
 {{info-details}}
 
-{{#frost-object-details defaultRoute='details.views.profile' as |slot|}}
-  {{#block-slot slot 'view-route' as |routes|}}
-    {{#routes.view 'details.views.profile' detailsRouteIndex=1}}Profile View{{/routes.view}}
-    {{#routes.view 'details.views.preferences' detailsRouteIndex=2}}Preferences View{{/routes.view}}
-    {{#routes.view 'details.views.details' detailsRouteIndex=3}}Details View{{/routes.view}}
-  {{/block-slot}}
-
-  {{#block-slot slot 'related-route' as |routes|}}
-    {{#routes.related 'details.related.devices' pack='dummy' icon='network-element'}}Devices{{/routes.related}}
-    {{#routes.related 'details.related.friends' 3 pack='dummy' icon='tenant'}}Friends{{/routes.related}}
-    {{#routes.related 'details.related.subscriptions' pack='dummy' icon='service'}}Subs{{/routes.related}}
-  {{/block-slot}}
-{{/frost-object-details}}
+{{frost-object-details
+  selectedTabName=selectedTabName
+  selectedTabType=selectedTabType
+  defaultTabName='profile'
+  detailTabs=(array
+    (component 'frost-object-tab'
+      name='profile'
+      text='Profile View'
+      content=(component 'object-details-content' color='skyblue' name='profile')
+    )
+    (component 'frost-object-tab'
+      name='preferences'
+      text='Preferences View'
+      content=(component 'object-details-content' color='red' name='preferences')
+    )
+    (component 'frost-object-tab'
+      name='details'
+      text='Details View'
+      content=(component 'object-details-content' color='#0b97c4' name='details')
+    )
+  )
+  relatedObjectTabs=(array
+    (component 'frost-related-object-tab'
+      name='devices'
+      text='Devices'
+      icon=(hash
+        name='network-element'
+        pack='dummy'
+      )
+      content=(component 'object-details-content' color='coral' name='related devices')
+    )
+    (component 'frost-related-object-tab'
+      name='friends'
+      text='Friends'
+      icon=(hash
+        name='tenant'
+        pack='dummy'
+      )
+      content=(component 'object-details-content' color='rebeccapurple' name='related friends')
+    )
+    (component 'frost-related-object-tab'
+      name='subs'
+      text='Subs'
+      icon=(hash
+        name='service'
+        pack='dummy'
+      )
+      content=(component 'object-details-content' color='rosybrown' name='related subscriptions')
+    )
+  )
+}}

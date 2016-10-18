@@ -1,23 +1,37 @@
-{{yield}}
-<div class="view-tabs">
-    <div class="tabs">
-      {{#yield-slot 'view-route'}}
-        {{yield (block-params (hash
-        view=(component 'frost-view-detail')))}}
-      {{/yield-slot}}
+<div data-test={{hook (concat hook '-object-details')}}>
+  <div data-test={{hook (concat hook '-object-details-content')}}>
+    {{yield}}
+  </div>
+  <div class="object-details-tabs" data-test={{hook (concat hook '-object-details-tabs')}}>
+    {{#each detailTabs as |tab index|}}
+      <div data-test={{hook (concat hook '-object-details-tab-' index)}}>
+        {{component tab
+          hook=hook
+          targetOutlet=targetOutlet
+          selectedTabName=selectedTabName
+          selectedTabType=selectedTabType
+          defaultTabName=defaultTabName
+          register=registerTab}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="object-details-body">
+    <div class='content' data-test={{hook (concat hook '-object-details-body-content')}}>
+      {{#from-elsewhere name=targetOutlet as |tab|}}
+        {{#liquid-bind (hash tab=tab orderedTabNames=orderedTabNames) rules=animations as |currentModel|}}
+          {{component currentModel.tab.content}}
+        {{/liquid-bind}}
+      {{/from-elsewhere}}
     </div>
-    <div class="frost-view-follower"></div>
-</div>
-<div class="body">
-    {{liquid-outlet class='main-container'}}
-    <div class="related-tabs">
-      {{#yield-slot 'related-route'}}
-        {{yield (block-params (hash
-          related=(component 'frost-related-detail'
-            persistedRouteName=persistedRouteName
-            defaultRoute=defaultRoute)))
-        }}
-      {{/yield-slot}}
+    <div class="related-object-tabs" data-test={{hook (concat hook '-object-details-related-object-tabs')}}>
+      {{#each relatedObjectTabs as |tab index|}}
+        <div data-test={{hook (concat hook '-object-details-related-object-tab-' index)}}>
+          {{component tab
+            hook=hook
+            targetOutlet=targetOutlet
+            selectedTabName=selectedTabName}}
+        </div>
+      {{/each}}
     </div>
+  </div>
 </div>
-

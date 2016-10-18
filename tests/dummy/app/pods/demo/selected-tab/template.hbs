@@ -1,0 +1,106 @@
+{{!-- BEGIN-SNIPPET selected-tab-api }}
+{{frost-object-details
+  selectedTabName='<name of the selected tab>'
+  selectedTabType='<type of the selected tab>'
+  ...
+  detailTabs=(array
+    (component 'frost-object-tab'
+      name='<tab name>'
+      text='<tab text>'
+      content=(component '<component name>' ...)
+    )
+    ...
+  )
+  relatedObjectTabs=(array
+    (component 'frost-related-object-tab'
+      name='<tab name>'
+      text='<tab text>'
+      icon=(hash
+        name='<icon name>'
+        pack='<icon pack>'
+      )
+      content=(component '<component name>' ...)
+    )
+    ...
+  )
+  ...
+}}
+{{ END-SNIPPET --}}
+
+<div class='addon-demo-api'>
+  <div class='addon-demo-title'>
+    Notes
+  </div>
+  <div class='addon-demo-notes'>
+    <p>
+      <p>
+        The name (<i>selectedTabName</i>) and type (<i>selectedTabType</i>) of the selected tab is recorded in the URL
+        as a query-params.
+      </p>
+      <p>
+        If you want to make sure to keep the tab selection state properly you need to make sure to have the
+        following setting in the controller.<br><i>queryParams: ['selectedTabName', 'selectedTabType']</i>
+      </p>
+      <p>
+        You can set a default selected tab by setting those attributes:
+        <i>
+          <br>selectedTabName: 'devices',
+          <br>selectedTabType: 'relatedObjectTab'
+        </i>
+      </p>
+      <p>
+        If you are not setting a default value, the first object tab is the default selection.
+      </p>
+    </p>
+  </div>
+  <div class='addon-demo-title'>
+    API
+  </div>
+  <div class='addon-demo-snippet'>
+    {{code-snippet name='selected-tab-api.hbs'}}
+  </div>
+</div>
+<div class='addon-demo-live'>
+  <div class='addon-demo-title'>
+    Live demo
+  </div>
+  <div class='addon-demo-snippet'>
+    <i>Demo controller</i>
+    {{code-snippet name='selected-tab-controller.js'}}
+  </div>
+  <div class='addon-demo-snippet'>
+    <i>Demo template</i>
+    {{code-snippet name='selected-tab.hbs'}}
+  </div>
+  <div class='addon-demo-component'>
+    {{! BEGIN-SNIPPET selected-tab }}
+    {{frost-object-details
+      selectedTabName=selectedTabName
+      selectedTabType=selectedTabType
+      defaultTabName='profile'
+      detailTabs=(array
+        (component 'frost-object-tab'
+          name='profile'
+          text='Profile View'
+          content=(component 'object-details-content'
+            color='skyblue'
+            name='profile')
+        )
+      )
+      relatedObjectTabs=(array
+        (component 'frost-related-object-tab'
+          name='devices'
+          text='Devices'
+          icon=(hash
+            name='network-element'
+            pack='dummy'
+          )
+          content=(component 'object-details-content'
+            color='coral'
+            name='related devices')
+        )
+      )
+    }}
+    {{! END-SNIPPET }}
+  </div>
+</div>

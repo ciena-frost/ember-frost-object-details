@@ -1,0 +1,71 @@
+{{!-- BEGIN-SNIPPET related-object-tab-api }}
+{{frost-related-object-tab
+  name='<tab name>'
+  text='<tab text>'
+  icon={
+    name='<name of the icon>'
+    pack='<name of the icon pack>'
+  }
+  content=(component '<component name>' ...)
+  selectedTabName='<selected tab name>'
+  selectedTabType='<selected tab type>'
+  targetOutlet='<outlet name>'
+  ...
+}}
+{{ END-SNIPPET --}}
+
+<div class='addon-demo-api'>
+  <div class='addon-demo-title'>
+    Notes
+  </div>
+  <div class='addon-demo-notes'>
+    <p>
+      Tab that are on the right side of the object details component. The tab type is: <i>relatedObjectTab</i>
+    </p>
+    <p>
+      The <i>content</i> attribute represent the content of the tab once it's selected. We are using
+      <i>ember-elsewhere</i> to insert the content of the tab at a specific location in the page.
+      You can specify the location of the insertion of the content by setting the <i>targetOutlet</i>
+      with the name of your <i>from-elsewhere</i> selection.
+    </p>
+  </div>
+  <div class='addon-demo-title'>
+    API
+  </div>
+  <div class='addon-demo-snippet'>
+    {{code-snippet name='related-object-tab-api.hbs'}}
+  </div>
+</div>
+<div class='addon-demo-live'>
+  <div class='addon-demo-title'>
+    Live demo
+  </div>
+  <div class='addon-demo-snippet'>
+    {{code-snippet name='content-related-object-tab.hbs'}}
+  </div>
+  <div class='addon-demo-component'>
+    {{! BEGIN-SNIPPET content-related-object-tab }}
+    <p>
+      {{frost-related-object-tab
+          name='devices'
+          text='Devices'
+          icon=(hash
+            name='network-element'
+            pack='dummy'
+          )
+          content=(component 'object-details-content'
+            color='coral'
+            name='related devices')
+        selectedTabName='devices'
+        selectedTabType='relatedObjectTab'
+        targetOutlet='my-outlet'
+      }}
+    </p>
+    <p>
+      {{#from-elsewhere name='my-outlet' as |tab|}}
+        {{component tab.content}}
+      {{/from-elsewhere}}
+    </p>
+    {{! END-SNIPPET }}
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{{#if icon}}
+  <div class='circle' data-test={{hook (concat hook '-related-object-tab-link-icon')}}>
+    {{#if isSelected}}
+      {{frost-icon pack='frost' icon='close'}}
+    {{else}}
+      {{frost-icon pack=(if pack pack 'app') icon=icon}}
+    {{/if}}
+  </div>
+{{/if}}
+<div data-test={{hook (concat hook '-related-object-tab-link-text')}}>
+  {{yield}}
+</div>

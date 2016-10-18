@@ -3,8 +3,8 @@ module.exports = function (environment) {
     modulePrefix: 'dummy',
     podModulePrefix: 'dummy/pods',
     environment: environment,
-    baseURL: '/',
-    locationType: 'auto',
+    rootURL: '/',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -28,7 +28,7 @@ module.exports = function (environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/'
+    ENV.rootURL = '/'
     ENV.locationType = 'none'
 
     // keep test console output quieter
@@ -39,7 +39,7 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = '/frost-object-details'
+    ENV.rootURL = '/frost-object-details'
     ENV.isDemo = true
     ENV['ember-cli-mirage'] = {
       enabled: true

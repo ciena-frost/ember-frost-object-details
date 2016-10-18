@@ -1,0 +1,25 @@
+.frost-tab-link {
+  justify-content: center;
+  margin-left: -1px;
+  color: $frost-color-grey-5;
+  font-size: $frost-font-m;
+  text-align: center;
+
+  &.active {
+    color: $frost-color-grey-2;
+  }
+
+  .text {
+    height: 18px;
+    margin: 9px 20px;
+  }
+
+  &:hover {
+    background-color: $view-detail-bg-color;
+
+    .text {
+      border-bottom: 1px solid $frost-color-grey-3;
+      color: $frost-color-grey-3;
+    }
+  }
+}

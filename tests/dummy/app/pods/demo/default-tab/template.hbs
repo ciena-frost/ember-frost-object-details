@@ -1,0 +1,83 @@
+{{!-- BEGIN-SNIPPET default-tab-api }}
+{{frost-object-details
+  defaultTabName='<name of the default tab>'
+  detailTabs=(array
+    (component 'frost-object-tab'
+      name='<tab name>'
+      text='<tab text>'
+      content=(component '<component name>' ...)
+    )
+    ...
+  )
+  relatedObjectTabs=(array
+    (component 'frost-related-object-tab'
+      name='<tab name>'
+      text='<tab text>'
+      icon=(hash
+        name='<icon name>'
+        pack='<icon pack>'
+      )
+      content=(component '<component name>' ...)
+    )
+    ...
+  )
+  ...
+}}
+{{ END-SNIPPET --}}
+
+<div class='addon-demo-api'>
+  <div class='addon-demo-title'>
+    Notes
+  </div>
+  <div class='addon-demo-notes'>
+    <p>
+      The default tab is the object tab that will be selected when the current selected tab is a related object tab.
+      <i>defaultTabName</i> is a mandatory attribute that represent the name of an object tab.
+    </p>
+  </div>
+  <div class='addon-demo-title'>
+    API
+  </div>
+  <div class='addon-demo-snippet'>
+    {{code-snippet name='default-tab-api.hbs'}}
+  </div>
+</div>
+<div class='addon-demo-live'>
+  <div class='addon-demo-title'>
+    Live demo
+  </div>
+  <div class='addon-demo-snippet'>
+    {{code-snippet name='default-tab.hbs'}}
+  </div>
+  <div class='addon-demo-component'>
+    {{! BEGIN-SNIPPET default-tab }}
+    {{frost-object-details
+      selectedTabName='devices'
+      selectedTabType='relatedObjectTab'
+      defaultTabName='profile'
+      detailTabs=(array
+        (component 'frost-object-tab'
+          name='profile'
+          text='Profile View'
+          content=(component 'object-details-content'
+            color='skyblue'
+            name='profile')
+        )
+      )
+      relatedObjectTabs=(array
+        (component 'frost-related-object-tab'
+          name='devices'
+          text='Devices'
+          icon=(hash
+            name='network-element'
+            pack='dummy'
+          )
+          content=(component 'object-details-content'
+            color='coral'
+            name='related devices')
+        )
+      )
+    }}
+    {{! END-SNIPPET }}
+  </div>
+</div>

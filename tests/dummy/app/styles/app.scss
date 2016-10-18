@@ -1,13 +1,14 @@
 @import 'node_modules/ember-frost-core/addon/styles/frost-theme';
+@import './addon-demo';
 
 .dummy-notification-container {
   position: fixed;
   top: 60px;
   right: 10px;
-  z-index: 999;
   width: 80%;
   max-width: 400px;
   margin: auto;
+  z-index: 999;
 }
 
 .dummy-body {
@@ -23,8 +24,8 @@
 }
 
 .frost-object-details {
-  > .body {
-    > .main-container {
+  .body {
+    > .content {
       margin: 0 0 0 20px;
     }
   }

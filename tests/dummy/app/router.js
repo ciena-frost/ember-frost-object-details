@@ -2,21 +2,21 @@ import Ember from 'ember'
 import config from './config/environment'
 
 var Router = Ember.Router.extend({
-  location: config.locationType
+  location: config.locationType,
+  rootURL: config.rootURL
 })
 Router.map(function () {
-  this.route('demo', { path: '/' })
-  this.route('details', {path: '/details/:user_id'}, function () {
-    this.route('views', function () {
-      this.route('profile')
-      this.route('preferences')
-      this.route('details')
-    })
-    this.route('related', function () {
-      this.route('devices')
-      this.route('friends', {path: '/details/:friend_id'})
-      this.route('subscriptions')
-    })
+  this.route('demo', { path: '/' }, function () {
+    this.route('overview', { path: '/' })
+    // Building blocks
+    this.route('content')
+    this.route('default-tab')
+    this.route('selected-tab')
+    // Object details component
+    this.route('object-tab')
+    this.route('related-object-tab')
+    // Tests
+    this.route('hook')
   })
 })
 

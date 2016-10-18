@@ -1,52 +1,90 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-object-details'
-import _ from 'lodash'
-import TabFollower from '../mixins/tab-follower'
+import { PropTypes } from 'ember-prop-types'
 
 const {
   Component,
-  computed,
-  inject,
-  observer,
-  assert,
-  on
-  } = Ember
+  computed
+} = Ember
 
-export default Component.extend(TabFollower, {
-
-  _routing: inject.service('-routing'),
+export default Component.extend({
+  // == Component properties ==================================================
 
   layout: layout,
-
   classNames: ['frost-object-details'],
 
-  didReceiveAttrs () {
-    this.set('viewRouteDirName', 'views')
-    this.set('relatedRouteDirName', 'related')
-    assert('There is no default route provided.', this.get('defaultRoute'))
+  // == State properties ======================================================
+  orderedTabNames: [],
+
+  propTypes: {
+    selectedTabName: PropTypes.string.isRequired,
+    selectedTabType: PropTypes.string.isRequired,
+    defaultTabName: PropTypes.string.isRequired,
+    detailTabs: PropTypes.array.isRequired,
+    relatedObjectTabs: PropTypes.array,
+    hook: PropTypes.string,
+    targetOutlet: PropTypes.string
   },
 
-  isViewRouteActivated: computed('_routing.currentRouteName', function () {
-    let currentRouteName = this.get('_routing.currentRouteName')
-    return currentRouteName.startsWith(this.get('parentRouteName') + `.${this.get('viewRouteDirName')}`)
+  getDefaultProps () {
+    return {
+      targetOutlet: 'tab-content'
+    }
+  },
+
+  // == Computed properties ===================================================
+
+  /**
+   * Register a tab in the ordered tab list.
+   * @return {array} a list of the ordered tabs
+   */
+  registerTab: computed(function () {
+    return (function () {
+      return (name) => {
+        this.get('orderedTabNames').push(name)
+      }
+    }.call(this))
   }),
 
-  parentRouteName: computed('_routing.currentRouteName', function () {
-    let currentRouteName = this.get('_routing.currentRouteName')
-    if (_.includes(currentRouteName, `.${this.get('viewRouteDirName')}.`)) {
-      return currentRouteName.substring(0, currentRouteName.indexOf(`.${this.get('viewRouteDirName')}.`))
-    } else if (_.includes(currentRouteName, `.${this.get('relatedRouteDirName')}.`)) {
-      return currentRouteName.substring(0, currentRouteName.indexOf(`.${this.get('relatedRouteDirName')}.`))
-    }
-  }),
+  // == Functions ==============================================================
 
-  routeChangeObserver: on('init', observer('_routing.currentRouteName', function () {
-    let currentRouteName = this.get('_routing.currentRouteName')
-    if (this.get('isViewRouteActivated')) {
-      this.set('persistedRouteName', currentRouteName)
-    }
-    if (_.isFunction(this.updateFollower)) {
-      this.updateFollower()
-    }
-  }))
+  animations () {
+    const detailTabType = 'tab'
+    this.transition(
+      this.toValue(function (toValue, fromValue) {
+        const tabNames = toValue.orderedTabNames
+        const tabType = toValue.tab.type
+
+        return tabNames &&
+          tabType === detailTabType &&
+          tabNames.indexOf(fromValue.tab.name) > tabNames.indexOf(toValue.tab.name)
+      }),
+      this.use('to-left')
+    )
+    this.transition(
+      this.toValue(function (toValue, fromValue) {
+        const tabNames = toValue.orderedTabNames
+        const tabType = toValue.tab.type
+
+        return tabNames &&
+          tabType === detailTabType &&
+          tabNames.indexOf(fromValue.tab.name) < tabNames.indexOf(toValue.tab.name)
+      }),
+      this.use('to-right')
+    )
+    this.transition(
+      this.toValue(function (toValue, fromValue) {
+        return toValue.tab.type !== detailTabType && fromValue.tab.name !== toValue.tab.name
+      }),
+      this.use('to-up')
+    )
+    this.transition(
+      this.toValue(function (toValue, fromValue) {
+        return fromValue.tab.type !== detailTabType &&
+          fromValue.tab.type !== toValue.tab.type &&
+          fromValue.tab.name !== toValue.tab.name
+      }),
+      this.use('to-down')
+    )
+  }
 })
