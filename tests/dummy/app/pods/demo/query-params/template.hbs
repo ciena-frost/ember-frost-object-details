@@ -1,6 +1,9 @@
-{{!-- BEGIN-SNIPPET default-tab-api }}
+{{!-- BEGIN-SNIPPET query-params-api }}
 {{frost-object-details
-  defaultTabId='<id of the default tab>'
+  selectedTabId='<id of the selected tab>'
+  selectedTabType='<type of the selected tab>'
+  onChange=(action '<action name>')
+  ...
   detailTabs=(array
     (component 'frost-object-tab'
       id='<tab id>'
@@ -31,15 +34,19 @@
   </div>
   <div class='addon-demo-notes'>
     <p>
-      The default tab is the object tab that will be selected when the current selected tab is a related object tab.
-      <i>defaultTabId</i> is a mandatory attribute that represent the id of an object tab.
+      <p>
+        When we select a tab the <i>onChange</i> action will be triggered. It will receive the tab id and type by
+        parameter. it's possible to store these values in the query params like this:
+        <i>queryParams: ['selectedTabId', 'selectedTabType']</i>
+      </p>
+      <p>Click on the tab and check your URL!!!</p>
     </p>
   </div>
   <div class='addon-demo-title'>
     API
   </div>
   <div class='addon-demo-snippet'>
-    {{code-snippet name='default-tab-api.hbs'}}
+    {{code-snippet name='query-params-api.hbs'}}
   </div>
 </div>
 <div class='addon-demo-live'>
@@ -47,14 +54,20 @@
     Live demo
   </div>
   <div class='addon-demo-snippet'>
-    {{code-snippet name='default-tab.hbs'}}
+    <i>Demo controller</i>
+    {{code-snippet name='query-params-controller.js'}}
+  </div>
+  <div class='addon-demo-snippet'>
+    <i>Demo template</i>
+    {{code-snippet name='query-params.hbs'}}
   </div>
   <div class='addon-demo-component'>
-    {{! BEGIN-SNIPPET default-tab }}
+    {{! BEGIN-SNIPPET query-params }}
     {{frost-object-details
-      selectedTabId='devices'
-      selectedTabType='relatedObjectTab'
+      selectedTabId=selectedTabId
+      selectedTabType=selectedTabType
       defaultTabId='profile'
+      onChange=(action 'onChange')
       detailTabs=(array
         (component 'frost-object-tab'
           id='profile'

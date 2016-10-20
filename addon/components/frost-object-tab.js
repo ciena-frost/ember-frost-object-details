@@ -17,42 +17,57 @@ export default Ember.Component.extend({
   type: 'tab',
 
   propTypes: {
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     content: PropTypes.oneOfType([
       PropTypes.EmberObject,
       PropTypes.object
     ]).isRequired,
     hook: PropTypes.string,
-    // Set by the object details component
+    // Set by the parent component
     register: PropTypes.function,
-    selectedTabName: PropTypes.string,
+    selectedTabId: PropTypes.string,
     selectedTabType: PropTypes.string,
     targetOutlet: PropTypes.string,
-    defaultTabName: PropTypes.string
+    defaultTabId: PropTypes.string,
+    onChange: PropTypes.func
   },
 
   // == Computed properties ===================================================
 
-  isSelected: computed('selectedTabName', 'defaultTabName', 'selectedTabType', function () {
-    const tabName = this.get('name')
+  isSelected: computed('selectedTabId', 'defaultTabId', 'selectedTabType', function () {
+    const tabId = this.get('id')
+    const selectedTabId = this.get('selectedTabId')
 
-    const selectedTabName = this.get('selectedTabName')
-    const selectedTabType = this.get('selectedTabType')
+    return tabId === selectedTabId ||
+          ((_.isEmpty(selectedTabId) ||
+            _.isEmpty(this.get('selectedTabType'))) &&
+            tabId === this.get('defaultTabId'))
+  }),
 
-    const defaultTabName = this.get('defaultTabName')
-
-    return tabName === selectedTabName ||
-          ((_.isEmpty(selectedTabName) || _.isEmpty(selectedTabType)) && tabName === defaultTabName)
+  isDefault: computed('isSelected', 'selectedTabType', 'type', 'id', 'defaultTabId', function () {
+    return !this.get('isSelected') &&
+      this.get('selectedTabType') !== this.get('type') &&
+      this.get('id') === this.get('defaultTabId')
   }),
 
   // == Events ================================================================
   /**
-   * Register the name of the tab during init.
+   * Register the id of the tab during init.
    */
   _register: Ember.on('init', function () {
     if (typeof this.register === 'function') {
-      this.register(this.name)
+      this.register(this.id)
     }
-  })
+  }),
+
+  // == Actions ===============================================================
+
+  actions: {
+    change () {
+      if (this.onChange) {
+        this.onChange(this.id, this.type)
+      }
+    }
+  }
 })

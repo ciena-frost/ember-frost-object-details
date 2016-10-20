@@ -1,13 +1,12 @@
 <div
-  class="related-object-tab"
   data-test={{hook (concat hook '-object-details-related-object-tab' (if isSelected '-selected' '')) }}>
-  {{#frost-related-object-tab-link
-      (query-params selectedTabName=(if (not isSelected) name) selectedTabType=(if (not isSelected) type))
-      icon=icon.name
-      pack=icon.pack
-      isSelected=isSelected}}
-    {{text}}
-  {{/frost-related-object-tab-link}}
+  {{frost-button
+    class=(if isSelected ' active')
+    disabled=disabled
+    text=text
+    icon=(if isSelected 'close' icon.name)
+    pack=(if isSelected 'frost' (if icon.pack icon.pack 'app'))
+    onClick=(action 'change')}}
 </div>
 
 {{#if isSelected}}
@@ -15,7 +14,7 @@
     named=targetOutlet
     send=(hash
       content=content
-      name=name
+      id=id
       type=type)
   }}
 {{/if}}

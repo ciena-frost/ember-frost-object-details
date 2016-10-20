@@ -1,7 +1,58 @@
 .frost-related-object-tab {
-  .related-object-tab {
-    position: relative;
-    margin: 10px;
-    text-align: center;
+  position: relative;
+  width: 67px;
+  height: 70px;
+  margin: 10px;
+  text-align: center;
+
+  .frost-button {
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    border-radius: 50%;
+    background-color: $frost-color-white;
+    box-shadow: 0 0 5px 1px $frost-color-grey-6;
+
+    .icon-text {
+      flex-direction: column;
+
+      svg {
+        &.frost-icon {
+          fill: $frost-color-grey-4;
+        }
+      }
+
+      .frost-icon {
+        width: 45px;
+        height: 45px;
+        padding: 10px 5px 5px;
+      }
+
+      > .text {
+        margin-left: 0;
+        padding-top: 7px;
+        color: $frost-color-grey-4;
+        font-size: $frost-font-s;
+
+        &.selected {
+          color: $frost-color-blue-1;
+        }
+      }
+    }
+
+    &.active {
+      svg {
+        &.frost-icon {
+          fill: $frost-color-blue-1;
+        }
+      }
+
+      .icon-text {
+        > .text {
+          color: $frost-color-blue-1;
+        }
+      }
+    }
   }
 }
+

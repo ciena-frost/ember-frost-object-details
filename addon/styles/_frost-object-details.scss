@@ -10,6 +10,22 @@ $view-detail-bg-color: rgba($frost-color-blue-1, .05);
     flex-direction: row;
     margin: 10px 0 18px 30px;
     font-size: 0;
+
+    .object-details-tab {
+      &:nth-child(n + 2) {
+        .object-tab {
+          &::after {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            width: 1px;
+            height: 15px;
+            background-color: $frost-color-lgrey-2;
+            content: '';
+          }
+        }
+      }
+    }
   }
 
   .object-details-body {

@@ -16,7 +16,7 @@ export default Ember.Component.extend({
   type: 'relatedObjectTab',
 
   propTypes: {
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     content: PropTypes.oneOfType([
       PropTypes.EmberObject,
@@ -27,18 +27,26 @@ export default Ember.Component.extend({
       PropTypes.object
     ]),
     hook: PropTypes.string,
-    // Set by the object details component
-    selectedTabName: PropTypes.string,
+    // Set by the parent component
+    selectedTabId: PropTypes.string,
     selectedTabType: PropTypes.string,
-    targetOutlet: PropTypes.string
+    targetOutlet: PropTypes.string,
+    onChange: PropTypes.func
   },
 
   // == Computed properties ===================================================
 
-  isSelected: computed('selectedTabName', function () {
-    const tabName = this.get('name')
-    const selectedTabName = this.get('selectedTabName')
+  isSelected: computed('selectedTabId', function () {
+    return this.get('id') === this.get('selectedTabId')
+  }),
 
-    return tabName === selectedTabName
-  })
+  // == Actions ===============================================================
+
+  actions: {
+    change () {
+      if (this.onChange) {
+        this.onChange(this.id, this.type)
+      }
+    }
+  }
 })

@@ -1,11 +1,12 @@
 {{!-- BEGIN-SNIPPET selected-tab-api }}
 {{frost-object-details
-  selectedTabName='<name of the selected tab>'
+  selectedTabId='<id of the selected tab>'
   selectedTabType='<type of the selected tab>'
+  onChange=(action '<action name>')
   ...
   detailTabs=(array
     (component 'frost-object-tab'
-      name='<tab name>'
+      id='<tab id>'
       text='<tab text>'
       content=(component '<component name>' ...)
     )
@@ -13,7 +14,7 @@
   )
   relatedObjectTabs=(array
     (component 'frost-related-object-tab'
-      name='<tab name>'
+      id='<tab id>'
       text='<tab text>'
       icon=(hash
         name='<icon name>'
@@ -34,17 +35,17 @@
   <div class='addon-demo-notes'>
     <p>
       <p>
-        The name (<i>selectedTabName</i>) and type (<i>selectedTabType</i>) of the selected tab is recorded in the URL
-        as a query-params.
+        When we select a tab the <i>onChange</i> action will be triggered. It will receive the tab id and type by
+        parameter.
       </p>
       <p>
-        If you want to make sure to keep the tab selection state properly you need to make sure to have the
-        following setting in the controller.<br><i>queryParams: ['selectedTabName', 'selectedTabType']</i>
+        If you want to make sure to keep the tab selection state properly you need to make sure to handle this event
+        and change the <i>selectedTabId</i> and <i>selectedTabType</i>
       </p>
       <p>
         You can set a default selected tab by setting those attributes:
         <i>
-          <br>selectedTabName: 'devices',
+          <br>selectedTabId: 'devices',
           <br>selectedTabType: 'relatedObjectTab'
         </i>
       </p>
@@ -75,12 +76,13 @@
   <div class='addon-demo-component'>
     {{! BEGIN-SNIPPET selected-tab }}
     {{frost-object-details
-      selectedTabName=selectedTabName
+      selectedTabId=selectedTabId
       selectedTabType=selectedTabType
-      defaultTabName='profile'
+      defaultTabId='profile'
+      onChange=(action 'onChange')
       detailTabs=(array
         (component 'frost-object-tab'
-          name='profile'
+          id='profile'
           text='Profile View'
           content=(component 'object-details-content'
             color='skyblue'
@@ -89,7 +91,7 @@
       )
       relatedObjectTabs=(array
         (component 'frost-related-object-tab'
-          name='devices'
+          id='devices'
           text='Devices'
           icon=(hash
             name='network-element'

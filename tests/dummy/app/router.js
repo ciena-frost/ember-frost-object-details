@@ -12,7 +12,8 @@ Router.map(function () {
     this.route('content')
     this.route('default-tab')
     this.route('selected-tab')
-    // Object details component
+    this.route('query-params')
+    // Object details components
     this.route('object-tab')
     this.route('related-object-tab')
     // Tests
