@@ -1,5 +1,5 @@
 <div
-  data-test={{hook (concat hook '-object-details-related-object-tab' (if isSelected '-selected' '')) }}>
+  data-test={{hook (concat hook '-related-object-tab') selected=isSelected }}>
   {{frost-button
     class=(if isSelected ' active')
     disabled=disabled
@@ -15,6 +15,7 @@
     send=(hash
       content=content
       id=id
-      type=type)
+      type=type
+    )
   }}
 {{/if}}

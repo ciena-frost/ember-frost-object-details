@@ -1,13 +1,14 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-object-details'
-import { PropTypes } from 'ember-prop-types'
+import PropTypesMixin, { PropTypes } from 'ember-prop-types'
+import uuid from 'ember-simple-uuid'
 
 const {
   Component,
   computed
 } = Ember
 
-export default Component.extend({
+export default Component.extend(PropTypesMixin, {
   // == Component properties ==================================================
 
   layout: layout,
@@ -29,7 +30,7 @@ export default Component.extend({
 
   getDefaultProps () {
     return {
-      targetOutlet: 'tab-content'
+      targetOutlet: `tab-content-${uuid()}`
     }
   },
 
@@ -57,6 +58,8 @@ export default Component.extend({
       }
 
       if (this.onChange) {
+        this.set('selectedTabId', id)
+        this.set('selectedTabType', type)
         this.onChange(id, type)
       }
     }

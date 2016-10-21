@@ -1,13 +1,13 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-object-tab'
 import _ from 'lodash'
-import { PropTypes } from 'ember-prop-types'
+import PropTypesMixin, { PropTypes } from 'ember-prop-types'
 
 const {
   computed
 } = Ember
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(PropTypesMixin, {
   // == Component properties ==================================================
 
   layout,
@@ -25,12 +25,13 @@ export default Ember.Component.extend({
     ]).isRequired,
     hook: PropTypes.string,
     // Set by the parent component
+    selectedTabId: PropTypes.string.isRequired,
+    selectedTabType: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    parentHook: PropTypes.string,
     register: PropTypes.function,
-    selectedTabId: PropTypes.string,
-    selectedTabType: PropTypes.string,
     targetOutlet: PropTypes.string,
-    defaultTabId: PropTypes.string,
-    onChange: PropTypes.func
+    defaultTabId: PropTypes.string
   },
 
   // == Computed properties ===================================================
@@ -51,7 +52,12 @@ export default Ember.Component.extend({
       this.get('id') === this.get('defaultTabId')
   }),
 
+  hook: computed('parentHook', 'id', function () {
+    return `${this.parentHook}-${this.id}`
+  }),
+
   // == Events ================================================================
+
   /**
    * Register the id of the tab during init.
    */

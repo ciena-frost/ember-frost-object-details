@@ -4,9 +4,9 @@
   </div>
   <div class='object-details-tabs' data-test={{hook (concat hook '-object-details-tabs')}}>
     {{#each detailTabs as |tab index|}}
-      <div class='object-details-tab' data-test={{hook (concat hook '-object-details-tab-' index)}}>
+      <div class='object-details-tab' data-test={{hook (concat hook '-object-details-tab') index=index}}>
         {{component tab
-          hook=hook
+          parentHook=hook
           targetOutlet=targetOutlet
           selectedTabId=selectedTabId
           selectedTabType=selectedTabType
@@ -26,9 +26,10 @@
     </div>
     <div class='related-object-tabs 'data-test={{hook (concat hook '-object-details-related-object-tabs')}}>
       {{#each relatedObjectTabs as |tab index|}}
-        <div class='related-object-tab' data-test={{hook (concat hook '-object-details-related-object-tab-' index)}}>
+        <div class='related-object-tab'
+          data-test={{hook (concat hook '-object-details-related-object-tab') index=index}}>
           {{component tab
-            hook=hook
+            parentHook=hook
             targetOutlet=targetOutlet
             selectedTabId=selectedTabId
             onChange=(action 'change')}}

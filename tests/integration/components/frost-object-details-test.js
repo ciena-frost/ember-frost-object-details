@@ -19,12 +19,15 @@ const defaultSelectedIcon = 'close'
 const iconSelector = 'use'
 const iconAttributeName = 'xlink:href'
 
-const detailTabsHookName = '-object-details-tabs'
-const detailTabHookName = '-object-tab'
-const selectedDetailTabHookName = '-object-tab-selected'
-const relatedObjectTabHookName = '-object-details-related-object-tab'
-const selectedRelatedObjectTabHookName = '-object-details-related-object-tab-selected'
+const objectDetailsHookName = '-object-details'
+const objectDetailsContentHookName = '-object-details-content'
+const detailsObjectTabsHookName = '-object-details-tabs'
+const detailsObjectTabHookName = '-object-details-tab'
+const detailsRelatedObjectTabsHookName = '-object-details-related-object-tabs'
+const detailsRelatedObjectTabHookName = '-object-details-related-object-tab'
 const bodyContentHookName = '-object-details-body-content'
+const objectTabHookName = '-object-tab'
+const relatedObjectTabHookName = '-related-object-tab'
 
 describeComponent(
   'frost-object-details',
@@ -39,12 +42,17 @@ describeComponent(
 
     it('Set hook name', function () {
       const hookName = 'my-hook'
+      const tabId = 'profile'
+      const relatedTabId = 'devices'
       this.setProperties({
-        hook: hookName
+        hook: hookName,
+        defaultTabId: tabId,
+        relatedTabId: relatedTabId
       })
       this.render(hbs`
         {{frost-object-details
           hook=hook
+          defaultTabId=defaultTabId
           detailTabs=(array
               (component 'frost-object-tab'
                 id='profile'
@@ -52,10 +60,33 @@ describeComponent(
                 content=(component 'object-details-content' color='skyblue' name='profile')
               )
             )
+          relatedObjectTabs=(array
+            (component 'frost-related-object-tab'
+              id=relatedTabId
+              icon=(hash
+                name='network-element'
+              )
+              text='Devices'
+              content=(component 'object-details-content' color='coral' name='devices')
+            )
+          )
         }}
       `)
 
-      expect($hook(`${hookName}${detailTabsHookName}`)).to.have.length(1)
+      return wait()
+        .then(() => {
+          expect($hook(`${hookName}${objectDetailsHookName}`)).to.have.length(1)
+          expect($hook(`${hookName}${objectDetailsContentHookName}`)).to.have.length(1)
+          expect($hook(`${hookName}${detailsObjectTabsHookName}`)).to.have.length(1)
+          expect($hook(`${hookName}${detailsObjectTabHookName}`, { index: 0 })).to.have.length(1)
+          expect($hook(`${hookName}-${tabId}`)).to.have.length(1)
+          expect($hook(`${hookName}-${tabId}${objectTabHookName}`)).to.have.length(1)
+          expect($hook(`${hookName}${bodyContentHookName}`)).to.have.length(1)
+          expect($hook(`${hookName}${detailsRelatedObjectTabsHookName}`)).to.have.length(1)
+          expect($hook(`${hookName}${detailsRelatedObjectTabHookName}`, { index: 0 })).to.have.length(1)
+          expect($hook(`${hookName}-${relatedTabId}`)).to.have.length(1)
+          expect($hook(`${hookName}-${relatedTabId}${relatedObjectTabHookName}`)).to.have.length(1)
+        })
     })
 
     it('Select tab by default', function (done) {
@@ -87,10 +118,10 @@ describeComponent(
 
       return wait()
         .then(() => {
-          expect($hook(detailTabHookName)).to.have.length(1)
-          expect($hook(selectedDetailTabHookName).text().trim()).to.be.equal(selectedTabText)
-          expect($hook(selectedDetailTabHookName).find('button.active')).to.have.length(1)
-          expect($hook(selectedDetailTabHookName)).to.have.length(1)
+          expect($hook(detailsObjectTabHookName)).to.have.length(2)
+          expect($hook(detailsObjectTabHookName, { index: 1 }).text().trim()).to.be.equal(selectedTabText)
+          expect($hook(detailsObjectTabHookName, { index: 1 }).find('button.active')).to.have.length(1)
+          expect($hook(detailsObjectTabHookName, { index: 1 })).to.have.length(1)
           expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
 
           return capture('object-details-selected-tab', done, {
@@ -140,19 +171,14 @@ describeComponent(
 
       return wait()
         .then(() => {
-          expect($hook(detailTabHookName)).to.have.length(1)
-
-          expect($hook(selectedRelatedObjectTabHookName)).to.have.length(1)
-          expect($hook(selectedRelatedObjectTabHookName).text().trim()).to.be.equal(selectedTabText)
-          expect($hook(selectedRelatedObjectTabHookName).find('button.active')).to.have.length(1)
-          expect($hook(selectedRelatedObjectTabHookName).find(iconSelector).attr(iconAttributeName)
+          expect($hook(detailsRelatedObjectTabHookName)).to.have.length(1)
+          expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).text().trim()).to.be.equal(selectedTabText)
+          expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).find('button.active')).to.have.length(1)
+          expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).find(iconSelector).attr(iconAttributeName)
                 .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
 
-          expect($hook(relatedObjectTabHookName)).to.have.length(0)
-
-          expect($hook(detailTabHookName)).to.have.length(1)
-          expect($hook(detailTabHookName).find('.default')).to.have.length(1)
-          expect($hook(selectedDetailTabHookName)).to.have.length(0)
+          expect($hook(detailsObjectTabHookName)).to.have.length(1)
+          expect($hook(detailsObjectTabHookName).find('.default')).to.have.length(1)
 
           expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
 
@@ -186,9 +212,8 @@ describeComponent(
 
       return wait()
         .then(() => {
-          expect($hook(selectedDetailTabHookName)).to.have.length(1)
-          expect($hook(detailTabHookName)).to.have.length(0)
-          expect($hook(relatedObjectTabHookName)).to.have.length(0)
+          expect($hook(detailsObjectTabHookName, { index: 0 })).to.have.length(1)
+          expect($hook(detailsRelatedObjectTabHookName)).to.have.length(0)
 
           return capture('object-details-with-only-tab', done, {
             targetElement: $hook('-object-details')[0],
@@ -236,15 +261,13 @@ describeComponent(
 
       return wait()
         .then(() => {
-          expect($hook(selectedDetailTabHookName)).to.have.length(1)
-          expect($hook(selectedDetailTabHookName).text().trim()).to.be.equal(tabText)
+          expect($hook(detailsObjectTabHookName)).to.have.length(1)
+          expect($hook(detailsObjectTabHookName, { index: 0 }).text().trim()).to.be.equal(tabText)
 
-          expect($hook(relatedObjectTabHookName)).to.have.length(1)
-          expect($hook(relatedObjectTabHookName).find(iconSelector).attr(iconAttributeName)
+          expect($hook(detailsRelatedObjectTabHookName, { index: 0 })).to.have.length(1)
+          expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).find(iconSelector).attr(iconAttributeName)
                 .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
-          expect($hook(relatedObjectTabHookName).text().trim()).to.be.equal(relatedObjectTabText)
-
-          expect($hook(detailTabHookName)).to.have.length(0)
+          expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).text().trim()).to.be.equal(relatedObjectTabText)
 
           return capture('object-details-with-tabs-and-related-obj-tab', done, {
             targetElement: $hook('-object-details')[0],
@@ -273,7 +296,7 @@ describeComponent(
         {{/frost-object-details}}
       `)
 
-      expect($hook(selectedDetailTabHookName)).to.have.length(1)
+      expect($hook(detailsObjectTabHookName, { index: 0 })).to.have.length(1)
       expect($hook('-object-details-content').text().trim()).to.be.equal('test')
     })
 
@@ -306,7 +329,7 @@ describeComponent(
       props.onChange.reset()
     })
 
-    it('Set onChange related objec tab', function () {
+    it('Set onChange related object tab', function () {
       const props = {
         selectedTabId: 'devices',
         selectedTabType: 'relatedObjectTab',

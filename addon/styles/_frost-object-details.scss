@@ -1,9 +1,10 @@
-$view-detail-bg-color: rgba($frost-color-blue-1, .05);
+$frost-object-details-bg: $frost-color-lgrey-3;
+$frost-object-details-line-between-tab-bg: $frost-color-lgrey-2;
 
 .frost-object-details {
   display: flex;
   flex-direction: column;
-  background-color: $frost-color-lgrey-3;
+  background-color: $frost-object-details-bg;
 
   .object-details-tabs {
     display: flex;
@@ -20,7 +21,7 @@ $view-detail-bg-color: rgba($frost-color-blue-1, .05);
             left: 0;
             width: 1px;
             height: 15px;
-            background-color: $frost-color-lgrey-2;
+            background-color: $frost-object-details-line-between-tab-bg;
             content: '';
           }
         }
