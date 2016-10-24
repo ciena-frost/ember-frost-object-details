@@ -1,15 +1,16 @@
 {{!-- BEGIN-SNIPPET related-object-tab-api }}
 {{frost-related-object-tab
-  name='<tab name>'
+  id='<tab id>'
   text='<tab text>'
   icon={
     name='<name of the icon>'
     pack='<name of the icon pack>'
   }
   content=(component '<component name>' ...)
-  selectedTabName='<selected tab name>'
+  selectedTabId='<selected tab id>'
   selectedTabType='<selected tab type>'
   targetOutlet='<outlet name>'
+  onChange=(action '<action name>')
   ...
 }}
 {{ END-SNIPPET --}}
@@ -47,7 +48,7 @@
     {{! BEGIN-SNIPPET content-related-object-tab }}
     <p>
       {{frost-related-object-tab
-          name='devices'
+          id='devices'
           text='Devices'
           icon=(hash
             name='network-element'
@@ -56,7 +57,7 @@
           content=(component 'object-details-content'
             color='coral'
             name='related devices')
-        selectedTabName='devices'
+        selectedTabId='devices'
         selectedTabType='relatedObjectTab'
         targetOutlet='my-outlet'
       }}

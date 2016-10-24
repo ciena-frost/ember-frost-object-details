@@ -3,7 +3,7 @@
   ...
   detailTabs=(array
     (component 'frost-object-tab'
-      name='<tab name>'
+      id='<tab id>'
       text='<tab text>'
       content=(component '<component name>' ...)
     )
@@ -11,7 +11,7 @@
   )
   relatedObjectTabs=(array
     (component 'frost-related-object-tab'
-      name='<tab name>'
+      id='<tab id>'
       text='<tab text>'
       icon=(hash
         name='<icon name>'
@@ -31,7 +31,8 @@
   </div>
   <div class='addon-demo-notes'>
     <p>
-      You probably want to put some content in your tabs. You can set the content by passing a component to a tab in the <i>content</i> attribute.
+      You probably want to put some content in your tabs. You can set the content by passing a component to a tab in
+      the <i>content</i> attribute.
     </p>
   </div>
   <div class='addon-demo-title'>
@@ -60,12 +61,13 @@
   <div class='addon-demo-component'>
     {{! BEGIN-SNIPPET content-frost-object-detail }}
     {{frost-object-details
-      selectedTabName=selectedTabName
+      selectedTabId=selectedTabId
       selectedTabType=selectedTabType
-      defaultTabName='profile'
+      defaultTabId='profile'
+      onChange=(action 'onChange')
       detailTabs=(array
         (component 'frost-object-tab'
-          name='profile'
+          id='profile'
           text='Profile View'
           content=(component 'object-details-content'
             color='skyblue'
@@ -74,7 +76,7 @@
       )
       relatedObjectTabs=(array
         (component 'frost-related-object-tab'
-          name='devices'
+          id='devices'
           text='Devices'
           icon=(hash
             name='network-element'

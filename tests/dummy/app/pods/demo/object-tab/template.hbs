@@ -1,11 +1,12 @@
 {{!-- BEGIN-SNIPPET object-tab-api }}
 {{frost-object-tab
-  name='<tab name>'
+  id='<tab id>'
   text='<tab text>'
   content=(component '<component name>' ...)
-  selectedTabName='<selected tab name>'
+  selectedTabId='<selected tab id>'
   selectedTabType='<selected tab type>'
   targetOutlet='<outlet name>'
+  onChange=(action '<action name>')
   ...
 }}
 {{ END-SNIPPET --}}
@@ -43,12 +44,12 @@
     {{! BEGIN-SNIPPET content-object-tab }}
     <p>
       {{frost-object-tab
-        name='profile'
+        id='profile'
         text='Profile View'
         content=(component 'object-details-content'
           color='skyblue'
           name='profile')
-        selectedTabName='profile'
+        selectedTabId='profile'
         selectedTabType='tab'
         targetOutlet='my-outlet'
       }}

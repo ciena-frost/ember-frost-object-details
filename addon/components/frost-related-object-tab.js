@@ -1,12 +1,12 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-related-object-tab'
-import { PropTypes } from 'ember-prop-types'
+import PropTypesMixin, { PropTypes } from 'ember-prop-types'
 
 const {
   computed
 } = Ember
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(PropTypesMixin, {
   // == Component properties ==================================================
 
   layout,
@@ -16,7 +16,7 @@ export default Ember.Component.extend({
   type: 'relatedObjectTab',
 
   propTypes: {
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     content: PropTypes.oneOfType([
       PropTypes.EmberObject,
@@ -27,18 +27,31 @@ export default Ember.Component.extend({
       PropTypes.object
     ]),
     hook: PropTypes.string,
-    // Set by the object details component
-    selectedTabName: PropTypes.string,
-    selectedTabType: PropTypes.string,
+    // Set by the parent component
+    selectedTabId: PropTypes.string.isRequired,
+    selectedTabType: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    parentHook: PropTypes.string,
     targetOutlet: PropTypes.string
   },
 
   // == Computed properties ===================================================
 
-  isSelected: computed('selectedTabName', function () {
-    const tabName = this.get('name')
-    const selectedTabName = this.get('selectedTabName')
+  isSelected: computed('selectedTabId', function () {
+    return this.get('id') === this.get('selectedTabId')
+  }),
 
-    return tabName === selectedTabName
-  })
+  hook: computed('parentHook', 'id', function () {
+    return `${this.parentHook}-${this.id}`
+  }),
+
+  // == Actions ===============================================================
+
+  actions: {
+    change () {
+      if (this.onChange) {
+        this.onChange(this.id, this.type)
+      }
+    }
+  }
 })

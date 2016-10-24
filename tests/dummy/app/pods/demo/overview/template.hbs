@@ -1,11 +1,12 @@
 {{!-- BEGIN-SNIPPET overview-content-api }}
 {{frost-object-details
-  selectedTabName='<name of the selected tab>'
+  selectedTabId='<id of the selected tab>'
   selectedTabType='<type of the selected tab>'
-  defaultTabName='<name of the default tab>'
+  defaultTabId='<id of the default tab>'
+  onChange=(action '<action name>')
   detailTabs=(array
     (component 'frost-object-tab'
-      name='<tab name>'
+      id='<tab id>'
       text='<tab text>'
       content=(component '<component name>' ...)
     )
@@ -13,7 +14,7 @@
   )
   relatedObjectTabs=(array
     (component 'frost-related-object-tab'
-      name='<tab name>'
+      id='<tab id>'
       text='<tab text>'
       icon=(hash
         name='<icon name>'
@@ -59,19 +60,20 @@
   <div class='addon-demo-component'>
     {{! BEGIN-SNIPPET overview-frost-object-details }}
     {{frost-object-details
-      selectedTabName=selectedTabName
+      selectedTabId=selectedTabId
       selectedTabType=selectedTabType
-      defaultTabName='profile'
+      defaultTabId='profile'
+      onChange=(action 'onChange')
       detailTabs=(array
         (component 'frost-object-tab'
-          name='profile'
+          id='profile'
           text='Profile View'
           content=(component 'object-details-content'
             color='skyblue'
             name='profile')
         )
         (component 'frost-object-tab'
-          name='preferences'
+          id='preferences'
           text='Preferences View'
           content=(component 'object-details-content'
             color='red'
@@ -80,7 +82,7 @@
       )
       relatedObjectTabs=(array
         (component 'frost-related-object-tab'
-          name='devices'
+          id='devices'
           text='Devices'
           icon=(hash
             name='network-element'
@@ -91,7 +93,7 @@
             name='related devices')
         )
         (component 'frost-related-object-tab'
-          name='friends'
+          id='friends'
           text='Friends'
           icon=(hash
             name='tenant'

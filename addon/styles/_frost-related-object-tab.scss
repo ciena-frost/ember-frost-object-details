@@ -1,7 +1,60 @@
+$frost-related-object-tab-button-bg: $frost-color-white;
+$frost-related-object-tab-button-shadow: $frost-color-grey-6;
+$frost-related-object-tab-icon: $frost-color-grey-4;
+$frost-related-object-tab-icon-selected: $frost-color-blue-1;
+$frost-related-object-tab-icon-active: $frost-color-blue-1;
+
 .frost-related-object-tab {
-  .related-object-tab {
-    position: relative;
-    margin: 10px;
-    text-align: center;
+  position: relative;
+  width: 67px;
+  height: 70px;
+  margin: 10px;
+  text-align: center;
+
+  .frost-button {
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    border-radius: 50%;
+    background-color: $frost-related-object-tab-button-bg;
+    box-shadow: 0 0 5px 1px $frost-related-object-tab-button-shadow;
+
+    .icon-text {
+      flex-direction: column;
+
+      svg {
+        &.frost-icon {
+          fill: $frost-related-object-tab-icon;
+        }
+      }
+
+      .frost-icon {
+        width: 45px;
+        height: 45px;
+        padding: 10px 5px 5px;
+      }
+
+      > .text {
+        margin-left: 0;
+        padding-top: 7px;
+        color: $frost-related-object-tab-icon;
+        font-size: $frost-font-s;
+      }
+    }
+
+    &.active {
+      svg {
+        &.frost-icon {
+          fill: $frost-related-object-tab-icon-active;
+        }
+      }
+
+      .icon-text {
+        > .text {
+          color: $frost-related-object-tab-icon-active;
+        }
+      }
+    }
   }
 }
+

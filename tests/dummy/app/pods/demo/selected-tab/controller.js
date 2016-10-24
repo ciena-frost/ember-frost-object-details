@@ -2,8 +2,12 @@ import Ember from 'ember'
 
 // BEGIN-SNIPPET selected-tab-controller
 export default Ember.Controller.extend({
-  queryParams: ['selectedTabName', 'selectedTabType'],
-  selectedTabName: 'devices',
-  selectedTabType: 'relatedObjectTab'
+  selectedTabId: 'devices',
+  selectedTabType: 'relatedObjectTab',
+  actions: {
+    onChange (id, type) {
+      console.log(`Tab id (${id}) and type (${type})`)
+    }
+  }
 })
 // END-SNIPPET

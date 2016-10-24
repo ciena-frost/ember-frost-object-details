@@ -4,6 +4,9 @@
     This addon has been optimized for use with <i>ember-hook</i>. You can set a hook name on each component. This will
     allow you to access the internal components content for testing.
   </p>
+  <p>
+    The attribute <i>hook</i> can be set on the <i>frost-object-details</i>. It's represented below by <i>[hook name]</i>.
+  </p>
   <div class='addon-demo-hooks'>
     <div class='table'>
       <div class='header'>Description</div>
@@ -23,21 +26,15 @@
         <div>Outlet where the content of the tab will be inserted</div>
         <div>All the related object details tabs</div>
         <div>A related object detail tab</div>
-        <div></div>
-        <div></div>
-        <div></div>
       </div>
       <div class='row'>
-        <div>-object-details</div>
-        <div>-object-details-content</div>
-        <div>-object-details-tabs</div>
-        <div>-object-details-tab-[index]</div>
-        <div>-object-details-body-content</div>
-        <div>-object-details-related-object-tabs</div>
-        <div>-object-details-related-object-tab-[index]</div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>[hook name]-object-details</div>
+        <div>[hook name]-object-details-content</div>
+        <div>[hook name]-object-details-tabs</div>
+        <div>[hook name]-object-details-tab [Qualifiers=index]</div>
+        <div>[hook name]-object-details-body-content</div>
+        <div>[hook name]-object-details-related-object-tabs</div>
+        <div>[hook name]-object-details-related-object-tab [Qualifiers=index]</div>
       </div>
     </div>
   </div>
@@ -47,10 +44,12 @@
     <hr class='sep'>
     <div class='table'>
       <div class='row'>
-        <div>An object tab unselected/selected</div>
+        <div>An object tab</div>
+        <div>Determine if the object tab is unselected/selected</div>
       </div>
       <div class='row'>
-        <div>-object-tab[-selected]</div>
+        <div>[hook name]-[tab id]</div>
+        <div>[hook name]-[tab id]-object-tab [Qualifiers=selected]</div>
       </div>
     </div>
   </div>
@@ -60,40 +59,12 @@
     <hr class='sep'>
     <div class='table'>
       <div class='row'>
-        <div>A related object tab unselected/selected</div>
+        <div>A related object tab</div>
+        <div>Determine if the related object tab is unselected/selected</div>
       </div>
       <div class='row'>
-        <div>-object-details-related-object-tab[-selected]</div>
-      </div>
-    </div>
-  </div>
-  <div class='addon-demo-hooks'>
-    <hr class='sep'>
-    <p class='title'><i>frost-related-object-tab-link</i></p>
-    <hr class='sep'>
-    <div class='table'>
-      <div class='row'>
-        <div>Related object tab link icon</div>
-        <div>Related object tab link text</div>
-      </div>
-      <div class='row'>
-        <div>-related-object-tab-link-icon</div>
-        <div>-related-object-tab-link-text</div>
-      </div>
-    </div>
-  </div>
-  <div class='addon-demo-hooks'>
-    <hr class='sep'>
-    <p class='title'><i>frost-tab-link</i></p>
-    <hr class='sep'>
-    <div class='table'>
-      <div class='row'>
-        <div>Object tab link</div>
-        <div>Object tab link text</div>
-      </div>
-      <div class='row'>
-        <div>-object-tab-link</div>
-        <div>-object-tab-link-text</div>
+        <div>[hook name]-[tab id]</div>
+        <div>[hook name]-[tab id]-object-details-related-object-tab [Qualifiers=selected]</div>
       </div>
     </div>
   </div>

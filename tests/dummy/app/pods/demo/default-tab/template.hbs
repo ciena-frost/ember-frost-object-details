@@ -1,9 +1,9 @@
 {{!-- BEGIN-SNIPPET default-tab-api }}
 {{frost-object-details
-  defaultTabName='<name of the default tab>'
+  defaultTabId='<id of the default tab>'
   detailTabs=(array
     (component 'frost-object-tab'
-      name='<tab name>'
+      id='<tab id>'
       text='<tab text>'
       content=(component '<component name>' ...)
     )
@@ -11,7 +11,7 @@
   )
   relatedObjectTabs=(array
     (component 'frost-related-object-tab'
-      name='<tab name>'
+      id='<tab id>'
       text='<tab text>'
       icon=(hash
         name='<icon name>'
@@ -32,7 +32,7 @@
   <div class='addon-demo-notes'>
     <p>
       The default tab is the object tab that will be selected when the current selected tab is a related object tab.
-      <i>defaultTabName</i> is a mandatory attribute that represent the name of an object tab.
+      <i>defaultTabId</i> is a mandatory attribute that represent the id of an object tab.
     </p>
   </div>
   <div class='addon-demo-title'>
@@ -52,12 +52,12 @@
   <div class='addon-demo-component'>
     {{! BEGIN-SNIPPET default-tab }}
     {{frost-object-details
-      selectedTabName='devices'
+      selectedTabId='devices'
       selectedTabType='relatedObjectTab'
-      defaultTabName='profile'
+      defaultTabId='profile'
       detailTabs=(array
         (component 'frost-object-tab'
-          name='profile'
+          id='profile'
           text='Profile View'
           content=(component 'object-details-content'
             color='skyblue'
@@ -66,7 +66,7 @@
       )
       relatedObjectTabs=(array
         (component 'frost-related-object-tab'
-          name='devices'
+          id='devices'
           text='Devices'
           icon=(hash
             name='network-element'

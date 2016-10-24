@@ -1,34 +1,36 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-object-details'
-import { PropTypes } from 'ember-prop-types'
+import PropTypesMixin, { PropTypes } from 'ember-prop-types'
+import uuid from 'ember-simple-uuid'
 
 const {
   Component,
   computed
 } = Ember
 
-export default Component.extend({
+export default Component.extend(PropTypesMixin, {
   // == Component properties ==================================================
 
   layout: layout,
   classNames: ['frost-object-details'],
 
   // == State properties ======================================================
-  orderedTabNames: [],
+  orderedTabIds: [],
 
   propTypes: {
-    selectedTabName: PropTypes.string.isRequired,
+    selectedTabId: PropTypes.string.isRequired,
     selectedTabType: PropTypes.string.isRequired,
-    defaultTabName: PropTypes.string.isRequired,
+    defaultTabId: PropTypes.string.isRequired,
     detailTabs: PropTypes.array.isRequired,
     relatedObjectTabs: PropTypes.array,
     hook: PropTypes.string,
-    targetOutlet: PropTypes.string
+    targetOutlet: PropTypes.string,
+    onChange: PropTypes.func
   },
 
   getDefaultProps () {
     return {
-      targetOutlet: 'tab-content'
+      targetOutlet: `tab-content-${uuid()}`
     }
   },
 
@@ -40,11 +42,28 @@ export default Component.extend({
    */
   registerTab: computed(function () {
     return (function () {
-      return (name) => {
-        this.get('orderedTabNames').push(name)
+      return (id) => {
+        this.get('orderedTabIds').push(id)
       }
     }.call(this))
   }),
+
+  // == Actions ===============================================================
+
+  actions: {
+    change (id, type) {
+      if (type === 'relatedObjectTab' && this.get('selectedTabId') === id) {
+        id = this.defaultTabId
+        type = 'tab'
+      }
+
+      if (this.onChange) {
+        this.set('selectedTabId', id)
+        this.set('selectedTabType', type)
+        this.onChange(id, type)
+      }
+    }
+  },
 
   // == Functions ==============================================================
 
@@ -52,29 +71,29 @@ export default Component.extend({
     const detailTabType = 'tab'
     this.transition(
       this.toValue(function (toValue, fromValue) {
-        const tabNames = toValue.orderedTabNames
+        const tabIds = toValue.orderedTabIds
         const tabType = toValue.tab.type
 
-        return tabNames &&
+        return tabIds &&
           tabType === detailTabType &&
-          tabNames.indexOf(fromValue.tab.name) > tabNames.indexOf(toValue.tab.name)
+          tabIds.indexOf(fromValue.tab.id) > tabIds.indexOf(toValue.tab.id)
       }),
       this.use('to-left')
     )
     this.transition(
       this.toValue(function (toValue, fromValue) {
-        const tabNames = toValue.orderedTabNames
+        const tabIds = toValue.orderedTabIds
         const tabType = toValue.tab.type
 
-        return tabNames &&
+        return tabIds &&
           tabType === detailTabType &&
-          tabNames.indexOf(fromValue.tab.name) < tabNames.indexOf(toValue.tab.name)
+          tabIds.indexOf(fromValue.tab.id) < tabIds.indexOf(toValue.tab.id)
       }),
       this.use('to-right')
     )
     this.transition(
       this.toValue(function (toValue, fromValue) {
-        return toValue.tab.type !== detailTabType && fromValue.tab.name !== toValue.tab.name
+        return toValue.tab.type !== detailTabType && fromValue.tab.id !== toValue.tab.id
       }),
       this.use('to-up')
     )
@@ -82,7 +101,7 @@ export default Component.extend({
       this.toValue(function (toValue, fromValue) {
         return fromValue.tab.type !== detailTabType &&
           fromValue.tab.type !== toValue.tab.type &&
-          fromValue.tab.name !== toValue.tab.name
+          fromValue.tab.id !== toValue.tab.id
       }),
       this.use('to-down')
     )
