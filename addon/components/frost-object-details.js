@@ -22,10 +22,10 @@ export default Component.extend(PropTypesMixin, {
     selectedTabType: PropTypes.string.isRequired,
     defaultTabId: PropTypes.string.isRequired,
     detailTabs: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    hook: PropTypes.string.isRequired,
     relatedObjectTabs: PropTypes.array,
-    hook: PropTypes.string,
-    targetOutlet: PropTypes.string,
-    onChange: PropTypes.func
+    targetOutlet: PropTypes.string
   },
 
   getDefaultProps () {
@@ -58,8 +58,6 @@ export default Component.extend(PropTypesMixin, {
       }
 
       if (this.onChange) {
-        this.set('selectedTabId', id)
-        this.set('selectedTabType', type)
         this.onChange(id, type)
       }
     }
