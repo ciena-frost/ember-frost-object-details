@@ -23,8 +23,8 @@ export default Component.extend(PropTypesMixin, {
     defaultTabId: PropTypes.string.isRequired,
     detailTabs: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
+    hook: PropTypes.string.isRequired,
     relatedObjectTabs: PropTypes.array,
-    hook: PropTypes.string,
     targetOutlet: PropTypes.string
   },
 
