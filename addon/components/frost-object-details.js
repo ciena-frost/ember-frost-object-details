@@ -58,8 +58,6 @@ export default Component.extend(PropTypesMixin, {
       }
 
       if (this.onChange) {
-        this.set('selectedTabId', id)
-        this.set('selectedTabType', type)
         this.onChange(id, type)
       }
     }
