@@ -38,7 +38,7 @@
 An object details page packages together all details about an object in a full page of real estate. The ember-frost-object-details component will provide you free animations, styles and the frame of the page with simple setup. 
 
 ## Installation
-```
+``` 
 ember install ember-frost-object-details
 ```
 
