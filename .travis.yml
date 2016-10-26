@@ -61,7 +61,7 @@ deploy:
     node: 'stable'
     tags: false
 after_deploy:
-- .travis/publish-gh-pages.sh
+- ".travis/publish-gh-pages.sh"
 notifications:
   slack:
     secure: ZNQs1LgIyI6ZiMgqMClV98bA081ph4iDerdDIFsU9lbzLy5SM2mND+DswefhCh4WWPgDzEIfM0F7EmcIVQdY6aNVgEFrbkx9g3Xb5nElf0ufF1kr/nFW7V5Yib7l/PeuuMY8ZyD3FD/qmwtsYaT+ism5X4Yv5GesnNn6JHWWR9YuegoCyZkBQkHG/1m5db9ldI+fwruSQEbrD1ofNdAp1nuF7sQOvb0YZ1Yv7eZs0Q/+J1Nh4S1CnqR/G5y/+bfRFMzkMqztOXuj+CYzRphz9TDy+TEcHIHyCmNKYtr4vJIhyaVS+SkH8hlbM0mNJCVg3MBYJ1D8uGO2m+MdUF1dHGQ0tRdXFhUMS7Rgk4o07/qoVw34OyWQ1roGKR2TShWXnUeqPpqe9EADkDWng3aFtud6Jmdg9u9NQ2g/6izL1riRzua68btwWssb6CxdgOFL8EJa4ngvblV4YpfMUpKTt6H9vHtmMZDGuNtmv3TcoiTIKUOH3DVOl8y4GVRMTbT90XjL+OIPLXj7hJcKJOxV/72A3Fy++3XS9l2rNM6P8n7AJ52zwrvBY6tWtHVxnruCzjcR3nswtexkVXkdcpuxVCncxFGxp4Lr1IrJudBxVSeiIJ7a9VfA6hZujzxF8OcIyTJS1B/iW1mbA2+nHzS1CVS3EmnsCGMVFI1hQLn7KSY=
