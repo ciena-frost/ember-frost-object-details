@@ -1,3 +1,7 @@
+# 1.0.4
+* Change permissions on file to enable deployment of the demo.
+
+
 # 1.0.3
 * Force build and force push demo
 
