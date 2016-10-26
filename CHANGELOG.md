@@ -1,3 +1,8 @@
+# 0.2.1
+* **Fix** publishing of demo
+
+
+
 # 0.2.0
 
 * **Added** tab follower feature to view route.
