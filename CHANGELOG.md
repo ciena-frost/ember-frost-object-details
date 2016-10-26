@@ -1,3 +1,8 @@
+# 1.0.1
+* Fix version issue
+
+
+
 # 0.2.0
 
 * **Added** tab follower feature to view route.
