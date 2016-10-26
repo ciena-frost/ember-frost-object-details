@@ -1,0 +1,37 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='display: none'>
+<symbol id="network-element" viewBox="0 0 25 25" preserveAspectRatio="undefined">
+	<rect x="2" y="4" fill="#7B7F7F" width="21" height="18"/>
+	<rect x="8" y="8" opacity="0.6" fill="#F1F1F1" width="4" height="13"/>
+	<rect x="3" y="8" opacity="0.6" fill="#F1F1F1" width="4" height="13"/>
+	<polygon opacity="0.6" fill="#F1F1F1" points="17,21 13,21 13,8 17,8 				"/>
+	<rect x="18" y="8" opacity="0.6" fill="#F1F1F1" width="4" height="13"/>
+	<rect x="20" y="5" fill="#F1F1F1" width="2" height="2"/>
+</symbol>
+<symbol id="service" viewBox="0 0 35 35" preserveAspectRatio="undefined">
+	<g opacity="0.5">
+		<rect x="27.4" y="2.2" fill="#7C807F" width="7.6" height="7.6"/>
+		<rect x="19" y="25" fill="#7C807F" width="7.6" height="7.6"/>
+		<rect y="11.8" fill="#7C807F" width="7.6" height="7.6"/>
+		<line opacity="0.4" fill="none" stroke="#7C807F" stroke-width="2" stroke-miterlimit="10" x1="4.8" y1="15.6" x2="22.9" y2="27.8"/>
+		<line opacity="0.4" fill="none" stroke="#7C807F" stroke-width="2" stroke-miterlimit="10" x1="22.9" y1="27.8" x2="31.2" y2="6"/>
+		<g opacity="0.4">
+			<line fill="none" stroke="#7C807F" stroke-width="2" stroke-miterlimit="10" x1="4.8" y1="15.6" x2="6.2" y2="15.1"/>
+			<line fill="none" stroke="#7C807F" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2.7901,2.7901" x1="8.8" y1="14.2" x2="28.5" y2="7"/>
+			<line fill="none" stroke="#7C807F" stroke-width="2" stroke-miterlimit="10" x1="29.8" y1="6.6" x2="31.2" y2="6"/>
+		</g>
+	</g>
+</symbol>
+<symbol id="tenant" viewBox="0 0 24.792 23.779" preserveAspectRatio="undefined">
+	<path class="base" d="M12.4,8.305h-0.035C10.43,8.324,8.871,9.91,8.871,11.858c0,0.296,0.035,0.582,0.103,0.855
+		c-0.096,0.045-0.186,0.106-0.26,0.18c-0.157,0.158-0.257,0.373-0.257,0.611l0.099,0.74c0,0.476,0.292,0.868,0.773,0.868h0.039
+		c0.16,1.013,0.413,2.073,1.269,2.513c0,0-0.32,1.104-0.313,1.159c-0.481,0.029-0.17,0.012-0.212,0.012
+		c-2.743,0.084-4.809,2.011-4.809,2.011c-0.86,0.791-1.206,1.958-1.332,2.971c-0.68-0.187-1.184-0.81-1.184-1.55V10.482
+		c0-0.884,9.626-4.813,9.626-4.813s9.626,4.218,9.626,5.102v11.458c0,0.74-0.504,1.363-1.184,1.55
+		c-0.125-1.013-0.472-2.18-1.332-2.971c0,0-2.066-1.927-4.809-2.011c-0.042,0,0.269,0.016-0.212-0.012
+		c0.006-0.055-0.313-1.159-0.313-1.159c0.857-0.441,1.109-1.5,1.269-2.513h0.039c0.481,0,0.773-0.392,0.773-0.868l0.099-0.74
+		c0-0.238-0.099-0.453-0.257-0.611c-0.074-0.074-0.164-0.135-0.26-0.18c0.067-0.273,0.103-0.56,0.103-0.855
+		c0-1.949-1.559-3.534-3.494-3.553h-0.035"/>
+	<polygon class="base" points="12.603,-0.13 0,10.779 3.931,10.779 12.413,5.822 20.834,10.779 24.827,10.779 		"/>
+	<rect class="base" x="18.279" y="2.421" width="2.415" height="4.755"/>
+</symbol>
+</svg>
