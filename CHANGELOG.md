@@ -1,3 +1,9 @@
+# 1.0.5
+
+Please add a description of your change here, it will be automatically prepended to the `CHANGELOG.md` file.
+- Move ember-simple-uuid from devDependencies to dependencies
+
+
 # 1.0.4
 * Change permissions on file to enable deployment of the demo.
 
