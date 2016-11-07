@@ -1,13 +1,14 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-object-tab'
-import _ from 'lodash'
 import PropTypesMixin, { PropTypes } from 'ember-prop-types'
 
 const {
-  computed
+  Component,
+  computed,
+  isEmpty
 } = Ember
 
-export default Ember.Component.extend(PropTypesMixin, {
+export default Component.extend(PropTypesMixin, {
   // == Component properties ==================================================
 
   layout,
@@ -41,8 +42,8 @@ export default Ember.Component.extend(PropTypesMixin, {
     const selectedTabId = this.get('selectedTabId')
 
     return tabId === selectedTabId ||
-          ((_.isEmpty(selectedTabId) ||
-            _.isEmpty(this.get('selectedTabType'))) &&
+          ((isEmpty(selectedTabId) ||
+            isEmpty(this.get('selectedTabType'))) &&
             tabId === this.get('defaultTabId'))
   }),
 

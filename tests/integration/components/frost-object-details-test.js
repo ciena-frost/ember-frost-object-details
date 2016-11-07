@@ -7,7 +7,7 @@ import { beforeEach } from 'mocha'
 import hbs from 'htmlbars-inline-precompile'
 import {
   $hook,
-  initialize
+  initialize as initializeHook
 } from 'ember-hook'
 import wait from 'ember-test-helpers/wait'
 import sinon from 'sinon'
@@ -37,7 +37,7 @@ describeComponent(
   },
   function () {
     beforeEach(function () {
-      initialize()
+      initializeHook()
     })
 
     it('Set hook name', function () {

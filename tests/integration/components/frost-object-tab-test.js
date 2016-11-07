@@ -7,7 +7,7 @@ import { beforeEach } from 'mocha'
 import hbs from 'htmlbars-inline-precompile'
 import {
   $hook,
-  initialize
+  initialize as initializeHook
 } from 'ember-hook'
 import sinon from 'sinon'
 
@@ -42,7 +42,7 @@ describeComponent(
   },
   function () {
     beforeEach(function () {
-      initialize()
+      initializeHook()
       this.setProperties({
         id: id,
         text: text,
