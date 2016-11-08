@@ -1,3 +1,9 @@
+# 2.0.0
+**upgrade** Ember cli and node.
+**fix** coverage reporting
+
+
+
 # 1.0.5
 
 Please add a description of your change here, it will be automatically prepended to the `CHANGELOG.md` file.
