@@ -3,10 +3,11 @@ import layout from '../templates/components/frost-related-object-tab'
 import PropTypesMixin, { PropTypes } from 'ember-prop-types'
 
 const {
+  Component,
   computed
 } = Ember
 
-export default Ember.Component.extend(PropTypesMixin, {
+export default Component.extend(PropTypesMixin, {
   // == Component properties ==================================================
 
   layout,

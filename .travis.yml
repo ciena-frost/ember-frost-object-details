@@ -2,7 +2,7 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-- '5.0'
+- '6.9'
 - 'stable'
 branches:
   except:
@@ -17,8 +17,6 @@ env:
   matrix:
   - EMBER_TRY_SCENARIO=default
   - EMBER_TRY_SCENARIO=ember-release
-  - EMBER_TRY_SCENARIO=ember-beta
-  - EMBER_TRY_SCENARIO=ember-canary
   global:
     - CXX=g++-4.8
     - secure: PzWXGNPWdY4n9Xj9rvFFB67wn6u/ZkKjghXZ0qctWI58qaI5UmqCzDNUVguRrU4i9L5zjuEGUS8jkhMS/z3WLubiCyLQlhBLtS72YK5GPzm2fogzvtyXhN0a71AliruKeUZqz+I421FZUfWpuoY0LWGb4VHYYZ2kiUtQo6P4hrhjQXbXbidbvlFFkqhrHt/fYUSOtynSJgm0BVLH7/YzLohWCtefmkRe0P1SsRQ/IhvcT1kqdCwBUyoghrr/IDA7CosnoWgEEGL9UztY43pVwYWmG2dVFYsGN5/NhZF6CoAHV0RPRbzetzp2Xs1nHkIfHdjCYC+9J8ruNZgBv0cp6nbF7qrbkODI91UHSMhqbixfNik7YDST1eJqzozWR4nQD8/UKvZt3AAe3ZO3qLRkSdaJQOxgrRAfdHZR70C04AevzqCrfCZI4SpOvTKq7sGUmKuCTB8aRr8C/fsVJRoUqS9mStjgcD1x7zEXGgtd6q3o+D1Mln/uNIVbAQ7PxpCdSXrQ/xS8X07FhoirFkGTYnj9lLIpAxKMsjxj8lFCtmLi8YB8G+Gfp/XXn9NfhBVzlK8bgM+T/KFVir0CYng60104QAtlHFTEIZjRM95GkP5yYA6nLtSyI0UJi6ZCRtefT6quYMH+CsvZyU2jOc32LNclO8pJwwMV1rcEjCoA3hw=
@@ -61,7 +59,7 @@ deploy:
     node: 'stable'
     tags: false
 after_deploy:
-- ".travis/publish-gh-pages.sh"
+- .travis/publish-gh-pages.sh
 notifications:
   slack:
     secure: ZNQs1LgIyI6ZiMgqMClV98bA081ph4iDerdDIFsU9lbzLy5SM2mND+DswefhCh4WWPgDzEIfM0F7EmcIVQdY6aNVgEFrbkx9g3Xb5nElf0ufF1kr/nFW7V5Yib7l/PeuuMY8ZyD3FD/qmwtsYaT+ism5X4Yv5GesnNn6JHWWR9YuegoCyZkBQkHG/1m5db9ldI+fwruSQEbrD1ofNdAp1nuF7sQOvb0YZ1Yv7eZs0Q/+J1Nh4S1CnqR/G5y/+bfRFMzkMqztOXuj+CYzRphz9TDy+TEcHIHyCmNKYtr4vJIhyaVS+SkH8hlbM0mNJCVg3MBYJ1D8uGO2m+MdUF1dHGQ0tRdXFhUMS7Rgk4o07/qoVw34OyWQ1roGKR2TShWXnUeqPpqe9EADkDWng3aFtud6Jmdg9u9NQ2g/6izL1riRzua68btwWssb6CxdgOFL8EJa4ngvblV4YpfMUpKTt6H9vHtmMZDGuNtmv3TcoiTIKUOH3DVOl8y4GVRMTbT90XjL+OIPLXj7hJcKJOxV/72A3Fy++3XS9l2rNM6P8n7AJ52zwrvBY6tWtHVxnruCzjcR3nswtexkVXkdcpuxVCncxFGxp4Lr1IrJudBxVSeiIJ7a9VfA6hZujzxF8OcIyTJS1B/iW1mbA2+nHzS1CVS3EmnsCGMVFI1hQLn7KSY=
