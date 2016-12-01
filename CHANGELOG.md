@@ -1,3 +1,8 @@
+# 3.0.0
+* **Updated** `ember-frost-core` to `^1.0.0`
+
+
+
 # 2.0.0
 **upgrade** Ember cli and node.
 **fix** coverage reporting
