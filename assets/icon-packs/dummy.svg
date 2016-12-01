@@ -1,13 +1,11 @@
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='display: none'>
-<symbol id="network-element" viewBox="0 0 25 25" preserveAspectRatio="undefined">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs/><symbol id="network-element" viewBox="0 0 25 25">
 	<rect x="2" y="4" fill="#7B7F7F" width="21" height="18"/>
 	<rect x="8" y="8" opacity="0.6" fill="#F1F1F1" width="4" height="13"/>
 	<rect x="3" y="8" opacity="0.6" fill="#F1F1F1" width="4" height="13"/>
 	<polygon opacity="0.6" fill="#F1F1F1" points="17,21 13,21 13,8 17,8 				"/>
 	<rect x="18" y="8" opacity="0.6" fill="#F1F1F1" width="4" height="13"/>
 	<rect x="20" y="5" fill="#F1F1F1" width="2" height="2"/>
-</symbol>
-<symbol id="service" viewBox="0 0 35 35" preserveAspectRatio="undefined">
+</symbol><symbol id="service" viewBox="0 0 35 35">
 	<g opacity="0.5">
 		<rect x="27.4" y="2.2" fill="#7C807F" width="7.6" height="7.6"/>
 		<rect x="19" y="25" fill="#7C807F" width="7.6" height="7.6"/>
@@ -20,8 +18,7 @@
 			<line fill="none" stroke="#7C807F" stroke-width="2" stroke-miterlimit="10" x1="29.8" y1="6.6" x2="31.2" y2="6"/>
 		</g>
 	</g>
-</symbol>
-<symbol id="tenant" viewBox="0 0 24.792 23.779" preserveAspectRatio="undefined">
+</symbol><symbol id="tenant" viewBox="0 0 24.792 23.779">
 	<path class="base" d="M12.4,8.305h-0.035C10.43,8.324,8.871,9.91,8.871,11.858c0,0.296,0.035,0.582,0.103,0.855
 		c-0.096,0.045-0.186,0.106-0.26,0.18c-0.157,0.158-0.257,0.373-0.257,0.611l0.099,0.74c0,0.476,0.292,0.868,0.773,0.868h0.039
 		c0.16,1.013,0.413,2.073,1.269,2.513c0,0-0.32,1.104-0.313,1.159c-0.481,0.029-0.17,0.012-0.212,0.012
@@ -33,5 +30,4 @@
 		c0-1.949-1.559-3.534-3.494-3.553h-0.035"/>
 	<polygon class="base" points="12.603,-0.13 0,10.779 3.931,10.779 12.413,5.822 20.834,10.779 24.827,10.779 		"/>
 	<rect class="base" x="18.279" y="2.421" width="2.415" height="4.755"/>
-</symbol>
-</svg>
+</symbol></svg>
