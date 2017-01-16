@@ -1,3 +1,7 @@
+# 3.0.1
+* Updated ember-frost-core
+
+
 # 3.0.0
 * **Updated** `ember-frost-core` to `^1.0.0`
 
