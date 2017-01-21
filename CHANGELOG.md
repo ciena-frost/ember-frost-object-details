@@ -1,3 +1,7 @@
+# 3.0.2
+* Fixed tab divider
+
+
 # 3.0.1
 * Updated ember-frost-core
 
