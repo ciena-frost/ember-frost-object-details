@@ -7,8 +7,7 @@ $frost-object-tab-bt-border-default: $frost-color-grey-4;
 .frost-object-tab {
   .object-tab {
     display: flex;
-    position: relative;
-    flex-direction: column;
+    flex-direction: row;
 
     .frost-button {
       .text {
@@ -24,6 +23,10 @@ $frost-object-tab-bt-border-default: $frost-color-grey-4;
         }
       }
 
+      &:not(.active) {
+        padding-bottom: 3px;
+      }
+
       &:hover {
         .text {
           border-bottom: 1px solid $frost-object-tab-bt-text-hover;
@@ -35,5 +38,12 @@ $frost-object-tab-bt-border-default: $frost-color-grey-4;
         border-bottom: 3px solid $frost-object-tab-bt-border-default;
       }
     }
+  }
+
+  .object-tab-divider {
+    flex: 1;
+    height: 15px;
+    margin: auto;
+    border-left: 1px solid $frost-object-details-line-between-tab-bg;
   }
 }
