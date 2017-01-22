@@ -1,3 +1,6 @@
+# 3.0.3
+* Fixed content padding top
+
 # 3.0.2
 * Fixed tab divider
 
