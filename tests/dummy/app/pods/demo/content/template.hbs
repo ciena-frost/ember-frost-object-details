@@ -69,9 +69,26 @@
         (component 'frost-object-tab'
           id='profile'
           text='Profile View'
-          content=(component 'object-details-content'
-            color='skyblue'
-            name='profile')
+          content=(component 'frost-text'
+            onInput=(action 'onFilterChange')
+            value=filter
+          )
+        )
+        (component 'frost-object-tab'
+          id='foo'
+          text='Foo'
+          content=(component 'frost-text'
+            onInput=(action 'onFilterChangeA')
+            value=filterA
+          )
+        )
+        (component 'frost-object-tab'
+          id='bar'
+          text='Bar'
+          content=(component 'frost-text'
+            onInput=(action 'onFilterChangeB')
+            value=filterB
+          )
         )
       )
       relatedObjectTabs=(array
@@ -85,6 +102,17 @@
           content=(component 'object-details-content'
             color='coral'
             name='related devices')
+        )
+        (component 'frost-related-object-tab'
+          id='baz'
+          text='Baz'
+          icon=(hash
+            name='service'
+            pack='dummy'
+          )
+          content=(component 'object-details-content'
+            color='rebeccapurple'
+            name='related baz')
         )
       )
     }}

@@ -1,12 +1,8 @@
 import Ember from 'ember'
+const {Component, computed, get, set} = Ember
 import layout from '../templates/components/frost-object-details'
 import PropTypesMixin, { PropTypes } from 'ember-prop-types'
 import uuid from 'ember-simple-uuid'
-
-const {
-  Component,
-  computed
-} = Ember
 
 export default Component.extend(PropTypesMixin, {
   // == Component properties ==================================================
@@ -16,6 +12,7 @@ export default Component.extend(PropTypesMixin, {
 
   // == State properties ======================================================
   orderedTabIds: [],
+  tabTypeMap: {},
 
   propTypes: {
     selectedTabId: PropTypes.string.isRequired,
@@ -42,10 +39,57 @@ export default Component.extend(PropTypesMixin, {
    */
   registerTab: computed(function () {
     return (function () {
-      return (id) => {
+      return (id, type) => {
         this.get('orderedTabIds').push(id)
+        set(this.get('tabTypeMap'), id, type)
       }
     }.call(this))
+  }),
+
+  animations: computed(function () {
+    const orderedTabIds = this.get('orderedTabIds')
+    const tabTypeMap = this.get('tabTypeMap')
+    const detailTabType = 'tab'
+
+    return function () {
+      this.transition(
+        this.toValue(function (toValue, fromValue) {
+          const tabType = get(tabTypeMap, toValue)
+
+          return orderedTabIds &&
+            tabType === detailTabType &&
+            orderedTabIds.indexOf(fromValue) > orderedTabIds.indexOf(toValue)
+        }),
+        this.use('to-left')
+      )
+
+      this.transition(
+        this.toValue(function (toValue, fromValue) {
+          const tabType = get(tabTypeMap, toValue)
+
+          return orderedTabIds &&
+            tabType === detailTabType &&
+            orderedTabIds.indexOf(fromValue) < orderedTabIds.indexOf(toValue)
+        }),
+        this.use('to-right')
+      )
+
+      this.transition(
+        this.toValue(function (toValue, fromValue) {
+          return get(tabTypeMap, toValue) !== detailTabType && fromValue !== toValue
+        }),
+        this.use('to-up')
+      )
+
+      this.transition(
+        this.toValue(function (toValue, fromValue) {
+          return get(tabTypeMap, fromValue) !== detailTabType &&
+            get(tabTypeMap, fromValue) !== get(tabTypeMap, toValue) &&
+            fromValue !== toValue
+        }),
+        this.use('to-down')
+      )
+    }
   }),
 
   // == Actions ===============================================================
@@ -61,47 +105,8 @@ export default Component.extend(PropTypesMixin, {
         this.onChange(id, type)
       }
     }
-  },
+  }
 
   // == Functions ==============================================================
 
-  animations () {
-    const detailTabType = 'tab'
-    this.transition(
-      this.toValue(function (toValue, fromValue) {
-        const tabIds = toValue.orderedTabIds
-        const tabType = toValue.tab.type
-
-        return tabIds &&
-          tabType === detailTabType &&
-          tabIds.indexOf(fromValue.tab.id) > tabIds.indexOf(toValue.tab.id)
-      }),
-      this.use('to-left')
-    )
-    this.transition(
-      this.toValue(function (toValue, fromValue) {
-        const tabIds = toValue.orderedTabIds
-        const tabType = toValue.tab.type
-
-        return tabIds &&
-          tabType === detailTabType &&
-          tabIds.indexOf(fromValue.tab.id) < tabIds.indexOf(toValue.tab.id)
-      }),
-      this.use('to-right')
-    )
-    this.transition(
-      this.toValue(function (toValue, fromValue) {
-        return toValue.tab.type !== detailTabType && fromValue.tab.id !== toValue.tab.id
-      }),
-      this.use('to-up')
-    )
-    this.transition(
-      this.toValue(function (toValue, fromValue) {
-        return fromValue.tab.type !== detailTabType &&
-          fromValue.tab.type !== toValue.tab.type &&
-          fromValue.tab.id !== toValue.tab.id
-      }),
-      this.use('to-down')
-    )
-  }
 })

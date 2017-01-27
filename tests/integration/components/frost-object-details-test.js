@@ -286,7 +286,7 @@ describeComponent(
           defaultTabId=defaultTabId
           detailTabs=(array
             (component 'frost-object-tab'
-              id=selectedTabId
+              id='profile'
               text='Profile View'
               content=(component 'object-details-content' color='skyblue' name=selectedTabName)
             )
@@ -313,7 +313,7 @@ describeComponent(
           defaultTabId=defaultTabId
           detailTabs=(array
             (component 'frost-object-tab'
-              id=selectedTabId
+              id='profile'
               text='Profile View'
               content=(component 'object-details-content' color='skyblue' name=selectedTabName)
             )
