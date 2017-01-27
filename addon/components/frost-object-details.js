@@ -4,8 +4,6 @@ import layout from '../templates/components/frost-object-details'
 import PropTypesMixin, { PropTypes } from 'ember-prop-types'
 import uuid from 'ember-simple-uuid'
 
-
-
 export default Component.extend(PropTypesMixin, {
   // == Component properties ==================================================
 
