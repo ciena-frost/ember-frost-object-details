@@ -60,11 +60,11 @@ export default Component.extend(PropTypesMixin, {
   // == Events ================================================================
 
   /**
-   * Register the id of the tab during init.
+   * Register the id and type of the tab during init.
    */
   _register: Ember.on('init', function () {
     if (typeof this.register === 'function') {
-      this.register(this.id)
+      this.register(this.id, this.type)
     }
   }),
 

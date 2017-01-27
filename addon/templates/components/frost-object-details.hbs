@@ -19,8 +19,8 @@
   <div class='object-details-body'>
     <div class='content' data-test={{hook (concat hook '-object-details-body-content')}}>
       {{#from-elsewhere name=targetOutlet as |tab|}}
-        {{#liquid-bind (hash tab=tab orderedTabIds=orderedTabIds) rules=animations as |currentModel|}}
-          {{component currentModel.tab.content}}
+        {{#liquid-bind tab.id rules=animations}}
+          {{component tab.content}}
         {{/liquid-bind}}
       {{/from-elsewhere}}
     </div>
