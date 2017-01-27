@@ -1,3 +1,7 @@
+# 3.0.4
+* Passing a complex object to liquid-bind caused an over-aggressive destruction of content components, fixed the liquid-bind to use a simple property and passed other values required for animation matches via registration
+
+
 # 3.0.3
 * Fixed content padding top
 
