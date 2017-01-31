@@ -25,12 +25,10 @@
       {{/from-elsewhere}}
     </div>
     {{#if relatedObjectTabs}}
-      <div
-        class='related-object-tabs'
-        data-test='{{hook}}-object-details-related-object-tabs'>
+      <div class='related-object-tabs' data-test='{{hook}}-object-details-related-object-tabs'>
         {{#each relatedObjectTabs as |tab index|}}
           <div class='related-object-tab'
-            data-test='{{hook}}-object-details-related-object-tab-{{index}}'>
+            data-test={{hook (concat hook '-object-details-related-object-tab') index=index}}>
             {{component tab
               parentHook=hook
               targetOutlet=targetOutlet
