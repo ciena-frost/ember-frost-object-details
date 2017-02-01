@@ -24,17 +24,19 @@
         {{/liquid-bind}}
       {{/from-elsewhere}}
     </div>
-    <div class='related-object-tabs 'data-test={{hook (concat hook '-object-details-related-object-tabs')}}>
-      {{#each relatedObjectTabs as |tab index|}}
-        <div class='related-object-tab'
-          data-test={{hook (concat hook '-object-details-related-object-tab') index=index}}>
-          {{component tab
-            parentHook=hook
-            targetOutlet=targetOutlet
-            selectedTabId=selectedTabId
-            onChange=(action 'change')}}
-        </div>
-      {{/each}}
-    </div>
+    {{#if relatedObjectTabs}}
+      <div class='related-object-tabs' data-test={{hook (concat hook '-object-details-related-object-tabs')}}>
+        {{#each relatedObjectTabs as |tab index|}}
+          <div class='related-object-tab'
+            data-test={{hook (concat hook '-object-details-related-object-tab') index=index}}>
+            {{component tab
+              parentHook=hook
+              targetOutlet=targetOutlet
+              selectedTabId=selectedTabId
+              onChange=(action 'change')}}
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
   </div>
 </div>
