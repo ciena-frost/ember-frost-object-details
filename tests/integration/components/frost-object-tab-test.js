@@ -1,15 +1,10 @@
-import { expect } from 'chai'
-import {
-  describeComponent,
-  it
-} from 'ember-mocha'
-import { beforeEach } from 'mocha'
+import {expect} from 'chai'
+import {$hook, initialize as initializeHook} from 'ember-hook'
 import hbs from 'htmlbars-inline-precompile'
-import {
-  $hook,
-  initialize as initializeHook
-} from 'ember-hook'
+import {beforeEach, describe, it} from 'mocha'
 import sinon from 'sinon'
+
+import {integration} from 'dummy/tests/helpers/ember-test-utils/setup-component-test'
 
 const id = 'my-tab'
 const text = 'my tab text'
@@ -34,127 +29,123 @@ const template = hbs`
     onChange=onChange
   }}`
 
-describeComponent(
-  'frost-object-tab',
-  'Integration: FrostObjectTabComponent',
-  {
-    integration: true
-  },
-  function () {
-    beforeEach(function () {
-      initializeHook()
-      this.setProperties({
-        id: id,
-        text: text,
-        selectedTabId: defaultSelectedTabId,
-        selectedTabType: defaultSelectedTabType,
-        defaultTabId: defaultTabId,
-        hook: defaultHook
-      })
+const test = integration('frost-object-tab')
+describe(test.label, function () {
+  test.setup()
+
+  beforeEach(function () {
+    initializeHook()
+    this.setProperties({
+      id: id,
+      text: text,
+      selectedTabId: defaultSelectedTabId,
+      selectedTabType: defaultSelectedTabType,
+      defaultTabId: defaultTabId,
+      hook: defaultHook
     })
+  })
 
-    it('Set hook', function () {
-      const hookName = 'my-hook'
-      this.setProperties({
-        hook: hookName
-      })
-      this.render(template)
-      expect($hook(`${hookName}${detailTabHookName}`, { selected: true })).to.have.length(1)
+  it('Set hook', function () {
+    const hookName = 'my-hook'
+    this.setProperties({
+      hook: hookName
     })
+    this.render(template)
+    expect($hook(`${hookName}${detailTabHookName}`, { selected: true })).to.have.length(1)
+  })
 
-    it('Set parent hook', function () {
-      const hookName = 'my-hook'
-      this.setProperties({
-        parentHook: hookName,
-        id: id,
-        text: text,
-        defaultTabId: defaultTabId
-      })
-      this.render(hbs`
-        {{frost-object-tab
-          parentHook=parentHook
-          id=id
-          text=text
-          defaultTabId=defaultTabId
-          content=(component 'object-details-content' color='skyblue' name=name)
-        }}`)
-      expect($hook(`${hookName}-${id}`)).to.have.length(1)
-      expect($hook(`${hookName}-${id}${detailTabHookName}`, { selected: true })).to.have.length(1)
+  it('Set parent hook', function () {
+    const hookName = 'my-hook'
+    this.setProperties({
+      parentHook: hookName,
+      id: id,
+      text: text,
+      defaultTabId: defaultTabId
     })
+    this.render(hbs`
+      {{frost-object-tab
+        parentHook=parentHook
+        id=id
+        text=text
+        defaultTabId=defaultTabId
+        content=(component 'object-details-content' color='skyblue' name=name)
+      }}`)
+    expect($hook(`${hookName}-${id}`)).to.have.length(1)
+    expect($hook(`${hookName}-${id}${detailTabHookName}`, { selected: true })).to.have.length(1)
+  })
 
-    it('Set text', function () {
-      const text = 'bla bla bla'
-      this.setProperties({
-        text: text
-      })
-      this.render(template)
-      expect($hook(`${detailTabHookName}`, { selected: true }).text().trim()).to.be.equal(text)
+  it('Set text', function () {
+    const text = 'bla bla bla'
+    this.setProperties({
+      text: text
     })
+    this.render(template)
+    expect($hook(`${detailTabHookName}`, { selected: true }).text().trim()).to.be.equal(text)
+  })
 
-    it('No tab selected', function () {
-      this.setProperties({
-        selectedTabId: null
-      })
-      this.render(template)
-      expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+  it('No tab selected', function () {
+    this.setProperties({
+      selectedTabId: null
     })
+    this.render(template)
+    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+  })
 
-    it('No type selected', function () {
-      this.setProperties({
-        selectedTabType: null
-      })
-      this.render(template)
-      expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+  it('No type selected', function () {
+    this.setProperties({
+      selectedTabType: null
     })
+    this.render(template)
+    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+  })
 
-    it('Is default tab and different tab selected', function () {
-      this.setProperties({
-        defaultTabId: id,
-        selectedTabId: 'abc',
-        selectedTabType: 'abc'
-      })
-      this.render(template)
-      expect($hook(`${detailTabHookName}`, { selected: false }).find('button.active')).to.have.length(0)
-      expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(0)
-      expect($hook(`${detailTabHookName}`, { selected: false })).to.have.length(1)
-      expect($hook(`${detailTabHookName}`, { selected: false }).find('button.default')).to.have.length(1)
+  it('Is default tab and different tab selected', function () {
+    this.setProperties({
+      defaultTabId: id,
+      selectedTabId: 'abc',
+      selectedTabType: 'abc'
     })
+    this.render(template)
+    expect($hook(`${detailTabHookName}`, { selected: false }).find('button.active')).to.have.length(0)
+    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(0)
+    expect($hook(`${detailTabHookName}`, { selected: false })).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, { selected: false }).find('button.default')).to.have.length(1)
+  })
 
-    it('Is default tab and is selected', function () {
-      this.setProperties({
-        defaultTabId: id,
-        selectedTabId: id
-      })
-      this.render(template)
-      expect($hook(`${detailTabHookName}`, { selected: true }).find('button.active')).to.have.length(1)
-      expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
-      expect($hook(`${detailTabHookName}`, { selected: false })).to.have.length(0)
-      expect($hook(`${detailTabHookName}`, { selected: false }).find('button.default')).to.have.length(0)
+  it('Is default tab and is selected', function () {
+    this.setProperties({
+      defaultTabId: id,
+      selectedTabId: id
     })
+    this.render(template)
+    expect($hook(`${detailTabHookName}`, { selected: true }).find('button.active')).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, { selected: false })).to.have.length(0)
+    expect($hook(`${detailTabHookName}`, { selected: false }).find('button.default')).to.have.length(0)
+  })
 
-    it('Is selected', function () {
-      this.setProperties({
-        defaultTabId: 'abc',
-        selectedTabId: id
-      })
-      this.render(template)
-      expect($hook(`${detailTabHookName}`, { selected: true }).find('button.active')).to.have.length(1)
-      expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+  it('Is selected', function () {
+    this.setProperties({
+      defaultTabId: 'abc',
+      selectedTabId: id
     })
+    this.render(template)
+    expect($hook(`${detailTabHookName}`, { selected: true }).find('button.active')).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+  })
 
-    it('Set onChange', function () {
-      const defaultTabId = id
-      const props = {
-        defaultTabId: defaultTabId,
-        onChange: sinon.spy()
-      }
-      this.setProperties(props)
-      this.render(template)
+  it('Set onChange', function () {
+    const defaultTabId = id
+    const props = {
+      defaultTabId: defaultTabId,
+      onChange: sinon.spy()
+    }
+    this.setProperties(props)
+    this.render(template)
 
-      this.$('button').click()
+    this.$('button').click()
 
-      expect(props.onChange.called).to.be.true
-      props.onChange.reset()
-    })
-  }
-)
+    expect(props.onChange.called).to.be.true
+    props.onChange.reset()
+  })
+})
