@@ -1,3 +1,7 @@
+# 3.0.6
+* **Updated** integration tests to remove the deprecated use of `describeComponent()`
+
+
 # 3.0.5
 - Only render relatedObjectTabs if present
 
