@@ -13,7 +13,7 @@ $frost-object-details-line-between-tab-bg: $frost-color-lgrey-2;
     font-size: 0;
 
     .object-details-tab {
-      &:last-child {
+      &:first-child {
         .object-tab-divider {
           height: 0;
         }
