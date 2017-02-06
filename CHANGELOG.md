@@ -1,3 +1,6 @@
+# 3.0.7
+* Hide object details tab divider when a tab is set as `isVisible=false`
+
 # 3.0.6
 * **Updated** integration tests to remove the deprecated use of `describeComponent()`
 
