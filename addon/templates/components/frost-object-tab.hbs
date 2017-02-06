@@ -1,10 +1,10 @@
 <div class='object-tab' data-test={{hook (concat hook '-object-tab') selected=isSelected }}>
+  <div class='object-tab-divider'></div>
   {{frost-button
     class=(concat 'tab' (if isSelected ' active') (if isDefault ' default'))
     disabled=disabled
     text=text
     onClick=(action 'change')}}
-  <div class='object-tab-divider'></div>
 </div>
 
 {{#if isSelected}}
