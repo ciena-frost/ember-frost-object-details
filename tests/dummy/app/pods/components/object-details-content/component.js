@@ -1,7 +1,7 @@
 import Ember from 'ember'
 const {Component} = Ember
 import computed, {readOnly} from 'ember-computed-decorators'
-import layout from 'frost-object-details'
+import layout from './template'
 
 export default Component.extend({
   layout,
@@ -13,7 +13,6 @@ export default Component.extend({
       'height: 200px'
     ]
       .join(';')
-
     return Ember.String.htmlSafe(style)
   }
 })
