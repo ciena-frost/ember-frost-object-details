@@ -51,7 +51,7 @@ describe(test.label, function () {
       hook: hookName
     })
     this.render(template)
-    expect($hook(`${hookName}${detailTabHookName}`, { selected: true })).to.have.length(1)
+    expect($hook(`${hookName}${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('Set parent hook', function () {
@@ -71,7 +71,7 @@ describe(test.label, function () {
         content=(component 'object-details-content' color='skyblue' name=name)
       }}`)
     expect($hook(`${hookName}-${id}`)).to.have.length(1)
-    expect($hook(`${hookName}-${id}${detailTabHookName}`, { selected: true })).to.have.length(1)
+    expect($hook(`${hookName}-${id}${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('Set text', function () {
@@ -80,7 +80,7 @@ describe(test.label, function () {
       text: text
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, { selected: true }).text().trim()).to.be.equal(text)
+    expect($hook(`${detailTabHookName}`, {selected: true}).text().trim()).to.be.equal(text)
   })
 
   it('No tab selected', function () {
@@ -88,7 +88,7 @@ describe(test.label, function () {
       selectedTabId: null
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('No type selected', function () {
@@ -96,7 +96,7 @@ describe(test.label, function () {
       selectedTabType: null
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('Is default tab and different tab selected', function () {
@@ -106,10 +106,10 @@ describe(test.label, function () {
       selectedTabType: 'abc'
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, { selected: false }).find('button.active')).to.have.length(0)
-    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(0)
-    expect($hook(`${detailTabHookName}`, { selected: false })).to.have.length(1)
-    expect($hook(`${detailTabHookName}`, { selected: false }).find('button.default')).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, {selected: false}).find('button.active')).to.have.length(0)
+    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(0)
+    expect($hook(`${detailTabHookName}`, {selected: false})).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, {selected: false}).find('button.default')).to.have.length(1)
   })
 
   it('Is default tab and is selected', function () {
@@ -118,10 +118,10 @@ describe(test.label, function () {
       selectedTabId: id
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, { selected: true }).find('button.active')).to.have.length(1)
-    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
-    expect($hook(`${detailTabHookName}`, { selected: false })).to.have.length(0)
-    expect($hook(`${detailTabHookName}`, { selected: false }).find('button.default')).to.have.length(0)
+    expect($hook(`${detailTabHookName}`, {selected: true}).find('button.active')).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, {selected: false})).to.have.length(0)
+    expect($hook(`${detailTabHookName}`, {selected: false}).find('button.default')).to.have.length(0)
   })
 
   it('Is selected', function () {
@@ -130,8 +130,8 @@ describe(test.label, function () {
       selectedTabId: id
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, { selected: true }).find('button.active')).to.have.length(1)
-    expect($hook(`${detailTabHookName}`, { selected: true })).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, {selected: true}).find('button.active')).to.have.length(1)
+    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('Set onChange', function () {
@@ -145,7 +145,7 @@ describe(test.label, function () {
 
     this.$('button').click()
 
-    expect(props.onChange.called).to.be.true
+    expect(props.onChange.called).to.equal(true)
     props.onChange.reset()
   })
 })

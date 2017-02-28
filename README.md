@@ -35,10 +35,12 @@
 ###### Ember Observer score
 [![EmberObserver][ember-observer-badge]][ember-observer-badge-url]
 
-An object details page packages together all details about an object in a full page of real estate. The ember-frost-object-details component will provide you free animations, styles and the frame of the page with simple setup. 
+An object details page packages together all details about an object in a full page of real estate. The
+ember-frost-object-details component will provide you free animations, styles and the frame of the page with
+simple setup.
 
 ## Installation
-``` 
+```
 ember install ember-frost-object-details
 ```
 
@@ -47,10 +49,12 @@ Detailed API and example usage can be found in the sample application in `tests/
 
 ### Ember-elsewhere
 
-This addon uses the [ember-elsewhere](https://github.com/ef4/ember-elsewhere) to manage the tabs, to put the tab in the right location
+This addon uses the [ember-elsewhere](https://github.com/ef4/ember-elsewhere) to manage the tabs, to put the tab in
+the right location
 
 ### Testing with ember-hook
-This addon has been optimized for use with [ember-hook](https://github.com/Ticketfly/ember-hook). You can set a `hook` name on your object details template. 
+This addon has been optimized for use with [ember-hook](https://github.com/Ticketfly/ember-hook). You can set a `hook`
+name on your object details template.
 This will allow you to access the internal object details content for testing.
 
 ## Development
