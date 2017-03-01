@@ -1,8 +1,8 @@
 import {expect} from 'chai'
 import {$hook, initialize as initializeHook} from 'ember-hook'
+import wait from 'ember-test-helpers/wait'
 import hbs from 'htmlbars-inline-precompile'
 import {beforeEach, describe, it} from 'mocha'
-import wait from 'ember-test-helpers/wait'
 import sinon from 'sinon'
 
 import {integration} from 'dummy/tests/helpers/ember-test-utils/setup-component-test'
@@ -70,12 +70,12 @@ describe(test.label, function () {
         expect($hook(`${hookName}${objectDetailsHookName}`)).to.have.length(1)
         expect($hook(`${hookName}${objectDetailsContentHookName}`)).to.have.length(1)
         expect($hook(`${hookName}${detailsObjectTabsHookName}`)).to.have.length(1)
-        expect($hook(`${hookName}${detailsObjectTabHookName}`, { index: 0 })).to.have.length(1)
+        expect($hook(`${hookName}${detailsObjectTabHookName}`, {index: 0})).to.have.length(1)
         expect($hook(`${hookName}-${tabId}`)).to.have.length(1)
         expect($hook(`${hookName}-${tabId}${objectTabHookName}`)).to.have.length(1)
         expect($hook(`${hookName}${bodyContentHookName}`)).to.have.length(1)
         expect($hook(`${hookName}${detailsRelatedObjectTabsHookName}`)).to.have.length(1)
-        expect($hook(`${hookName}${detailsRelatedObjectTabHookName}`, { index: 0 })).to.have.length(1)
+        expect($hook(`${hookName}${detailsRelatedObjectTabHookName}`, {index: 0})).to.have.length(1)
         expect($hook(`${hookName}-${relatedTabId}`)).to.have.length(1)
         expect($hook(`${hookName}-${relatedTabId}${relatedObjectTabHookName}`)).to.have.length(1)
       })
@@ -111,9 +111,9 @@ describe(test.label, function () {
     return wait()
       .then(() => {
         expect($hook(detailsObjectTabHookName)).to.have.length(2)
-        expect($hook(detailsObjectTabHookName, { index: 1 }).text().trim()).to.be.equal(selectedTabText)
-        expect($hook(detailsObjectTabHookName, { index: 1 }).find('button.active')).to.have.length(1)
-        expect($hook(detailsObjectTabHookName, { index: 1 })).to.have.length(1)
+        expect($hook(detailsObjectTabHookName, {index: 1}).text().trim()).to.be.equal(selectedTabText)
+        expect($hook(detailsObjectTabHookName, {index: 1}).find('button.active')).to.have.length(1)
+        expect($hook(detailsObjectTabHookName, {index: 1})).to.have.length(1)
         expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
 
         return capture('object-details-selected-tab', done, {
@@ -164,9 +164,9 @@ describe(test.label, function () {
     return wait()
       .then(() => {
         expect($hook(detailsRelatedObjectTabHookName)).to.have.length(1)
-        expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).text().trim()).to.be.equal(selectedTabText)
-        expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).find('button.active')).to.have.length(1)
-        expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).find(iconSelector).attr(iconAttributeName)
+        expect($hook(detailsRelatedObjectTabHookName, {index: 0}).text().trim()).to.be.equal(selectedTabText)
+        expect($hook(detailsRelatedObjectTabHookName, {index: 0}).find('button.active')).to.have.length(1)
+        expect($hook(detailsRelatedObjectTabHookName, {index: 0}).find(iconSelector).attr(iconAttributeName)
               .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
 
         expect($hook(detailsObjectTabHookName)).to.have.length(1)
@@ -204,7 +204,7 @@ describe(test.label, function () {
 
     return wait()
       .then(() => {
-        expect($hook(detailsObjectTabHookName, { index: 0 })).to.have.length(1)
+        expect($hook(detailsObjectTabHookName, {index: 0})).to.have.length(1)
         expect($hook(detailsRelatedObjectTabHookName)).to.have.length(0)
 
         return capture('object-details-with-only-tab', done, {
@@ -254,12 +254,12 @@ describe(test.label, function () {
     return wait()
       .then(() => {
         expect($hook(detailsObjectTabHookName)).to.have.length(1)
-        expect($hook(detailsObjectTabHookName, { index: 0 }).text().trim()).to.be.equal(tabText)
+        expect($hook(detailsObjectTabHookName, {index: 0}).text().trim()).to.be.equal(tabText)
 
-        expect($hook(detailsRelatedObjectTabHookName, { index: 0 })).to.have.length(1)
-        expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).find(iconSelector).attr(iconAttributeName)
+        expect($hook(detailsRelatedObjectTabHookName, {index: 0})).to.have.length(1)
+        expect($hook(detailsRelatedObjectTabHookName, {index: 0}).find(iconSelector).attr(iconAttributeName)
               .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
-        expect($hook(detailsRelatedObjectTabHookName, { index: 0 }).text().trim()).to.be.equal(relatedObjectTabText)
+        expect($hook(detailsRelatedObjectTabHookName, {index: 0}).text().trim()).to.be.equal(relatedObjectTabText)
 
         return capture('object-details-with-tabs-and-related-obj-tab', done, {
           targetElement: $hook('-object-details')[0],
@@ -288,7 +288,7 @@ describe(test.label, function () {
       {{/frost-object-details}}
     `)
 
-    expect($hook(detailsObjectTabHookName, { index: 0 })).to.have.length(1)
+    expect($hook(detailsObjectTabHookName, {index: 0})).to.have.length(1)
     expect($hook('-object-details-content').text().trim()).to.be.equal('test')
   })
 
@@ -317,7 +317,7 @@ describe(test.label, function () {
 
     this.$('button').click()
 
-    expect(props.onChange.called).to.be.true
+    expect(props.onChange.called).to.equal(true)
     props.onChange.reset()
   })
 
@@ -361,7 +361,7 @@ describe(test.label, function () {
       .then(() => {
         this.$('.active.frost-button').click()
 
-        expect(props.onChange.called).to.be.true
+        expect(props.onChange.called).to.equal(true)
         props.onChange.reset()
       })
   })

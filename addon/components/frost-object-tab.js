@@ -1,11 +1,12 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-object-tab'
-import PropTypesMixin, { PropTypes } from 'ember-prop-types'
+import PropTypesMixin, {PropTypes} from 'ember-prop-types'
 
 const {
   Component,
   computed,
-  isEmpty
+  isEmpty,
+  on
 } = Ember
 
 export default Component.extend(PropTypesMixin, {
@@ -62,7 +63,7 @@ export default Component.extend(PropTypesMixin, {
   /**
    * Register the id and type of the tab during init.
    */
-  _register: Ember.on('init', function () {
+  _register: on('init', function () {
     if (typeof this.register === 'function') {
       this.register(this.id, this.type)
     }

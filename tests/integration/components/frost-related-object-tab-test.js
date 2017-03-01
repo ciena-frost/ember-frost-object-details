@@ -64,7 +64,7 @@ describe(test.label, function () {
       hook: hookName
     })
     this.render(template)
-    expect($hook(`${hookName}${relatedObjectTabHookName}`, { selected: true })).to.have.length(1)
+    expect($hook(`${hookName}${relatedObjectTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('Set parent hook', function () {
@@ -81,7 +81,7 @@ describe(test.label, function () {
       content=(component 'object-details-content' color='skyblue' name=name)
     }}`)
     expect($hook(`${hookName}-${id}`)).to.have.length(1)
-    expect($hook(`${hookName}-${id}${relatedObjectTabHookName}`, { selected: false })).to.have.length(1)
+    expect($hook(`${hookName}-${id}${relatedObjectTabHookName}`, {selected: false})).to.have.length(1)
   })
 
   it('Set text', function () {
@@ -90,7 +90,7 @@ describe(test.label, function () {
       text: text
     })
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, { selected: true }).text().trim()).to.be.equal(text)
+    expect($hook(`${relatedObjectTabHookName}`, {selected: true}).text().trim()).to.be.equal(text)
   })
 
   it('Set icon name', function () {
@@ -98,7 +98,7 @@ describe(test.label, function () {
       selectedTabId: 'abc'
     })
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, { selected: false }).find(iconSelector).attr(iconAttributeName)
+    expect($hook(`${relatedObjectTabHookName}`, {selected: false}).find(iconSelector).attr(iconAttributeName)
           .indexOf(`/${defaultPack}.svg#${iconWithNameOnly.name}`)).to.be.gt(-1)
   })
 
@@ -108,14 +108,14 @@ describe(test.label, function () {
       icon: icon
     })
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, { selected: false }).find(iconSelector).attr(iconAttributeName)
+    expect($hook(`${relatedObjectTabHookName}`, {selected: false}).find(iconSelector).attr(iconAttributeName)
           .indexOf(`/${icon.pack}.svg#${icon.name}`)).to.be.gt(-1)
   })
 
   it('Tab is selected', function () {
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, { selected: true }).find('button.active')).to.have.length(1)
-    expect($hook(`${relatedObjectTabHookName}`, { selected: true }).find(iconSelector).attr(iconAttributeName)
+    expect($hook(`${relatedObjectTabHookName}`, {selected: true}).find('button.active')).to.have.length(1)
+    expect($hook(`${relatedObjectTabHookName}`, {selected: true}).find(iconSelector).attr(iconAttributeName)
           .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
   })
 
@@ -132,7 +132,7 @@ describe(test.label, function () {
 
     this.$('button').click()
 
-    expect(props.onChange.called).to.be.true
+    expect(props.onChange.called).to.equal(true)
     props.onChange.reset()
   })
 })

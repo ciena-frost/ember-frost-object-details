@@ -1,7 +1,8 @@
 import Ember from 'ember'
+const {Controller} = Ember
 
 // BEGIN-SNIPPET query-params-controller
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: ['selectedTabId', 'selectedTabType'],
   selectedTabId: 'profile',
   selectedTabType: 'tab',

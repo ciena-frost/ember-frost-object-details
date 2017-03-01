@@ -8,10 +8,11 @@
 # 3.0.5
 - Only render relatedObjectTabs if present
 
-Closes #33 
+Closes #33
 
 # 3.0.4
-* Passing a complex object to liquid-bind caused an over-aggressive destruction of content components, fixed the liquid-bind to use a simple property and passed other values required for animation matches via registration
+* Passing a complex object to liquid-bind caused an over-aggressive destruction of content components, fixed the
+liquid-bind to use a simple property and passed other values required for animation matches via registration
 
 
 # 3.0.3

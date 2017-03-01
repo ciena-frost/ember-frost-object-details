@@ -1,7 +1,8 @@
 import Ember from 'ember'
+const {Controller} = Ember
 
 // BEGIN-SNIPPET content-controller
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: ['filter'],
 
   filter: '',

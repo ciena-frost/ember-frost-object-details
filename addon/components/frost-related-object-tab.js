@@ -1,6 +1,6 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-related-object-tab'
-import PropTypesMixin, { PropTypes } from 'ember-prop-types'
+import PropTypesMixin, {PropTypes} from 'ember-prop-types'
 
 const {
   Component,
