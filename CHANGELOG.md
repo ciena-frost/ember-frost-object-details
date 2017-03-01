@@ -1,3 +1,6 @@
+# 3.0.8
+* **Updated** to use latest pr-bumper which supports being able to set a PR to `none` when publishing a new version is not desired.
+
 # 3.0.7
 * Hide object details tab divider when a tab is set as `isVisible=false`
 
