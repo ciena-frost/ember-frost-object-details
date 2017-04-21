@@ -1,3 +1,6 @@
+# 3.0.10 (2017-04-21)
+* **Added** blueprint check
+
 # 3.0.9
 * **Updated** the travis.yml and package.json to run code coverage
 
