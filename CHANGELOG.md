@@ -1,3 +1,7 @@
+# 3.0.11 (2017-05-10)
+* **Updated** secure auth token
+
+
 # 3.0.10 (2017-04-21)
 * **Added** blueprint check
 
