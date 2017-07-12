@@ -81,7 +81,7 @@ describe(test.label, function () {
       })
   })
 
-  it('Select tab by default', function (done) {
+  it('Select tab by default', function () {
     const selectedTabText = 'Profile View 2'
     const contentText = 'profile 2'
     const defaultTabId = 'profile2'
@@ -118,7 +118,7 @@ describe(test.label, function () {
       })
   })
 
-  it('Select related object tab', function (done) {
+  it('Select related object tab', function () {
     const selectedTabId = 'device'
     const selectedTabType = 'relatedObjectTab'
     const selectedTabText = 'Device'
@@ -171,7 +171,7 @@ describe(test.label, function () {
       })
   })
 
-  it('Only a detail tab', function (done) {
+  it('Only a detail tab', function () {
     const selectedTabId = 'profile'
     const defaultTabId = 'profile'
     this.setProperties({
@@ -199,7 +199,7 @@ describe(test.label, function () {
       })
   })
 
-  it('Detail tab and related object tab', function (done) {
+  it('Detail tab and related object tab', function () {
     const selectedTabId = 'profile'
     const defaultTabId = 'profile'
     const tabText = 'Profile View'
