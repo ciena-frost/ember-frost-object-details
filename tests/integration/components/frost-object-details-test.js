@@ -115,11 +115,6 @@ describe(test.label, function () {
         expect($hook(detailsObjectTabHookName, {index: 1}).find('button.active')).to.have.length(1)
         expect($hook(detailsObjectTabHookName, {index: 1})).to.have.length(1)
         expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
-
-        return capture('object-details-selected-tab', done, {
-          targetElement: $hook('-object-details')[0],
-          experimentalSvgs: true
-        })
       })
   })
 
@@ -173,11 +168,6 @@ describe(test.label, function () {
         expect($hook(detailsObjectTabHookName).find('.default')).to.have.length(1)
 
         expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
-
-        return capture('object-details-selected-related-obj-tab', done, {
-          targetElement: $hook('-object-details')[0],
-          experimentalSvgs: true
-        })
       })
   })
 
@@ -206,11 +196,6 @@ describe(test.label, function () {
       .then(() => {
         expect($hook(detailsObjectTabHookName, {index: 0})).to.have.length(1)
         expect($hook(detailsRelatedObjectTabHookName)).to.have.length(0)
-
-        return capture('object-details-with-only-tab', done, {
-          targetElement: $hook('-object-details')[0],
-          experimentalSvgs: true
-        })
       })
   })
 
@@ -260,11 +245,6 @@ describe(test.label, function () {
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).find(iconSelector).attr(iconAttributeName)
               .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).text().trim()).to.be.equal(relatedObjectTabText)
-
-        return capture('object-details-with-tabs-and-related-obj-tab', done, {
-          targetElement: $hook('-object-details')[0],
-          experimentalSvgs: true
-        })
       })
   })
 
