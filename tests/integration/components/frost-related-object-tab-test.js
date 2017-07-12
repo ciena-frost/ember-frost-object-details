@@ -1,4 +1,3 @@
-/* jshint expr:true */
 import {expect} from 'chai'
 import {$hook, initialize as initializeHook} from 'ember-hook'
 import hbs from 'htmlbars-inline-precompile'
