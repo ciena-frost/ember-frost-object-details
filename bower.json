@@ -1,11 +1,7 @@
 {
   "name": "ember-frost-object-details",
   "dependencies": {
-    "ember": "~2.8.0",
-    "ember-cli-shims": "0.1.0",
     "ember-inflector": "1.3.1",
-    "ember-mocha": "~0.8.11",
-    "ember-mocha-adapter": "~0.3.1",
     "Faker": "3.0.1",
     "lodash": "^4.5.1",
     "pretender": "~0.12.0",
@@ -13,8 +9,5 @@
     "es6-promise": "^4.0.3",
     "resemblejs": "^2.2.2",
     "node-uuid": "1.4.7"
-  },
-  "resolutions": {
-    "ember": "~2.8.0"
   }
 }
