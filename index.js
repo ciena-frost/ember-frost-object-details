@@ -3,5 +3,9 @@
 'use strict'
 
 module.exports = {
-  name: 'ember-frost-object-details'
+  name: 'ember-frost-object-details',
+
+  included: function (app) {
+    this._super.included.apply(this, app)
+  }
 }
