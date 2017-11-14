@@ -68,7 +68,6 @@
     "ember-cli-htmlbars": "^1.1.1",
     "ember-cli-sass": "5.6.0",
     "ember-frost-core": "^3.0.1",
-    "ember-simple-uuid": "0.1.4",
     "liquid-fire": "0.27.3"
   },
   "ember-addon": {
