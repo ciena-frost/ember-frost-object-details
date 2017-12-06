@@ -44,7 +44,6 @@
     "ember-elsewhere": "~0.4.1",
     "ember-export-application-global": "^1.0.5",
     "ember-frost-test": "1.0.1",
-    "ember-hook": "^1.4.1",
     "ember-load-initializers": "^0.6.0",
     "ember-lodash-shim": "1.0.1",
     "ember-prop-types": "^3.9.0",
@@ -69,6 +68,7 @@
     "ember-cli-htmlbars": "^1.1.1",
     "ember-cli-sass": "5.6.0",
     "ember-frost-core": "^4.0.1",
+    "ember-hook": "^1.4.2",
     "liquid-fire": "0.27.3"
   },
   "ember-addon": {
