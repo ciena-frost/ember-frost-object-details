@@ -50,7 +50,7 @@ describe(test.label, function () {
       hook: hookName
     })
     this.render(template)
-    expect($hook(`${hookName}${detailTabHookName}`, {selected: true})).to.have.length(1)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('should set parent hook', function () {
@@ -79,7 +79,7 @@ describe(test.label, function () {
       text: text
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, {selected: true}).text().trim()).to.be.equal(text)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true}).text().trim()).to.be.equal(text)
   })
 
   it('should have no tab selected', function () {
@@ -87,7 +87,7 @@ describe(test.label, function () {
       selectedTabId: null
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(1)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('should have no type selected', function () {
@@ -95,7 +95,7 @@ describe(test.label, function () {
       selectedTabType: null
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(1)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('should have default tab and different tab selected', function () {
@@ -105,10 +105,10 @@ describe(test.label, function () {
       selectedTabType: 'abc'
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, {selected: false}).find('button.active')).to.have.length(0)
-    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(0)
-    expect($hook(`${detailTabHookName}`, {selected: false})).to.have.length(1)
-    expect($hook(`${detailTabHookName}`, {selected: false}).find('button.default')).to.have.length(1)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: false}).find('button.active')).to.have.length(0)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true})).to.have.length(0)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: false})).to.have.length(1)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: false}).find('button.default')).to.have.length(1)
   })
 
   it('should have default tab and is selected', function () {
@@ -117,10 +117,10 @@ describe(test.label, function () {
       selectedTabId: id
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, {selected: true}).find('button.active')).to.have.length(1)
-    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(1)
-    expect($hook(`${detailTabHookName}`, {selected: false})).to.have.length(0)
-    expect($hook(`${detailTabHookName}`, {selected: false}).find('button.default')).to.have.length(0)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true}).find('button.active')).to.have.length(1)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true})).to.have.length(1)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: false})).to.have.length(0)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: false}).find('button.default')).to.have.length(0)
   })
 
   it('should have selected', function () {
@@ -129,8 +129,8 @@ describe(test.label, function () {
       selectedTabId: id
     })
     this.render(template)
-    expect($hook(`${detailTabHookName}`, {selected: true}).find('button.active')).to.have.length(1)
-    expect($hook(`${detailTabHookName}`, {selected: true})).to.have.length(1)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true}).find('button.active')).to.have.length(1)
+    expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('should set onChange', function () {

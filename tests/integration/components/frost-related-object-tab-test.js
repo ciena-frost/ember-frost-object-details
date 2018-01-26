@@ -62,7 +62,7 @@ describe(test.label, function () {
       hook: hookName
     })
     this.render(template)
-    expect($hook(`${hookName}${relatedObjectTabHookName}`, {selected: true})).to.have.length(1)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: true})).to.have.length(1)
   })
 
   it('should set parent hook', function () {
@@ -88,7 +88,7 @@ describe(test.label, function () {
       text: text
     })
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: true}).text().trim()).to.be.equal(text)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: true}).text().trim()).to.be.equal(text)
   })
 
   it('should set icon name', function () {
@@ -96,8 +96,8 @@ describe(test.label, function () {
       selectedTabId: 'abc'
     })
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: false}).find(iconSelector).attr(iconAttributeName)
-      .indexOf(`/${defaultPack}.svg#${iconWithNameOnly.name}`)).to.be.gt(-1)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: false}).find(iconSelector)
+      .attr(iconAttributeName).indexOf(`/${defaultPack}.svg#${iconWithNameOnly.name}`)).to.be.gt(-1)
   })
 
   it('should set icon name and pack', function () {
@@ -106,15 +106,17 @@ describe(test.label, function () {
       icon: icon
     })
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: false}).find(iconSelector).attr(iconAttributeName)
-      .indexOf(`/${icon.pack}.svg#${icon.name}`)).to.be.gt(-1)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: false}).find(iconSelector)
+      .attr(iconAttributeName).indexOf(`/${icon.pack}.svg#${icon.name}`)).to.be.gt(-1)
   })
 
   it('should  have tab is selected', function () {
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: true}).find('button.active')).to.have.length(1)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: true}).find(iconSelector).attr(iconAttributeName)
-      .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
+    expect(
+      $hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: true}).find('button.active')
+    ).to.have.length(1)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: true}).find(iconSelector)
+      .attr(iconAttributeName).indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
   })
 
   it('should set onChange', function () {

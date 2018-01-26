@@ -1,10 +1,10 @@
 import Ember from 'ember'
 import layout from '../templates/components/frost-object-tab'
+import computed, {readOnly} from 'ember-computed-decorators'
 import PropTypesMixin, {PropTypes} from 'ember-prop-types'
 
 const {
   Component,
-  computed,
   isEmpty,
   on
 } = Ember
@@ -25,38 +25,43 @@ export default Component.extend(PropTypesMixin, {
       PropTypes.EmberObject,
       PropTypes.object
     ]).isRequired,
-    hook: PropTypes.string,
     // Set by the parent component
     selectedTabId: PropTypes.string.isRequired,
     selectedTabType: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     parentHook: PropTypes.string,
-    register: PropTypes.function,
+    register: PropTypes.func,
     targetOutlet: PropTypes.string,
     defaultTabId: PropTypes.string
   },
 
+  init () {
+    // This needs to be setup outside of ember-prop-types getDefaultProps() because it does not work
+    // within the timing of tests
+    this.set('hook', `${this.parentHook}-${this.id}`)
+    this._super(...arguments)
+  },
+
   // == Computed properties ===================================================
 
-  isSelected: computed('selectedTabId', 'defaultTabId', 'selectedTabType', function () {
-    const tabId = this.get('id')
-    const selectedTabId = this.get('selectedTabId')
+  @readOnly
+  @computed('selectedTabId', 'defaultTabId', 'selectedTabType')
+  isSelected (selectedTabId, defaultTabId, selectedTabType) {
+    const tabId = this.id
 
     return tabId === selectedTabId ||
-          ((isEmpty(selectedTabId) ||
-            isEmpty(this.get('selectedTabType'))) &&
-            tabId === this.get('defaultTabId'))
-  }),
+      ((isEmpty(selectedTabId) ||
+        isEmpty(selectedTabType)) &&
+        tabId === defaultTabId)
+  },
 
-  isDefault: computed('isSelected', 'selectedTabType', 'type', 'id', 'defaultTabId', function () {
-    return !this.get('isSelected') &&
-      this.get('selectedTabType') !== this.get('type') &&
-      this.get('id') === this.get('defaultTabId')
-  }),
-
-  hook: computed('parentHook', 'id', function () {
-    return `${this.parentHook}-${this.id}`
-  }),
+  @readOnly
+  @computed('isSelected', 'selectedTabType', 'type', 'id', 'defaultTabId')
+  isDefault (isSelected, selectedTabType, type, id, defaultTabId) {
+    return !isSelected &&
+      selectedTabType !== type &&
+      id === defaultTabId
+  },
 
   // == Events ================================================================
 

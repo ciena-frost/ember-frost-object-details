@@ -161,7 +161,7 @@ describe(test.label, function () {
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).text().trim()).to.be.equal(selectedTabText)
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).find('button.active')).to.have.length(1)
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).find(iconSelector).attr(iconAttributeName)
-              .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
+          .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
 
         expect($hook(detailsObjectTabHookName)).to.have.length(1)
         expect($hook(detailsObjectTabHookName).find('.default')).to.have.length(1)
