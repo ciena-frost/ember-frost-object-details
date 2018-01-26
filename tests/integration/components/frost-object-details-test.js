@@ -1,11 +1,10 @@
 import {expect} from 'chai'
 import {$hook, initialize as initializeHook} from 'ember-hook'
 import wait from 'ember-test-helpers/wait'
+import {integration} from 'ember-test-utils/test-support/setup-component-test'
 import hbs from 'htmlbars-inline-precompile'
 import {beforeEach, describe, it} from 'mocha'
 import sinon from 'sinon'
-
-import {integration} from 'dummy/tests/helpers/ember-test-utils/setup-component-test'
 
 const defaultPack = 'app'
 const defaultSelectedPack = 'frost'
@@ -32,7 +31,7 @@ describe(test.label, function () {
     initializeHook()
   })
 
-  it('Set hook name', function () {
+  it('should set hook name', function () {
     const hookName = 'my-hook'
     const tabId = 'profile'
     const relatedTabId = 'devices'
@@ -81,7 +80,7 @@ describe(test.label, function () {
       })
   })
 
-  it('Select tab by default', function () {
+  it('should select tab by default', function () {
     const selectedTabText = 'Profile View 2'
     const contentText = 'profile 2'
     const defaultTabId = 'profile2'
@@ -118,7 +117,7 @@ describe(test.label, function () {
       })
   })
 
-  it('Select related object tab', function () {
+  it('should select related object tab', function () {
     const selectedTabId = 'device'
     const selectedTabType = 'relatedObjectTab'
     const selectedTabText = 'Device'
@@ -171,7 +170,7 @@ describe(test.label, function () {
       })
   })
 
-  it('Only a detail tab', function () {
+  it('should only a detail tab', function () {
     const selectedTabId = 'profile'
     const defaultTabId = 'profile'
     this.setProperties({
@@ -199,7 +198,7 @@ describe(test.label, function () {
       })
   })
 
-  it('Detail tab and related object tab', function () {
+  it('should detail tab and related object tab', function () {
     const selectedTabId = 'profile'
     const defaultTabId = 'profile'
     const tabText = 'Profile View'
@@ -243,12 +242,12 @@ describe(test.label, function () {
 
         expect($hook(detailsRelatedObjectTabHookName, {index: 0})).to.have.length(1)
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).find(iconSelector).attr(iconAttributeName)
-              .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
+          .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).text().trim()).to.be.equal(relatedObjectTabText)
       })
   })
 
-  it('Set content', function () {
+  it('should set content', function () {
     const defaultTabId = 'profile'
     this.setProperties({
       defaultTabId: defaultTabId
@@ -272,7 +271,7 @@ describe(test.label, function () {
     expect($hook('-object-details-content').text().trim()).to.be.equal('test')
   })
 
-  it('Set onChange', function () {
+  it('should set onChange', function () {
     const defaultTabId = 'profile'
     const props = {
       defaultTabId: defaultTabId,
@@ -301,7 +300,7 @@ describe(test.label, function () {
     props.onChange.reset()
   })
 
-  it('Set onChange related object tab', function () {
+  it('should set onChange related object tab', function () {
     const props = {
       selectedTabId: 'devices',
       selectedTabType: 'relatedObjectTab',
