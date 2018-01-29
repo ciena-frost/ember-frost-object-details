@@ -32,64 +32,13 @@ export default Component.extend(PropTypesMixin, {
 
   // == Computed properties ===================================================
 
-  /**
-   * Register a tab in the ordered tab list.
-   * @return {array} a list of the ordered tabs
-   */
-  registerTab: computed(function () {
-    return (function () {
-      return (id, type) => {
-        this.get('orderedTabIds').push(id)
-        set(this.get('tabTypeMap'), id, type)
-      }
-    }.call(this))
-  }),
+  // == Events ================================================================
 
-  animations: computed(function () {
-    const orderedTabIds = this.get('orderedTabIds')
-    const tabTypeMap = this.get('tabTypeMap')
-    const detailTabType = 'tab'
-
-    return function () {
-      this.transition(
-        this.toValue(function (toValue, fromValue) {
-          const tabType = get(tabTypeMap, toValue)
-
-          return orderedTabIds &&
-            tabType === detailTabType &&
-            orderedTabIds.indexOf(fromValue) > orderedTabIds.indexOf(toValue)
-        }),
-        this.use('to-left')
-      )
-
-      this.transition(
-        this.toValue(function (toValue, fromValue) {
-          const tabType = get(tabTypeMap, toValue)
-
-          return orderedTabIds &&
-            tabType === detailTabType &&
-            orderedTabIds.indexOf(fromValue) < orderedTabIds.indexOf(toValue)
-        }),
-        this.use('to-right')
-      )
-
-      this.transition(
-        this.toValue(function (toValue, fromValue) {
-          return get(tabTypeMap, toValue) !== detailTabType && fromValue !== toValue
-        }),
-        this.use('to-up')
-      )
-
-      this.transition(
-        this.toValue(function (toValue, fromValue) {
-          return get(tabTypeMap, fromValue) !== detailTabType &&
-            get(tabTypeMap, fromValue) !== get(tabTypeMap, toValue) &&
-            fromValue !== toValue
-        }),
-        this.use('to-down')
-      )
-    }
-  }),
+  init () {
+    this._super(...arguments)
+    this.setupRegisterTab()
+    this.setupAnimations()
+  },
 
   // == Actions ===============================================================
 
@@ -104,8 +53,70 @@ export default Component.extend(PropTypesMixin, {
         this.onChange(id, type)
       }
     }
-  }
+  },
 
   // == Functions ==============================================================
 
+  /**
+   * Sets the function definition that configures the transition animations.
+   */
+  setupAnimations () {
+    this.set('animations', (function () {
+      const orderedTabIds = this.get('orderedTabIds')
+      const tabTypeMap = this.get('tabTypeMap')
+      const detailTabType = 'tab'
+
+      return function () {
+        this.transition(
+          this.toValue(function (toValue, fromValue) {
+            const tabType = get(tabTypeMap, toValue)
+
+            return orderedTabIds &&
+              tabType === detailTabType &&
+              orderedTabIds.indexOf(fromValue) > orderedTabIds.indexOf(toValue)
+          }),
+          this.use('to-left')
+        )
+
+        this.transition(
+          this.toValue(function (toValue, fromValue) {
+            const tabType = get(tabTypeMap, toValue)
+
+            return orderedTabIds &&
+              tabType === detailTabType &&
+              orderedTabIds.indexOf(fromValue) < orderedTabIds.indexOf(toValue)
+          }),
+          this.use('to-right')
+        )
+
+        this.transition(
+          this.toValue(function (toValue, fromValue) {
+            return get(tabTypeMap, toValue) !== detailTabType && fromValue !== toValue
+          }),
+          this.use('to-up')
+        )
+
+        this.transition(
+          this.toValue(function (toValue, fromValue) {
+            return get(tabTypeMap, fromValue) !== detailTabType &&
+              get(tabTypeMap, fromValue) !== get(tabTypeMap, toValue) &&
+              fromValue !== toValue
+          }),
+          this.use('to-down')
+        )
+      }
+    }.call(this)))
+  },
+
+  /**
+   * Sets the function definition that registers a tab in the ordered tab list.
+   */
+  setupRegisterTab () {
+    this.set('registerTab', (function () {
+      return (id, type) => {
+        this.get('orderedTabIds').push(id)
+        set(this.get('tabTypeMap'), id, type)
+      }
+    }.call(this)))
+  }
 })
