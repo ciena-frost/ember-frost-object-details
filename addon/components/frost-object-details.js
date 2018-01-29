@@ -1,5 +1,5 @@
 import Ember from 'ember'
-const {Component, computed, get, guidFor, set} = Ember
+const {Component, get, guidFor, set} = Ember
 import layout from '../templates/components/frost-object-details'
 import PropTypesMixin, {PropTypes} from 'ember-prop-types'
 
