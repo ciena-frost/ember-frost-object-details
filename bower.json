@@ -2,7 +2,6 @@
   "name": "ember-frost-object-details",
   "dependencies": {
     "Faker": "3.0.1",
-    "pretender": "~0.12.0",
-    "es6-promise": "^4.0.3"
+    "pretender": "~0.12.0"
   }
 }
