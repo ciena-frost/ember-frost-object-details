@@ -40,7 +40,6 @@
     "ember-data": "~2.8.0",
     "ember-export-application-global": "^1.0.5",
     "ember-frost-test": "^4.0.0",
-    "ember-hook": "1.4.2",
     "ember-load-initializers": "^0.6.0",
     "ember-lodash-shim": "1.0.1",
     "ember-resolver": "^2.0.3",
@@ -64,7 +63,7 @@
     "ember-computed-decorators": "0.3.0",
     "ember-frost-core": "^4.0.1",
     "ember-elsewhere": "~0.4.1",
-    "ember-hook": "^1.4.2",
+    "ember-hook": "1.4.2",
     "ember-prop-types": "^5.0.2",
     "liquid-fire": "0.27.3"
   },
