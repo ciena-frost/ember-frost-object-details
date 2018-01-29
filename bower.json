@@ -1,6 +1,7 @@
 {
   "name": "ember-frost-object-details",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "Faker": "3.0.1",
     "pretender": "~0.12.0"
   }
