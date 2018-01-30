@@ -1,3 +1,45 @@
+# 6.0.0 (2018-01-30)
+* **Added** ignore the linting of the `CHANGELOG.md`
+* **Added** ignoring of `package-lock` until we are ready to move to node 8
+* **Added** ignoring of `.DS_Store` files
+* **Removed** useLintTree ember-cli-mocha configuration from `ember-cli-build.js`
+* **Removed** `.remarkrc` file since it is now provided by `ember-test-utils`
+* **Removed** `.template-lintrc` file since it is now provided by `ember-test-utils`
+* **Updated** `ember-frost-test` to `^4.0.0`
+* **Updated** `ember-cli-chai` to `0.4.3`
+* **Updated** `ember-sinon` to `^0.7.0`
+* **Updated** `ember-test-utils` to `^8.1.0`
+* **Updated** `sinon-chai` to `^2.14.0`
+* **Updated** `ember-browserify` to `^1.2.0`
+* **Updated** `ember-cli-code-coverage` to `0.3.12`
+* **Added** `ember-cli-frost-blueprints` @ `^5.0.1`
+* **Removed** unused `ember-cli-notifications` package
+* **Removed** `ember-cli-template-lint` since it is provided by `ember-test-utils`
+* **Updated** pin `ember-code-snippet` to `1.7.0`
+* **Updated** `ember-computed-decorators` to `0.3.0` and moved from devDependency to dependency
+* **Removed** unused `ember-lodash-shim` package
+* **Removed** unused `lodash-es` package
+* **Removed** unused `redux` package
+* **Removed** unused `redux-thunk` package
+* **Updated** `ember-cli-sass` to `7.1.1`
+* **Updated** `ember-frost-core` to `^5.1.1`
+* **Updated** `ember-elsewhere` to `1.0.1`
+* **Updated** `ember-hook` to `1.4.2`
+* **Updated** `ember-prop-types` to `^6.0.1`
+* **Updated** `liquid-fire` to `0.27.2`
+* **Removed** unused `ember-inflector` bower package
+* **Removed** unused `lodash` bower package
+* **Removed** no longer needed `sinonjs` bower package since we are using the npm package
+* **Removed** unused `es6-promise` bower package
+* **Removed** unused `resemblejs` bower package
+* **Updated** `Faker` and `pretender` bower packages to be devDependencies
+* **Updated** refactored `parentHook` assignment to `hook` properties. Per our coding standards they are required to be `readOnly computed` properties. Due to the current implementation they could not be made `readOnly` as they were currently implemented.
+* **Updated** `registerTabs` and `animations` properties to be assigned functions bound to parent context instead of computed properties. Our design standards require computed properties to be `readOnly` but it was not possible to make them `readOnly` computed properties as they were currently implemented.
+* **Updated** integration tests that were using `hook` to find elements in the DOM as they were not previously aware of the parent hook.
+* **Updated** computed properties that were not `readOnly` to now be so.
+* **Updated** move code coverage config file to tests/dummy/config/ and add json-summary reporter
+
+
 # 5.0.0 (2017-12-07)
 * **Updated** to version 4 of `ember-frost-core`
 * **Updated** `ember-hook` from a devDependency to a dependency
