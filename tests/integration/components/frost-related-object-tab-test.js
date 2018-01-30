@@ -1,10 +1,9 @@
 import {expect} from 'chai'
 import {$hook, initialize as initializeHook} from 'ember-hook'
+import {integration} from 'ember-test-utils/test-support/setup-component-test'
 import hbs from 'htmlbars-inline-precompile'
 import {beforeEach, describe, it} from 'mocha'
 import sinon from 'sinon'
-
-import {integration} from 'dummy/tests/helpers/ember-test-utils/setup-component-test'
 
 const defaultPack = 'app'
 const defaultSelectedPack = 'frost'
@@ -57,16 +56,16 @@ describe(test.label, function () {
     })
   })
 
-  it('Set hook', function () {
+  it('should set hook', function () {
     const hookName = 'my-hook'
     this.setProperties({
       hook: hookName
     })
     this.render(template)
-    expect($hook(`${hookName}${relatedObjectTabHookName}`, {selected: true})).to.have.length(1)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: true})).to.have.length(1)
   })
 
-  it('Set parent hook', function () {
+  it('should set parent hook', function () {
     const hookName = 'my-hook'
     this.setProperties({
       parentHook: hookName,
@@ -83,42 +82,44 @@ describe(test.label, function () {
     expect($hook(`${hookName}-${id}${relatedObjectTabHookName}`, {selected: false})).to.have.length(1)
   })
 
-  it('Set text', function () {
+  it('should set text', function () {
     const text = 'bla bla bla'
     this.setProperties({
       text: text
     })
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: true}).text().trim()).to.be.equal(text)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: true}).text().trim()).to.be.equal(text)
   })
 
-  it('Set icon name', function () {
+  it('should set icon name', function () {
     this.setProperties({
       selectedTabId: 'abc'
     })
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: false}).find(iconSelector).attr(iconAttributeName)
-          .indexOf(`/${defaultPack}.svg#${iconWithNameOnly.name}`)).to.be.gt(-1)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: false}).find(iconSelector)
+      .attr(iconAttributeName).indexOf(`/${defaultPack}.svg#${iconWithNameOnly.name}`)).to.be.gt(-1)
   })
 
-  it('Set icon name and pack', function () {
+  it('should set icon name and pack', function () {
     this.setProperties({
       selectedTabId: 'abc',
       icon: icon
     })
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: false}).find(iconSelector).attr(iconAttributeName)
-          .indexOf(`/${icon.pack}.svg#${icon.name}`)).to.be.gt(-1)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: false}).find(iconSelector)
+      .attr(iconAttributeName).indexOf(`/${icon.pack}.svg#${icon.name}`)).to.be.gt(-1)
   })
 
-  it('Tab is selected', function () {
+  it('should  have tab is selected', function () {
     this.render(template)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: true}).find('button.active')).to.have.length(1)
-    expect($hook(`${relatedObjectTabHookName}`, {selected: true}).find(iconSelector).attr(iconAttributeName)
-          .indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
+    expect(
+      $hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: true}).find('button.active')
+    ).to.have.length(1)
+    expect($hook(`undefined-${id}${relatedObjectTabHookName}`, {selected: true}).find(iconSelector)
+      .attr(iconAttributeName).indexOf(`/${defaultSelectedPack}.svg#${defaultSelectedIcon}`)).to.be.gt(-1)
   })
 
-  it('Set onChange', function () {
+  it('should set onChange', function () {
     const defaultTabId = id
     const props = {
       defaultTabId: defaultTabId,
