@@ -9,7 +9,13 @@ module.exports = function (defaults) {
     snippetSearchPaths: [
       'addon',
       'tests/dummy'
-    ]
+    ],
+    svgstore: {
+      files: [{
+        sourceDirs: 'tests/dummy/svgs',
+        outputFile: '/assets/icon-packs/dummy.svg'
+      }]
+    }
   })
 
   /*
