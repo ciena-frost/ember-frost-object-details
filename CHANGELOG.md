@@ -1,3 +1,7 @@
+# 8.0.1 (2018-04-16)
+* **Installed** `ember-cli-svgstore` as a devDependency
+* **Updated** dummy app configuration to produce svg icons
+
 # 8.0.0 (2018-04-13)
 * **Updated** `ember-frost-core` to version `^8.0.0`
 
