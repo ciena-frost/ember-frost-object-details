@@ -1,3 +1,6 @@
+# 8.0.2 (2018-04-16)
+* **Updated** set `copyAttrs` in `svgStoreOpts` for dummy app
+
 # 8.0.1 (2018-04-16)
 * **Installed** `ember-cli-svgstore` as a devDependency
 * **Updated** dummy app configuration to produce svg icons
