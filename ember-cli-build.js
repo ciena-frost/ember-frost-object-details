@@ -14,7 +14,10 @@ module.exports = function (defaults) {
       files: [{
         sourceDirs: 'tests/dummy/svgs',
         outputFile: '/assets/icon-packs/dummy.svg'
-      }]
+      }],
+      svgstoreOpts: {
+        copyAttrs: ['preserveAspectRatio']
+      }
     }
   })
 
