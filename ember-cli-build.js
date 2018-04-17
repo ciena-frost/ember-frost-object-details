@@ -12,7 +12,7 @@ module.exports = function (defaults) {
     ],
     svgstore: {
       files: [{
-        sourceDirs: 'tests/dummy/svgs',
+        sourceDirs: 'tests/dummy/frost-icon-svgs',
         outputFile: '/assets/icon-packs/dummy.svg'
       }],
       svgstoreOpts: {
