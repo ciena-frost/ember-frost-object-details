@@ -1,3 +1,8 @@
+# 8.0.3 (2018-09-06)
+
+* **Fixed** Travis API key.
+
+
 # 8.0.2 (2018-04-16)
 * **Updated** set `copyAttrs` in `svgStoreOpts` for dummy app
 
