@@ -1,3 +1,4 @@
+import { click } from '@ember/test-helpers';
 import {expect} from 'chai'
 import {$hook, initialize as initializeHook} from 'ember-hook'
 import {integration} from 'ember-test-utils/test-support/setup-component-test'
@@ -133,7 +134,7 @@ describe(test.label, function () {
     expect($hook(`undefined-${id}${detailTabHookName}`, {selected: true})).to.have.length(1)
   })
 
-  it('should set onChange', function () {
+  it('should set onChange', async function() {
     const defaultTabId = id
     const props = {
       defaultTabId: defaultTabId,
@@ -142,7 +143,7 @@ describe(test.label, function () {
     this.setProperties(props)
     this.render(template)
 
-    this.$('button').click()
+    await click('button')
 
     expect(props.onChange.called).to.equal(true)
     props.onChange.reset()

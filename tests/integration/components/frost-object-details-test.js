@@ -1,10 +1,10 @@
 import {expect} from 'chai'
 import {$hook, initialize as initializeHook} from 'ember-hook'
-import wait from 'ember-test-helpers/wait'
 import {integration} from 'ember-test-utils/test-support/setup-component-test'
 import hbs from 'htmlbars-inline-precompile'
 import {beforeEach, describe, it} from 'mocha'
 import sinon from 'sinon'
+import { settled, click } from '@ember/test-helpers';
 
 const defaultPack = 'app'
 const defaultSelectedPack = 'frost'
@@ -64,7 +64,7 @@ describe(test.label, function () {
       }}
     `)
 
-    return wait()
+    return settled()
       .then(() => {
         expect($hook(`${hookName}${objectDetailsHookName}`)).to.have.length(1)
         expect($hook(`${hookName}${objectDetailsContentHookName}`)).to.have.length(1)
@@ -77,7 +77,7 @@ describe(test.label, function () {
         expect($hook(`${hookName}${detailsRelatedObjectTabHookName}`, {index: 0})).to.have.length(1)
         expect($hook(`${hookName}-${relatedTabId}`)).to.have.length(1)
         expect($hook(`${hookName}-${relatedTabId}${relatedObjectTabHookName}`)).to.have.length(1)
-      })
+      });
   })
 
   it('should select tab by default', function () {
@@ -107,14 +107,14 @@ describe(test.label, function () {
       }}
     `)
 
-    return wait()
+    return settled()
       .then(() => {
         expect($hook(detailsObjectTabHookName)).to.have.length(2)
         expect($hook(detailsObjectTabHookName, {index: 1}).text().trim()).to.be.equal(selectedTabText)
         expect($hook(detailsObjectTabHookName, {index: 1}).find('button.active')).to.have.length(1)
         expect($hook(detailsObjectTabHookName, {index: 1})).to.have.length(1)
         expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
-      })
+      });
   })
 
   it('should select related object tab', function () {
@@ -155,7 +155,7 @@ describe(test.label, function () {
       }}
     `)
 
-    return wait()
+    return settled()
       .then(() => {
         expect($hook(detailsRelatedObjectTabHookName)).to.have.length(1)
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).text().trim()).to.be.equal(selectedTabText)
@@ -167,7 +167,7 @@ describe(test.label, function () {
         expect($hook(detailsObjectTabHookName).find('.default')).to.have.length(1)
 
         expect($hook(bodyContentHookName).text().trim()).to.be.equal(`This is ${contentText} template`)
-      })
+      });
   })
 
   it('should only a detail tab', function () {
@@ -191,11 +191,11 @@ describe(test.label, function () {
       }}
     `)
 
-    return wait()
+    return settled()
       .then(() => {
         expect($hook(detailsObjectTabHookName, {index: 0})).to.have.length(1)
         expect($hook(detailsRelatedObjectTabHookName)).to.have.length(0)
-      })
+      });
   })
 
   it('should detail tab and related object tab', function () {
@@ -235,7 +235,7 @@ describe(test.label, function () {
       }}
     `)
 
-    return wait()
+    return settled()
       .then(() => {
         expect($hook(detailsObjectTabHookName)).to.have.length(1)
         expect($hook(detailsObjectTabHookName, {index: 0}).text().trim()).to.be.equal(tabText)
@@ -244,7 +244,7 @@ describe(test.label, function () {
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).find(iconSelector).attr(iconAttributeName)
           .indexOf(`/${defaultPack}.svg#${iconName}`)).to.be.gt(-1)
         expect($hook(detailsRelatedObjectTabHookName, {index: 0}).text().trim()).to.be.equal(relatedObjectTabText)
-      })
+      });
   })
 
   it('should set content', function () {
@@ -271,7 +271,7 @@ describe(test.label, function () {
     expect($hook('-object-details-content').text().trim()).to.be.equal('test')
   })
 
-  it('should set onChange', function () {
+  it('should set onChange', async function() {
     const defaultTabId = 'profile'
     const props = {
       defaultTabId: defaultTabId,
@@ -294,7 +294,7 @@ describe(test.label, function () {
       {{/frost-object-details}}
     `)
 
-    this.$('button').click()
+    await click('button')
 
     expect(props.onChange.called).to.equal(true)
     props.onChange.reset()
@@ -336,12 +336,12 @@ describe(test.label, function () {
       {{/frost-object-details}}
     `)
 
-    return wait()
-      .then(() => {
-        this.$('.active.frost-button').click()
+    return settled()
+      .then(async () => {
+        await click('.active.frost-button')
 
         expect(props.onChange.called).to.equal(true)
         props.onChange.reset()
-      })
+      });
   })
 })
